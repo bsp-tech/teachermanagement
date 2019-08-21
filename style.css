@@ -1,0 +1,51 @@
+body {
+    margin-top: 200px;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* breadcrumb */
+
+.breadcrumb-item {
+    color: #000000;
+    font-weight: 600;
+    font-size: 14px;
+}
+.breadcrumb-item.active {
+    position: relative;
+}
+.breadcrumb-item.active::before {
+    content: "\f04b";
+    font-family: "Font Awesome 5 Free";
+    font-size: 9px;
+    margin-right: 5px;
+    padding: 0 3px;
+    color: #ccc!important;
+    position: absolute;
+    top: 47%;
+    transform: translateY(-50%) 
+}
+.section-bread {
+    border-bottom: 2px solid #5cb85c;
+}
+.breadcrumb {
+    margin-bottom: 0!important;
+}
+
+/* about section */
+
+.section-padding {
+    padding: 60px 0;
+}
+
+.about-wrapper h4 {
+    margin-top: 5px;
+    font-size: 24px;
+    font-weight: 400;
+}
+.about-wrapper p {
+    margin: 0!important;
+    font-size: 14px;
+    font-weight: 400;
+    color: #777777;
+    line-height: 1.8;
+}
