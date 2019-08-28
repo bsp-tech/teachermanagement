@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ana Sehife</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -59,8 +60,14 @@
             </div>
             <!--Paketler-->
 
-
-            <div class="owl-carousel owl-theme fixed-left position-relative">
+            <div class="position-absolute arrow-left p-3">
+                 <i class="fas fa-chevron-left text-dark"></i>
+            </div>
+            <div class="position-absolute arrow-right p-3">
+                    <i class="fas fa-chevron-right text-dark"></i>
+               </div>
+            <div class="owl-carousel owl-theme">
+                
                        <div class="item">
                      <div class="border border-muted">
                     <div class="bg-success text-center py-1">
@@ -881,7 +888,7 @@
                 <div class="col-lg-5 mb-4">
                     <div class="row">
                         <div class="col-12">
-                            <h4 class = "font-weight-normal"><i class="far fa-question-circle pr-2"></i> MERAK <span class = "text-success">ETTİKLERİNİZ</span></h4>
+                            <h4 class = "font-weight-normal my-2"><i class="far fa-question-circle pr-2"></i> MERAK <span class = "text-success">ETTİKLERİNİZ</span></h4>
                             <hr class="w-25 bg-success ml-0">
                         </div>
                     </div>
@@ -952,7 +959,7 @@
                 <div class="col-lg-7">
                     <div class="row">
                         <div class="col-12">
-                            <h4 class = "font-weight-normal"><i class="far fa-image pr-2"></i>BİR FOTOĞRAF <span class = "text-success">ÇEKİLEBİLİR MİYİZ ?</span></h4>
+                            <h4 class = "font-weight-normal my-2"><i class="far fa-image pr-2"></i>BİR FOTOĞRAF <span class = "text-success">ÇEKİLEBİLİR MİYİZ ?</span></h4>
                             <hr class="w-25 bg-success ml-0 my-4 mb-3">
                         </div>
                     </div>
@@ -1009,7 +1016,7 @@
         $('.carousel2').owlCarousel({
             loop:true,
             margin:10,
-
+            
             dots:false,
             responsive:{
                 0:{
@@ -1026,7 +1033,8 @@
         $('.owl-carousel').owlCarousel({
             loop:true,
             margin:10,
-
+            nav:true,
+            navText: [$('.arrow-left'),$('.arrow-right')],
             dots:false,
             responsive:{
                 0:{
