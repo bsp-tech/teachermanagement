@@ -10,3 +10,9 @@
     transform: translateY(-50%);
     background: yellow;
 }
+@media screen and (max-width:480px) {
+    div.ex1 {
+        width: 100%;
+        overflow-x: scroll;
+      }
+}
