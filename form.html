@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body class="border">
+    
     <div class="form-part mt-5">
-        <div class="container ">
-            <div class="bg-light border-top border-success pt-5 pb-5 pr-5 pl-5 shadow p-3 mb-5 bg-white rounded">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-12 bg-light border-top border-success shadow pt-5 p-3 px-4 mb-5 bg-white rounded">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12 col-md-6">
                         <h2 class="font-weight-normal"><i class="fas fa-sign-in-alt"></i> Uye Girisi</h2>
                         <div>
                             <form>
@@ -30,87 +31,106 @@
                                     </div>
                             </form>
                         </div>
-                        <div class="d-flex justify-content-xl-between mb-5">
-                            <a class="text-danger" href="">Şifremi Unuttum ? <i
-                                    class="fas fa-plus-circle text-danger"></i></a>
-                            <button class="btn btn-primary color-white pl-4 pr-4 pb-2 pt-2">Giris Yap</button>
+                        <div class="d-sm-flex justify-content-between mb-5">
+                            <a class="text-success d-block mb-2" href="">Şifremi Unuttum ? <i
+                                    class="fas fa-plus-circle"></i></a>
+                            <div class="d-flex justify-content-between">
+                                <h1></h1>
+                                <button class="btn btn-primary color-white pl-4 pr-4 pb-2 pt-2">Giris Yap</button>
+                            </div>
+                           
                         </div>
-                        <a class="rounded text-decoration-none text-white bg-primary btn-block pt-2 pb-2 btn-social btn-facebook mt-10 "
-                            href=""><i class="fab fa-facebook-f border-right h4 border-dark pr-2 pl-2"></i> Facebook ile
-                            Giriş Yap / Üye Ol</a>
+                        <a class="d-flex mb-4 align-items-center rounded text-decoration-none text-white bg-primary btn-block btn-social btn-facebook" href="">
+                            <i class="fab fa-facebook-f py-2 px-3 mb-0 border-right h4 border-dark"></i>
+                            <h6 class="mb-0 px-2">Facebook ile Giriş Yap / Üye Ol</h6>
+                        </a>
                     </div>
                 </div>
-                <div class="col-sm-6 border-left">
-
-                    <div class="">
-                        <div class="d-flex justify-content-between">
+                <div class="col-sm-12 col-md-6 border-left">
+                        <div class="d-sm-flex d-md-block d-lg-flex justify-content-between">
                             <h3><i class="fas fa-user-plus"></i> Yeni Üyelik</h3>
-                            <a class="pr-4 rounded text-decoration-none text-white bg-primary  pt-2 pb-2 btn-social btn-facebook mt-10 "
-                                href=""><i class="fab fa-facebook-f pl-2 pr-4"></i> Facebook ile Üye Ol</a>
+                            <a class="d-flex rounded text-decoration-none text-white bg-primary btn-social btn-facebook" href="">
+                                <i class="d-flex align-items-center fab fa-facebook-f px-2 mb-0 border-right h6 border-dark"></i>
+                                <h6 class="mb-0 px-2 py-1 d-flex align-items-center">Facebook ile Üye Ol</h6>
+                            </a>
 
                         </div>
-                    </div>
-                    <div class="d-flex mt-3">
-                        <div class="form-group mr-4">
-                            <label for="exampleInputPassword1">Ad *</label>
-                            <input type="text" class="form-control pr-5 pt-2 pb-2" id="exampleInputPassword1">
-                        </div>
+                        <form action="">
+                    <div class="row mt-3">
+                   
+                   
+                    <div class="col-md-12 col-lg-6">
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Soyad *</label>
-                            <input type="text" class="form-control pr-5 pt-2 pb-2" id="exampleInputPassword1">
+                            <label for="exampleInputPassword1">Ad *</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1">
                         </div>
-
                     </div>
+                    <div class="col-md-12 col-lg-6">
+                         <div class="form-group">
+                            <label for="exampleInputPassword1">Soyad *</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
                     <div class="form-group">
                         <label for="exampleInputEmail1">E-Posta Adresiniz *</label>
-                        <input type="email" class="form-control mb-4" id="exampleInputEmail1"
+                        <input type="email" class="form-control" id="exampleInputEmail1"
                             aria-describedby="emailHelp">
                     </div>
+                </div>
 
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="exampleInputEmail1">E-Posta Adresiniz Tekrar *</label>
-                        <input type="email" class="form-control mb-4" id="exampleInputEmail1"
+                        <input type="email" class="form-control" id="exampleInputEmail1"
                             aria-describedby="emailHelp">
                     </div>
+                </div>
 
-                    <div class="d-flex">
-                        <div class="form-group mr-4">
-                            <label for="exampleInputPassword1">Şifre: *</label>
-                            <input type="password" class="form-control pr-5 pt-2 pb-2" id="exampleInputPassword1">
-                        </div>
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Şifre Tekrar: *</label>
-                            <input type="password" class="form-control pr-5 pt-2 pb-2" id="exampleInputPassword1">
+                                    <label for="exampleInputPassword1">Şifre: *</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1">
                         </div>
                     </div>
-                    <img class="border"
-                        src="https://umutonculakademi.com/DXB.axd?DXCache=24a40dfc-e973-034d-74e4-268ff90177dd" alt="">
-                    <div class="d-flex mt-2">
-                        <i class="fas fa-sync-alt"></i>
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                    <label for="exampleInputPassword1">Şifre Tekrar: *</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                </div>
+                    </div>
+                        
+                    </div>
+                </form>
+                    <img class="" src="img/DXB.png" alt="">
+                    <div class="d-flex align-items-center mt-2">
+                        <i class="fas fa-sync-alt mr-2 text-secondary"></i>
                         <a class="d-block text-decoration-none" href="">
                             <span class="h6">Yenile</span>
                         </a>
                     </div>
 
                     <label class="h6" for="">Resimdeki Doğrulama Kodunu Giriniz:</label>
-                    <div class="form-group  ">
+                    <div class="form-group mb-4">
                         <input placeholder="Dogrulama Kodu:" type="password"
                             class="border rounded pl-2 pr-5 pt-2 pb-2 w-0" id="exampleInputPassword1">
                     </div>
                     <div class="d-flex">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                        <p class="text-danger">Üyelik Sözleşmesini okudum, onaylıyorum.</p>
+                            <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  </div>
+                        <p class="text-success">Üyelik Sözleşmesini okudum, onaylıyorum.</p>
                     </div>
-                    <p>Yeni üyelik oluşturarak <label class="text-danger">sözleşmemizi</label> okuduğunuzu ve kabul
-                        ettiğinizi onaylamış sayılırsınız.</p>
+                    <p class="text-center">Yeni üyelik oluşturarak <label class="text-success">sözleşmemizi</label> okuduğunuzu ve kabul ettiğinizi onaylamış sayılırsınız.</p>
                     <div class="d-flex justify-content-between">
                         <div></div>
                         <button class="btn btn-success text-white">Hesap Olustur</button>
                     </div>
                 </div>
+                    
+                </div>
             </div>
+        </div>
         </div>
     </div>
 
