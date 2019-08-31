@@ -1,11 +1,11 @@
 .arrow-left {
-    top: 50%;
+    top: 42%;
     left: 0;
     transform: translateY(-50%);
     background: yellow;
 }
 .arrow-right {
-    top: 50%;
+    top: 42%;
     right: 0;
     transform: translateY(-50%);
     background: yellow;
