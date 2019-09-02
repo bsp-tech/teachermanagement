@@ -6,15 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
 </head>
 
-<body class="border">
+<body>
+
+    <div id="header"></div>
     
-    <div class="form-part mt-5">
+    <div class="form-part mt-5 mb-5">
         <div class="container">
             <div class="row">
-            <div class="col-md-12 bg-light border-top border-success shadow pt-5 p-3 px-4 mb-5 bg-white rounded">
+            <div class="col-md-12 bg-light border-top border-success shadow pt-5 p-3 px-4 bg-white rounded">
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
                         <h2 class="font-weight-normal"><i class="fas fa-sign-in-alt"></i> Uye Girisi</h2>
@@ -22,9 +26,9 @@
                             <form>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">E-Posta Adresiniz *</label>
-                                    <input type="email" class="form-control mb-4" id="exampleInputEmail1"
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
                                         aria-describedby="emailHelp">
-
+                                    </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Şifre *</label>
                                         <input type="password" class="form-control" id="exampleInputPassword1">
@@ -45,18 +49,14 @@
                             <h6 class="mb-0 px-2">Facebook ile Giriş Yap / Üye Ol</h6>
                         </a>
                     </div>
-                </div>
+                
+            
                 <div class="col-sm-12 col-md-6 border-left">
-                        <div class="d-sm-flex d-md-block d-lg-flex justify-content-between">
-                            <h3><i class="fas fa-user-plus"></i> Yeni Üyelik</h3>
-                            <a class="d-flex rounded text-decoration-none text-white bg-primary btn-social btn-facebook" href="">
-                                <i class="d-flex align-items-center fab fa-facebook-f px-2 mb-0 border-right h6 border-dark"></i>
-                                <h6 class="mb-0 px-2 py-1 d-flex align-items-center">Facebook ile Üye Ol</h6>
-                            </a>
-
-                        </div>
+                       
+                            <h2><i class="fas fa-user-plus"></i> Yeni Üyelik</h2>
+                        
                         <form action="">
-                    <div class="row mt-3">
+                    <div class="row">
                    
                    
                     <div class="col-md-12 col-lg-6">
@@ -128,14 +128,19 @@
                     </div>
                 </div>
                     
-                </div>
-            </div>
-        </div>
+                
+            
         </div>
     </div>
+        </div>
+    </div>
+</div>
+    <div id="footer"></div>
 
-
-    <script src="form.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
+    <script src="layout.js"></script>
 </body>
 
 </html>
