@@ -1,3 +1,4 @@
+<html xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,48 @@
 </head>
 
 <body>
-    <div id="header"></div>
+<nav class="navbar  navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Teacher Management </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="ml-auto">
+                <form class=" form-inline my-2 my-lg-0">
+                    <input class=" ml-auto form-control mr-sm-2" type="search" placeholder="Search"
+                           aria-label="Search"/>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav mt-3">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Əsas səhifə<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/contact">Haqqımızda</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/about">Dərslər</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/lesson">Siniflər</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/exam">İmtahanlar</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/blog">Blog</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/contact">Əlaqə</a>
+                    </li>
+                    <a class="btn btn-success" href="/user/login" role="button">Daxil Ol</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
     <!-- breadcrumb -->
 
     <div class="container border-bottom border-success">
@@ -34,7 +76,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="img/hakkimizda3.png" class="img-fluid" alt="">
+                    <img th:src="@{/img/hakkimizda3.png}" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-8">
                     <h4 class="mt-1 font-weight-normal">UMUT ÖNCÜL</h4>
@@ -57,13 +99,13 @@
         </div>
     </section>
 
-    <div id="footer"></div>
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
-    <script src="layout.js"></script>
+<!--    <script src="layout.js"></script>-->
 </body>
 
 </html>

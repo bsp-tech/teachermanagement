@@ -1,3 +1,4 @@
+<html xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +14,48 @@
 
 <body>
     <div id="header"></div>
+    <nav class="navbar  navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Teacher Management </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="ml-auto">
+                    <form class=" form-inline my-2 my-lg-0">
+                        <input class=" ml-auto form-control mr-sm-2" type="search" placeholder="Search"
+                               aria-label="Search"/>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    <ul class="navbar-nav mt-3">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Əsas səhifə<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/contact">Haqqımızda</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/about">Dərslər</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/lesson">Siniflər</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/exam">İmtahanlar</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/blog">Blog</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/contact">Əlaqə</a>
+                        </li>
+                        <a class="btn btn-success" href="/user/login" role="button">Daxil Ol</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
     <!-- breadcrumb and title -->
     <div class="container border-bottom border-success">
         <div class="col-md-12 text-center">
@@ -64,13 +107,13 @@
                             <div class="d-flex justify-content-between mb-3">
                                 <h1></h1>
                                 <ul class="list-inline d-flex">
-                                    <li class="mx-1"><a href=""><img class="rounded-circle" src="img/facebook.png"
+                                    <li class="mx-1"><a href=""><img class="rounded-circle" th:src="@{/img/facebook.png}"
                                                 alt=""></a></li>
-                                    <li class="mx-1"><a href=""><img class="rounded-circle" src="img/google.png"
+                                    <li class="mx-1"><a href=""><img class="rounded-circle" th:src="@{/img/google.png}"
                                                 alt=""></a></li>
-                                    <li class="mx-1"><a href=""><img class="rounded-circle" src="img/twitter.png"
+                                    <li class="mx-1"><a href=""><img class="rounded-circle" th:src="@{/img/twitter.png}"
                                                 alt=""></a></li>
-                                    <li class="mx-1"><a href=""><img class="rounded-circle" src="img/whatsapp.png"
+                                    <li class="mx-1"><a href=""><img class="rounded-circle" th:src="@{/img/whatsapp.png}"
                                                 alt=""></a></li>
                                 </ul>
                             </div>
@@ -147,12 +190,103 @@
             </div>
         </div>
     </div>
+    <footer class="pt-3 pb-3 text-white" style="background: rgb(33, 35, 49)!important">
+        <div class="container ">
+            <div class="row">
 
-    <div id="footer"></div>
+                <div class="col-lg-4">
+                    <h3>Teacher Management</h3>
+                    <p>Unvan:</p>
+                    <p>teacher@gmail.com</p>
+                    <div class="d-flex flex-row ">
+
+                        <div style="width: 30px; height: 30px;"
+                             class=" d-flex justify-content-center align-items-center border rounded-circle">
+
+                            <a href="http://">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+
+
+                        <div style="width: 30px; height: 30px;"
+                             class="ml-2  d-flex justify-content-center align-items-center border rounded-circle">
+
+                            <a href="http://">
+                                <i class=" fab fa-youtube"></i>
+                            </a>
+                        </div>
+                        <div style="width: 30px; height: 30px;"
+                             class=" ml-2 d-flex justify-content-center align-items-center border rounded-circle">
+
+                            <a href="http://">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+
+                    <div class="d-flex flex-column">
+                        <h5 class="p-2 border-bottom border-success text-center">Dərslər</h5>
+                        <div class="p-2 border-bottom border-info"> <a href="http://"
+                                                                       class="text-light text-decoration-none">Fizika</a> </div>
+                        <div class="p-2 border-bottom border-info"> <a href="http://"
+                                                                       class="text-light text-decoration-none">Kimya</a> </div>
+                        <div class="p-2 border-bottom border-info"> <a href="http://"
+                                                                       class="text-light text-decoration-none">Riyaziyyat</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2">
+
+                    <div class="d-flex flex-column">
+                        <h5 class="p-2 text-center border-bottom border-success">Siniflər</h5>
+                        <div class="p-2 border-bottom border-warning"> <a href="http://"
+                                                                          class="text-light text-decoration-none">9 cu sinif</a> </div>
+                        <div class="p-2 border-bottom border-warning"> <a href="http://"
+                                                                          class="text-light text-decoration-none">10 cu sinif</a> </div>
+                        <div class="p-2 border-bottom border-warning"> <a href="http://"
+                                                                          class="text-light text-decoration-none">11 cu sinif</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="d-flex flex-column">
+                        <h5 class="p-2 border-bottom border-bottom border-success text-center ">Teacher Management Web saytı
+                        </h5>
+                        <div class="p-2 border-bottom border-light"> <a href="http://"
+                                                                        class="text-light text-decoration-none ">Üyelik Sözleşmesi</a> </div>
+                        <div class="p-2 border-bottom border-light"> <a href="http://"
+                                                                        class="text-light text-decoration-none ">Üyelik Sözleşmesi</a> </div>
+                        <div class="p-2 border-bottom border-light"> <a href="http://"
+                                                                        class="text-light text-decoration-none ">Üyelik Sözleşmesi</a>
+                        </div>
+                        <div class="p-2 border-bottom border-light"> <a href="http://"
+                                                                        class="text-light text-decoration-none ">Üyelik Sözleşmesi</a>
+                        </div>
+                        <div class="p-2 border-bottom border-light"> <a href="http://"
+                                                                        class="text-light text-decoration-none ">Üyelik Sözleşmesi</a>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
-    <script src="layout.js"></script>
+<!--    <script src="layout.js"></script>-->
 </body>
 
 </html>

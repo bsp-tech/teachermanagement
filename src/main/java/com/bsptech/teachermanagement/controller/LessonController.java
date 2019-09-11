@@ -5,21 +5,37 @@
  */
 package com.bsptech.teachermanagement.controller;
 
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
- *
  * @author Goshgar
  */
 @Controller
+@RequestMapping(value = "/lesson")
 public class LessonController {
-    
-//    @RequestMapping("/url")
-//    public String page(Model model) {
-//        model.addAttribute("attribute", "value");
-//        return "view.name";
-//    }
-    
+
+    @RequestMapping("/details")
+    public ModelAndView details(ModelAndView modelAndView) {
+        modelAndView.setViewName("lesson/details");
+        return modelAndView;
+    }
+
+    @RequestMapping("/sections")
+    public ModelAndView sections(ModelAndView modelAndView) {
+        modelAndView.setViewName("lesson/sections");
+        return modelAndView;
+    }
+
+    @GetMapping
+    public ModelAndView index(ModelAndView modelAndView) {
+        modelAndView.setViewName("lesson/lessons");
+        return modelAndView;
+    }
+
+
 }

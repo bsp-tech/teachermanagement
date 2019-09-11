@@ -1,40 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
 <nav class="navbar  navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="#">Teacher Management </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="ml-auto">
                 <form class=" form-inline my-2 my-lg-0">
                     <input class=" ml-auto form-control mr-sm-2" type="search" placeholder="Search"
-                        aria-label="Search" />
+                           aria-label="Search"/>
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav mt-3">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Əsas səhifə<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Əsas səhifə<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="about.html">Haqqımızda</a>
+                        <a class="nav-link" href="/about">Haqqımızda</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="lessons.html">Dərslər</a>
+                        <a class="nav-link" href="/lesson">Dərslər</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="class.html">Siniflər</a>
+                        <a class="nav-link" href="/class">Siniflər</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="exams.html">İmtahanlar</a>
+                        <a class="nav-link" href="/exam">İmtahanlar</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="blog.html">Blog</a>
+                        <a class="nav-link" href="/blog">Blog</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="contact.html">Əlaqə</a>
+                        <a class="nav-link" href="/contact">Əlaqə</a>
                     </li>
-                    <a class="btn btn-success" href="form.html" role="button">Daxil Ol</a>
+                    <a class="btn btn-success" href="/user/login" role="button">Daxil Ol</a>
                 </ul>
             </div>
         </div>
