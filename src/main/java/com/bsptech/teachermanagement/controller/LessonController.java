@@ -5,9 +5,7 @@
  */
 package com.bsptech.teachermanagement.controller;
 
-import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Goshgar
  */
 @Controller
-@RequestMapping(value = "/lesson")
+@RequestMapping(value = "/lessons")
 public class LessonController {
 
     @RequestMapping("/details")

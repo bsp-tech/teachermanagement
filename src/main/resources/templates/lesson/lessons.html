@@ -3,26 +3,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
     <title>Dersler</title>
 </head>
 <body>
-<nav class="navbar  navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="#">Teacher Management </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="ml-auto">
                 <form class=" form-inline my-2 my-lg-0">
-                    <input class=" ml-auto form-control mr-sm-2" type="search" placeholder="Search"
-                           aria-label="Search"/>
+                    <input aria-label="Search" class=" ml-auto form-control mr-sm-2" placeholder="Search"
+                           type="search"/>
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav mt-3">
@@ -30,13 +31,13 @@
                         <a class="nav-link" href="/">Əsas səhifə<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/contact">Haqqımızda</a>
+                        <a class="nav-link" href="/about">Haqqımızda</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/about">Dərslər</a>
+                        <a class="nav-link" href="/lessons">Dərslər</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/lesson">Siniflər</a>
+                        <a class="nav-link" href="class">Siniflər</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="/exam">İmtahanlar</a>
@@ -53,15 +54,16 @@
         </div>
     </div>
 </nav>
+
 <!-- breadcrumb -->
 
 <div class="container border-bottom border-success">
     <div class="col-md-12">
         <h2 class="text-success mt-3 mb-2">Tüm Dersler</h2>
         <ol class="breadcrumb mb-0 px-0 pb-2 bg-white">
-            <li class="breadcrumb-item" aria-current="page"><a class="font-weight-bold text-dark text-decoration-none"
+            <li aria-current="page" class="breadcrumb-item"><a class="font-weight-bold text-dark text-decoration-none"
                                                                href="index.html">Anasayfa</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a class="font-weight-bold text-dark text-decoration-none"
+            <li aria-current="page" class="breadcrumb-item"><a class="font-weight-bold text-dark text-decoration-none"
                                                                href="lessons.html">Dersler</a></li>
         </ol>
     </div>
@@ -77,13 +79,13 @@
                     <div class="row mb-4">
                         <div class="col-md-4 text-center">
                             <a href="sections.html">
-                                <img th:src="@{/img/636710610720363034.jpg}" class="img-fluid" alt="">
+                                <img alt="" class="img-fluid" th:src="@{/img/636710610720363034.jpg}">
                             </a>
                         </div>
                         <div class="col-md-8">
                             <h5 class="mb-4 mt-4">
-                                <a href="sections.html"
-                                   class="text-dark font-weight-normal text-decoration-none">FİZİK</a>
+                                <a class="text-dark font-weight-normal text-decoration-none"
+                                   href="sections.html">FİZİK</a>
                             </h5>
                             <p class="font-weight-light text-secondary mb-3 h6">Bu başlık altında okul sınavlarına
                                 hazırlanan ara sınıf öğrenciler, son sınıfta olup TYT ve AYT ye hazırlananlar,
@@ -91,8 +93,9 @@
                                 kendisini geliştirmek isteyenler için içerikler bulunmaktadır.</p>
                             <div class="d-flex justify-content-between">
                                 <h1></h1>
-                                <a href="sections.html" role="button"
-                                   class="btn btn-success py-1 px-3 font-weight-light text-light">FİZİK DERSİ KONULARI
+                                <a class="btn btn-success py-1 px-3 font-weight-light text-light"
+                                   href="/lessons/sections"
+                                   role="button">FİZİK DERSİ KONULARI
                                     <i class="fa fa-angle-double-right fa-xs"></i></a>
                             </div>
                         </div>
@@ -100,13 +103,13 @@
                     <div class="row mb-4">
                         <div class="col-md-4 text-center">
                             <a href="sections.html">
-                                <img th:src="@{/img/636710610720363034.jpg}" class="img-fluid" alt="">
+                                <img alt="" class="img-fluid" th:src="@{/img/636710610720363034.jpg}">
                             </a>
                         </div>
                         <div class="col-md-8">
                             <h5 class="mb-4 mt-4">
-                                <a href="sections.html"
-                                   class="text-dark font-weight-normal text-decoration-none">FİZİK</a>
+                                <a class="text-dark font-weight-normal text-decoration-none"
+                                   href="sections.html">FİZİK</a>
                             </h5>
                             <p class="font-weight-light text-secondary mb-3 h6">Bu başlık altında okul sınavlarına
                                 hazırlanan ara sınıf öğrenciler, son sınıfta olup TYT ve AYT ye hazırlananlar,
@@ -114,8 +117,8 @@
                                 kendisini geliştirmek isteyenler için içerikler bulunmaktadır.</p>
                             <div class="d-flex justify-content-between">
                                 <h1></h1>
-                                <a href="sections.html" role="button"
-                                   class="btn btn-success py-1 px-3 font-weight-light text-light">FİZİK DERSİ KONULARI
+                                <a class="btn btn-success py-1 px-3 font-weight-light text-light" href="sections.html"
+                                   role="button">FİZİK DERSİ KONULARI
                                     <i class="fa fa-angle-double-right fa-xs"></i></a>
                             </div>
                         </div>
@@ -123,13 +126,13 @@
                     <div class="row mb-4">
                         <div class="col-md-4 text-center">
                             <a href="sections.html">
-                                <img th:src="@{/img/636710610720363034.jpg}" class="img-fluid" alt="">
+                                <img alt="" class="img-fluid" th:src="@{/img/636710610720363034.jpg}">
                             </a>
                         </div>
                         <div class="col-md-8">
                             <h5 class="mb-4 mt-4">
-                                <a href="sections.html"
-                                   class="text-dark font-weight-normal text-decoration-none">FİZİK</a>
+                                <a class="text-dark font-weight-normal text-decoration-none"
+                                   href="sections.html">FİZİK</a>
                             </h5>
                             <p class="font-weight-light text-secondary mb-3 h6">Bu başlık altında okul sınavlarına
                                 hazırlanan ara sınıf öğrenciler, son sınıfta olup TYT ve AYT ye hazırlananlar,
@@ -137,8 +140,8 @@
                                 kendisini geliştirmek isteyenler için içerikler bulunmaktadır.</p>
                             <div class="d-flex justify-content-between">
                                 <h1></h1>
-                                <a href="sections.html" role="button"
-                                   class="btn btn-success py-1 px-3 font-weight-light text-light">FİZİK DERSİ KONULARI
+                                <a class="btn btn-success py-1 px-3 font-weight-light text-light" href="sections.html"
+                                   role="button">FİZİK DERSİ KONULARI
                                     <i class="fa fa-angle-double-right fa-xs"></i></a>
                             </div>
                         </div>
@@ -151,17 +154,17 @@
                             Konuları</a></h5>
                         <ul class="list-inline mb-0">
                             <li class="py-2 my-1 border-bottom border-muted">
-                                <a href="" class="text-muted text-decoration-none">
+                                <a class="text-muted text-decoration-none" href="">
                                     <i class="fa fa-chevron-right fa-sm mr-2"></i>Fizik AYT Konu Anlatımlı Paket
                                 </a>
                             </li>
                             <li class="py-2 my-1 border-bottom border-muted">
-                                <a href="" class="text-muted text-decoration-none">
+                                <a class="text-muted text-decoration-none" href="">
                                     <i class="fa fa-chevron-right fa-sm mr-2"></i>Fizik TYT-AYT Konu Anlatımlı Paket
                                 </a>
                             </li>
                             <li class="py-2 my-1 border-bottom border-muted">
-                                <a href="" class="text-muted text-decoration-none">
+                                <a class="text-muted text-decoration-none" href="">
                                     <i class="fa fa-chevron-right fa-sm mr-2"></i> Fizik TYT Konu Anlatımlı Paket
                                 </a>
                             </li>
@@ -172,17 +175,17 @@
                             Konuları</a></h5>
                         <ul class="list-inline mb-0">
                             <li class="py-2 my-1 border-bottom border-muted">
-                                <a href="" class="text-muted text-decoration-none">
+                                <a class="text-muted text-decoration-none" href="">
                                     <i class="fa fa-chevron-right fa-sm mr-2"></i> Üstel Fonksiyon ve Logaritma
                                 </a>
                             </li>
                             <li class="py-2 my-1 border-bottom border-muted">
-                                <a href="" class="text-muted text-decoration-none">
+                                <a class="text-muted text-decoration-none" href="">
                                     <i class="fa fa-chevron-right fa-sm mr-2"></i> Sayma ve Olasılık-1
                                 </a>
                             </li>
                             <li class="py-2 my-1 border-bottom border-muted">
-                                <a href="" class="text-muted text-decoration-none">
+                                <a class="text-muted text-decoration-none" href="">
                                     <i class="fa fa-chevron-right fa-sm mr-2"></i> Sayma ve Olasılık-2
                                 </a>
                             </li>
@@ -193,17 +196,17 @@
                             Konuları</a></h5>
                         <ul class="list-inline mb-0">
                             <li class="py-2 my-1 border-bottom border-muted">
-                                <a href="" class="text-muted text-decoration-none">
+                                <a class="text-muted text-decoration-none" href="">
                                     <i class="fa fa-chevron-right fa-sm mr-2"></i> Kimya TYT AYT Konu Anlatımlı Paket
                                 </a>
                             </li>
                             <li class="py-2 my-1 border-bottom border-muted">
-                                <a href="" class="text-muted text-decoration-none">
+                                <a class="text-muted text-decoration-none" href="">
                                     <i class="fa fa-chevron-right fa-sm mr-2"></i> Organik Kimya-1
                                 </a>
                             </li>
                             <li class="py-2 my-1 border-bottom border-muted">
-                                <a href="" class="text-muted text-decoration-none">
+                                <a class="text-muted text-decoration-none" href="">
                                     <i class="fa fa-chevron-right fa-sm mr-2"></i> Organik Kimya-2
                                 </a>
                             </li>
@@ -218,12 +221,12 @@
 
 <div id="footer"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+<script crossorigin="anonymous"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <!--<script src="layout.js"></script>-->
 </body>
 </html>

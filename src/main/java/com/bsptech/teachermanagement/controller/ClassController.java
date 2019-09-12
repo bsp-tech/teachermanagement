@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ClassController {
     @GetMapping
     public ModelAndView index(ModelAndView modelAndView) {
-        modelAndView.setViewName("blog/class");
+        modelAndView.setViewName("class/index");
         return modelAndView;
     }
 
