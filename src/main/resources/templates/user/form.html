@@ -1,194 +1,146 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:with="http://www.thymeleaf.org/extras/with"
+      layout:decorate="~{base}"
+>
 
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Document</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- font awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
+
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="#">Teacher Management </a>
-        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler"
-                data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="ml-auto">
-                <form class=" form-inline my-2 my-lg-0">
-                    <input aria-label="Search" class=" ml-auto form-control mr-sm-2" placeholder="Search"
-                           type="search"/>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-                <ul class="navbar-nav mt-3">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Əsas səhifə<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/about">Haqqımızda</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/lessons">Dərslər</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="class">Siniflər</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/exam">İmtahanlar</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/blog">Blog</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/contact">Əlaqə</a>
-                    </li>
-                    <a class="btn btn-success" href="/user/login" role="button">Daxil Ol</a>
-                </ul>
-            </div>
-        </div>
-    </div>
-</nav>
-
-<div class="form-part mt-5 mb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 bg-light border-top border-success shadow pt-5 p-3 px-4 bg-white rounded">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <h2 class="font-weight-normal"><i class="fas fa-sign-in-alt"></i> Uye Girisi</h2>
-                        <div>
-                            <form>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">E-Posta Adresiniz *</label>
-                                    <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1"
-                                           type="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Şifre *</label>
-                                    <input class="form-control" id="exampleInputPassword1" type="password">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="d-sm-flex justify-content-between mb-5">
-                            <a class="text-success d-block mb-2" href="">Şifremi Unuttum ? <i
-                                    class="fas fa-plus-circle"></i></a>
-                            <div class="d-flex justify-content-between">
-                                <h1></h1>
-                                <button class="btn btn-primary color-white pl-4 pr-4 pb-2 pt-2">Giris Yap</button>
-                            </div>
-
-                        </div>
-                        <a class="d-flex mb-4 align-items-center rounded text-decoration-none text-white bg-primary btn-block btn-social btn-facebook"
-                           href="">
-                            <i class="fab fa-facebook-f py-2 px-3 mb-0 border-right h4 border-dark"></i>
-                            <h6 class="mb-0 px-2">Facebook ile Giriş Yap / Üye Ol</h6>
-                        </a>
-                    </div>
-
-
-                    <div class="col-sm-12 col-md-6 border-left">
-
-                        <h2><i class="fas fa-user-plus"></i> Yeni Üyelik</h2>
-
-                        <form action="">
-                            <div class="row">
-
-
-                                <div class="col-md-12 col-lg-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Ad *</label>
-                                        <input class="form-control" id="exampleInputPassword1" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-lg-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Soyad *</label>
-                                        <input class="form-control" id="exampleInputPassword1" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
+<div layout:fragment="content">
+    <div class="form-part mt-5 mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 bg-light border-top border-success shadow pt-5 p-3 px-4 bg-white rounded">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <h2 class="font-weight-normal"><i class="fas fa-sign-in-alt"></i> Uye Girisi</h2>
+                            <div>
+                                <form>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">E-Posta Adresiniz *</label>
                                         <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1"
                                                type="email">
                                     </div>
-                                </div>
-
-                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">E-Posta Adresiniz Tekrar *</label>
-                                        <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1"
-                                               type="email">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Şifre: *</label>
+                                        <label for="exampleInputPassword1">Şifre *</label>
                                         <input class="form-control" id="exampleInputPassword1" type="password">
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Şifre Tekrar: *</label>
-                                        <input class="form-control" id="exampleInputPassword1" type="password">
-                                    </div>
+                                </form>
+                            </div>
+                            <div class="d-sm-flex justify-content-between mb-5">
+                                <a class="text-success d-block mb-2" href="">Şifremi Unuttum ? <i
+                                        class="fas fa-plus-circle"></i></a>
+                                <div class="d-flex justify-content-between">
+                                    <h1></h1>
+                                    <button class="btn btn-primary color-white pl-4 pr-4 pb-2 pt-2">Giris Yap</button>
                                 </div>
 
                             </div>
-                        </form>
-                        <img alt="" class="" th:src="@{/img/DXB.png}">
-                        <div class="d-flex align-items-center mt-2">
-                            <i class="fas fa-sync-alt mr-2 text-secondary"></i>
-                            <a class="d-block text-decoration-none" href="">
-                                <span class="h6">Yenile</span>
+                            <a class="d-flex mb-4 align-items-center rounded text-decoration-none text-white bg-primary btn-block btn-social btn-facebook"
+                               href="">
+                                <i class="fab fa-facebook-f py-2 px-3 mb-0 border-right h4 border-dark"></i>
+                                <h6 class="mb-0 px-2">Facebook ile Giriş Yap / Üye Ol</h6>
                             </a>
                         </div>
 
-                        <label class="h6" for="">Resimdeki Doğrulama Kodunu Giriniz:</label>
-                        <div class="form-group mb-4">
-                            <input class="border rounded pl-2 pr-5 pt-2 pb-2 w-0" id="exampleInputPassword1"
-                                   placeholder="Dogrulama Kodu:" type="password">
-                        </div>
-                        <div class="d-flex">
-                            <div class="form-check">
-                                <input class="form-check-input" id="exampleCheck1" type="checkbox">
+
+                        <div class="col-sm-12 col-md-6 border-left">
+
+                            <h2><i class="fas fa-user-plus"></i> Yeni Üyelik</h2>
+
+                            <form action="">
+                                <div class="row">
+
+
+                                    <div class="col-md-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Ad *</label>
+                                            <input class="form-control" id="exampleInputPassword1" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Soyad *</label>
+                                            <input class="form-control" id="exampleInputPassword1" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">E-Posta Adresiniz *</label>
+                                            <input aria-describedby="emailHelp" class="form-control"
+                                                   id="exampleInputEmail1"
+                                                   type="email">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">E-Posta Adresiniz Tekrar *</label>
+                                            <input aria-describedby="emailHelp" class="form-control"
+                                                   id="exampleInputEmail1"
+                                                   type="email">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Şifre: *</label>
+                                            <input class="form-control" id="exampleInputPassword1" type="password">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Şifre Tekrar: *</label>
+                                            <input class="form-control" id="exampleInputPassword1" type="password">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                            <img alt="" class="" th:src="@{/img/DXB.png}">
+                            <div class="d-flex align-items-center mt-2">
+                                <i class="fas fa-sync-alt mr-2 text-secondary"></i>
+                                <a class="d-block text-decoration-none" href="">
+                                    <span class="h6">Yenile</span>
+                                </a>
                             </div>
-                            <p class="text-success">Üyelik Sözleşmesini okudum, onaylıyorum.</p>
+
+                            <label class="h6" for="">Resimdeki Doğrulama Kodunu Giriniz:</label>
+                            <div class="form-group mb-4">
+                                <input class="border rounded pl-2 pr-5 pt-2 pb-2 w-0" id="exampleInputPassword1"
+                                       placeholder="Dogrulama Kodu:" type="password">
+                            </div>
+                            <div class="d-flex">
+                                <div class="form-check">
+                                    <input class="form-check-input" id="exampleCheck1" type="checkbox">
+                                </div>
+                                <p class="text-success">Üyelik Sözleşmesini okudum, onaylıyorum.</p>
+                            </div>
+                            <p class="text-center">Yeni üyelik oluşturarak <label
+                                    class="text-success">sözleşmemizi</label>
+                                okuduğunuzu ve kabul ettiğinizi onaylamış sayılırsınız.</p>
+                            <div class="d-flex justify-content-between">
+                                <div></div>
+                                <button class="btn btn-success text-white">Hesap Olustur</button>
+                            </div>
                         </div>
-                        <p class="text-center">Yeni üyelik oluşturarak <label class="text-success">sözleşmemizi</label>
-                            okuduğunuzu ve kabul ettiğinizi onaylamış sayılırsınız.</p>
-                        <div class="d-flex justify-content-between">
-                            <div></div>
-                            <button class="btn btn-success text-white">Hesap Olustur</button>
-                        </div>
+
+
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div id="footer"></div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script crossorigin="anonymous"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script crossorigin="anonymous"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script th:src="@{/js/layout.js}"></script>
 </body>
 
 </html>

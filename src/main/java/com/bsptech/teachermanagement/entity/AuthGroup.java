@@ -6,39 +6,41 @@
 package com.bsptech.teachermanagement.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Goshgar
  */
 @Entity
-@Table(name = "department")
+@Table(name = "auth_group")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Department.findAll", query = "SELECT d FROM Department d")
-    , @NamedQuery(name = "Department.findById", query = "SELECT d FROM Department d WHERE d.id = :id")
-    , @NamedQuery(name = "Department.findByName", query = "SELECT d FROM Department d WHERE d.name = :name")
-    , @NamedQuery(name = "Department.findByInsertDateTime", query = "SELECT d FROM Department d WHERE d.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "Department.findByLastUpdateDateTime", query = "SELECT d FROM Department d WHERE d.lastUpdateDateTime = :lastUpdateDateTime")})
-public class Department implements Serializable {
+    @NamedQuery(name = "AuthGroup.findAll", query = "SELECT a FROM AuthGroup a")
+    , @NamedQuery(name = "AuthGroup.findById", query = "SELECT a FROM AuthGroup a WHERE a.id = :id")
+    , @NamedQuery(name = "AuthGroup.findByName", query = "SELECT a FROM AuthGroup a WHERE a.name = :name")})
+public class AuthGroup implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -46,26 +48,19 @@ public class Department implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "insert_date_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date insertDateTime;
-    @Column(name = "last_update_date_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdateDateTime;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupId", fetch = FetchType.LAZY)
+    private List<AuthGroupRole> authGroupRoleList;
 
-    public Department() {
+    public AuthGroup() {
     }
 
-    public Department(Integer id) {
+    public AuthGroup(Integer id) {
         this.id = id;
     }
 
-    public Department(Integer id, String name, Date insertDateTime) {
+    public AuthGroup(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.insertDateTime = insertDateTime;
     }
 
     public Integer getId() {
@@ -84,20 +79,13 @@ public class Department implements Serializable {
         this.name = name;
     }
 
-    public Date getInsertDateTime() {
-        return insertDateTime;
+    @XmlTransient
+    public List<AuthGroupRole> getAuthGroupRoleList() {
+        return authGroupRoleList;
     }
 
-    public void setInsertDateTime(Date insertDateTime) {
-        this.insertDateTime = insertDateTime;
-    }
-
-    public Date getLastUpdateDateTime() {
-        return lastUpdateDateTime;
-    }
-
-    public void setLastUpdateDateTime(Date lastUpdateDateTime) {
-        this.lastUpdateDateTime = lastUpdateDateTime;
+    public void setAuthGroupRoleList(List<AuthGroupRole> authGroupRoleList) {
+        this.authGroupRoleList = authGroupRoleList;
     }
 
     @Override
@@ -110,10 +98,10 @@ public class Department implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Department)) {
+        if (!(object instanceof AuthGroup)) {
             return false;
         }
-        Department other = (Department) object;
+        AuthGroup other = (AuthGroup) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -122,7 +110,7 @@ public class Department implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.teachermanagement.entity.Department[ id=" + id + " ]";
+        return "com.bsptech.teachermanagement.entity.AuthGroup[ id=" + id + " ]";
     }
     
 }

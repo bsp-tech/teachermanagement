@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,19 +29,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Goshgar
  */
 @Entity
-@Table(name = "teacher_student")
+@Table(name = "auth_group_role")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TeacherStudent.findAll", query = "SELECT t FROM TeacherStudent t")
-    , @NamedQuery(name = "TeacherStudent.findById", query = "SELECT t FROM TeacherStudent t WHERE t.id = :id")
-    , @NamedQuery(name = "TeacherStudent.findByInsertDateTime", query = "SELECT t FROM TeacherStudent t WHERE t.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "TeacherStudent.findByLastUpdateDateTime", query = "SELECT t FROM TeacherStudent t WHERE t.lastUpdateDateTime = :lastUpdateDateTime")})
-public class TeacherStudent implements Serializable {
+    @NamedQuery(name = "AuthGroupRole.findAll", query = "SELECT a FROM AuthGroupRole a")
+    , @NamedQuery(name = "AuthGroupRole.findById", query = "SELECT a FROM AuthGroupRole a WHERE a.id = :id")
+    , @NamedQuery(name = "AuthGroupRole.findByInsertDateTime", query = "SELECT a FROM AuthGroupRole a WHERE a.insertDateTime = :insertDateTime")
+    , @NamedQuery(name = "AuthGroupRole.findByLastUpdateDateTime", query = "SELECT a FROM AuthGroupRole a WHERE a.lastUpdateDateTime = :lastUpdateDateTime")})
+public class AuthGroupRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -50,21 +52,21 @@ public class TeacherStudent implements Serializable {
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @JoinColumn(name = "student_id", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Student studentId;
-    @JoinColumn(name = "teacher_id", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Teacher teacherId;
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private AuthRole roleId;
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private AuthGroup groupId;
 
-    public TeacherStudent() {
+    public AuthGroupRole() {
     }
 
-    public TeacherStudent(Integer id) {
+    public AuthGroupRole(Integer id) {
         this.id = id;
     }
 
-    public TeacherStudent(Integer id, Date insertDateTime) {
+    public AuthGroupRole(Integer id, Date insertDateTime) {
         this.id = id;
         this.insertDateTime = insertDateTime;
     }
@@ -93,20 +95,20 @@ public class TeacherStudent implements Serializable {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
-    public Student getStudentId() {
-        return studentId;
+    public AuthRole getRoleId() {
+        return roleId;
     }
 
-    public void setStudentId(Student studentId) {
-        this.studentId = studentId;
+    public void setRoleId(AuthRole roleId) {
+        this.roleId = roleId;
     }
 
-    public Teacher getTeacherId() {
-        return teacherId;
+    public AuthGroup getGroupId() {
+        return groupId;
     }
 
-    public void setTeacherId(Teacher teacherId) {
-        this.teacherId = teacherId;
+    public void setGroupId(AuthGroup groupId) {
+        this.groupId = groupId;
     }
 
     @Override
@@ -119,10 +121,10 @@ public class TeacherStudent implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TeacherStudent)) {
+        if (!(object instanceof AuthGroupRole)) {
             return false;
         }
-        TeacherStudent other = (TeacherStudent) object;
+        AuthGroupRole other = (AuthGroupRole) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -131,7 +133,7 @@ public class TeacherStudent implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.teachermanagement.entity.TeacherStudent[ id=" + id + " ]";
+        return "com.bsptech.teachermanagement.entity.AuthGroupRole[ id=" + id + " ]";
     }
     
 }
