@@ -9,9 +9,73 @@
     <title>Blog</title>
 </head>
 
-<body class="mt-5-sm">
-<div layout:fragment="content"></div>
+<div layout:fragment="content">
+    <body class="mt-5-sm">
 
-</body>
+    <div class="container border-bottom border-success">
+        <div class="col-md-12 text-center">
+            <h2 class="text-success mt-3 mb-2">İLİTİŞİM</h2>
+            <ol class="breadcrumb mb-0 bg-white justify-content-center">
+                <li class="breadcrumb-item" aria-current="page"><a
+                        class="font-weight-bold text-dark text-decoration-none" href="/">Anasayfa</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a
+                        class="font-weight-bold text-success text-decoration-none" href="/contact">İletişim</a></li>
+            </ol>
+        </div>
+    </div>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="w-100 px-3">
+                        <img th:src="@{img/iletisim.png}" style="width:100%">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="form-area w-100">
+                        <div class="w-100">
+                            <h1 class="text-gray px-3 fa-2x font-weight-300 text-gray">Mesaj gönderin</h1>
+                            <form class="px-3">
+                                <div class="form-group">
+                                    <label for="inputState">Departman :*</label>
+                                    <select class="custom-select custom-select-sm">
+                                        <option selected>Müşteri Hizmetleri</option>
+                                        <option value="1">Teknik Destek</option>
+                                        <option value="2">İstek & Öneri</option>
+                                        <option value="3">İade ve ya İptal</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Adınız Soyadınız: *</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                           aria-describedby="emailHelp" placeholder="Adınız Soyadınız:">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">E-Posta Adresiniz: *</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                           aria-describedby="emailHelp" placeholder="E-Posta Adresiniz: *">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Konu: *</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                           aria-describedby="emailHelp" placeholder="Konu:">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Mesajınız: *</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                              placeholder="Mesajınız: "></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-success m-auto">Gönder</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</div>
 
 </html>
