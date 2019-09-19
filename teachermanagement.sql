@@ -11,7 +11,7 @@
  Target Server Version : 50561
  File Encoding         : 65001
 
- Date: 20/09/2019 00:45:33
+ Date: 20/09/2019 02:34:33
 */
 
 SET NAMES utf8mb4;
@@ -114,13 +114,26 @@ CREATE TABLE `lesson`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `about` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `playlist_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `price` decimal(10, 2) NOT NULL,
   `thumbnail_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `insert_date_time` datetime NOT NULL,
   `last_update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for lesson_section
+-- ----------------------------
+DROP TABLE IF EXISTS `lesson_section`;
+CREATE TABLE `lesson_section`  (
+  `id` int(11) NOT NULL,
+  `lesson_id` int(11) NULL DEFAULT NULL,
+  `section_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `lesson_id`(`lesson_id`) USING BTREE,
+  INDEX `section_id`(`section_id`) USING BTREE,
+  CONSTRAINT `lesson_section_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `lesson_section_ibfk_2` FOREIGN KEY (`section_id`) REFERENCES `section` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for post
@@ -131,13 +144,40 @@ CREATE TABLE `post`  (
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `approved` tinyint(4) NOT NULL,
-  `class_id` int(11) NOT NULL,
-  `department_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
   `insert_date_time` datetime NOT NULL,
   `last_update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for section
+-- ----------------------------
+DROP TABLE IF EXISTS `section`;
+CREATE TABLE `section`  (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `price` decimal(10, 2) NULL DEFAULT NULL,
+  `video_count` int(255) NULL DEFAULT NULL,
+  `playlist_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `thumbnail_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `about` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for section_feedback
+-- ----------------------------
+DROP TABLE IF EXISTS `section_feedback`;
+CREATE TABLE `section_feedback`  (
+  `id` int(11) NOT NULL,
+  `section_id` int(11) NULL DEFAULT NULL,
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `insert_date_time` datetime NOT NULL,
+  `author_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `section_id`(`section_id`) USING BTREE,
+  CONSTRAINT `section_feedback_ibfk_1` FOREIGN KEY (`section_id`) REFERENCES `section` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for status
@@ -147,7 +187,7 @@ CREATE TABLE `status`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for suport_status
@@ -175,10 +215,12 @@ CREATE TABLE `support`  (
   `message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `insert_date_time` datetime NOT NULL,
   `solved_date_time` datetime NULL DEFAULT NULL,
-  `status` int(255) NOT NULL,
+  `status_id` int(255) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `department_id`(`department_id`) USING BTREE,
-  CONSTRAINT `support_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  INDEX `status_id`(`status_id`) USING BTREE,
+  CONSTRAINT `support_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `support_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
@@ -207,9 +249,12 @@ CREATE TABLE `website_settings`  (
   `id` int(11) NOT NULL,
   `banner_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `autobiography` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `autobiography` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `introduce_video_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `insert_date_time` datetime NULL DEFAULT NULL,
+  `last_update_date_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 

@@ -6,52 +6,48 @@
 package com.bsptech.teachermanagement.entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Goshgar
  */
 @Entity
-@Table(name = "status")
+@Table(name = "lesson_section")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Status.findAll", query = "SELECT s FROM Status s")
-    , @NamedQuery(name = "Status.findById", query = "SELECT s FROM Status s WHERE s.id = :id")
-    , @NamedQuery(name = "Status.findByStatus", query = "SELECT s FROM Status s WHERE s.status = :status")})
-public class Status implements Serializable {
+    @NamedQuery(name = "LessonSection.findAll", query = "SELECT l FROM LessonSection l")
+    , @NamedQuery(name = "LessonSection.findById", query = "SELECT l FROM LessonSection l WHERE l.id = :id")})
+public class LessonSection implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id")
     private Integer id;
-    @Size(max = 255)
-    @Column(name = "status")
-    private String status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusId", fetch = FetchType.LAZY)
-    private List<Support> supportList;
+    @JoinColumn(name = "section_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Section sectionId;
+    @JoinColumn(name = "lesson_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Lesson lessonId;
 
-    public Status() {
+    public LessonSection() {
     }
 
-    public Status(Integer id) {
+    public LessonSection(Integer id) {
         this.id = id;
     }
 
@@ -63,21 +59,20 @@ public class Status implements Serializable {
         this.id = id;
     }
 
-    public String getStatus() {
-        return status;
+    public Section getSectionId() {
+        return sectionId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setSectionId(Section sectionId) {
+        this.sectionId = sectionId;
     }
 
-    @XmlTransient
-    public List<Support> getSupportList() {
-        return supportList;
+    public Lesson getLessonId() {
+        return lessonId;
     }
 
-    public void setSupportList(List<Support> supportList) {
-        this.supportList = supportList;
+    public void setLessonId(Lesson lessonId) {
+        this.lessonId = lessonId;
     }
 
     @Override
@@ -90,10 +85,10 @@ public class Status implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Status)) {
+        if (!(object instanceof LessonSection)) {
             return false;
         }
-        Status other = (Status) object;
+        LessonSection other = (LessonSection) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -102,7 +97,7 @@ public class Status implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.teachermanagement.entity.Status[ id=" + id + " ]";
+        return "com.bsptech.teachermanagement.entity.LessonSection[ id=" + id + " ]";
     }
     
 }

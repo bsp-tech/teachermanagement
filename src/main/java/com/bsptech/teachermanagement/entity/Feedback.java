@@ -6,53 +6,59 @@
 package com.bsptech.teachermanagement.entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Goshgar
  */
 @Entity
-@Table(name = "status")
+@Table(name = "feedback")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Status.findAll", query = "SELECT s FROM Status s")
-    , @NamedQuery(name = "Status.findById", query = "SELECT s FROM Status s WHERE s.id = :id")
-    , @NamedQuery(name = "Status.findByStatus", query = "SELECT s FROM Status s WHERE s.status = :status")})
-public class Status implements Serializable {
+    @NamedQuery(name = "Feedback.findAll", query = "SELECT f FROM Feedback f")
+    , @NamedQuery(name = "Feedback.findById", query = "SELECT f FROM Feedback f WHERE f.id = :id")
+    , @NamedQuery(name = "Feedback.findByContent", query = "SELECT f FROM Feedback f WHERE f.content = :content")
+    , @NamedQuery(name = "Feedback.findByAuthorName", query = "SELECT f FROM Feedback f WHERE f.authorName = :authorName")})
+public class Feedback implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id")
     private Integer id;
-    @Size(max = 255)
-    @Column(name = "status")
-    private String status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusId", fetch = FetchType.LAZY)
-    private List<Support> supportList;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 500)
+    @Column(name = "content")
+    private String content;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "author_name")
+    private String authorName;
 
-    public Status() {
+    public Feedback() {
     }
 
-    public Status(Integer id) {
+    public Feedback(Integer id) {
         this.id = id;
+    }
+
+    public Feedback(Integer id, String content, String authorName) {
+        this.id = id;
+        this.content = content;
+        this.authorName = authorName;
     }
 
     public Integer getId() {
@@ -63,21 +69,20 @@ public class Status implements Serializable {
         this.id = id;
     }
 
-    public String getStatus() {
-        return status;
+    public String getContent() {
+        return content;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    @XmlTransient
-    public List<Support> getSupportList() {
-        return supportList;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setSupportList(List<Support> supportList) {
-        this.supportList = supportList;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     @Override
@@ -90,10 +95,10 @@ public class Status implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Status)) {
+        if (!(object instanceof Feedback)) {
             return false;
         }
-        Status other = (Status) object;
+        Feedback other = (Feedback) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -102,7 +107,7 @@ public class Status implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.teachermanagement.entity.Status[ id=" + id + " ]";
+        return "com.bsptech.teachermanagement.entity.Feedback[ id=" + id + " ]";
     }
     
 }
