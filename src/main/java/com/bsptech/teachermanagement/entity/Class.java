@@ -48,7 +48,7 @@ public class Class implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 0)
+    @Size(min = 1, max = 20)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
