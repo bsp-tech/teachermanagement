@@ -29,14 +29,15 @@
     <!-- about section -->
 
     <section class="py-5">
-        <div class="container">
+        <div class="container" th:object = "${settings}">
             <div class="row">
                 <div class="col-md-4">
                     <img th:src="@{img/hakkimizda3.png}" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-8">
                     <h4 class="mt-1 font-weight-normal">UMUT ÖNCÜL</h4>
-                    <p class="text-muted m-0">Orta Doğu Teknik Üniversitesi Fizik Öğretmenliği Bölümü`nden mezun
+                    <p class="text-muted m-0" th:text="${settings.autobiography}">
+                        <!--Orta Doğu Teknik Üniversitesi Fizik Öğretmenliği Bölümü`nden mezun
                         olmuştur. Üniversiteyi bitirdikten hemen sonra 9 yıl boyunca İzmir Ege Sistem Dershaneleri`nde
                         defalarca ÖSS birincileri yetiştiren kadroda bulunmuş, proje gruplarının yetiştirilmesinde katkı
                         sağlamıştır. Sonraki 5 yıl da İzmir Uğur Dershaneleri`nde çalışmış orada proje sınıflarının
@@ -50,6 +51,7 @@
                         okulun öğrenci profiline bakıldığında SBS de 480 ve üzeri puan alan öğrencilerin bulunduğu çok
                         başarılı bir grubun eğitiminden sorulumlu olmuştur. Edindiği tecrübeleri artık kendi ders
                         bürosunda değerlendirmektedir. Evli ve bir çocuk babasıdır.</p>
+                        -->
                 </div>
             </div>
         </div>
