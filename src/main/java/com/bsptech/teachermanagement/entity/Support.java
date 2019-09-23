@@ -8,20 +8,7 @@ package com.bsptech.teachermanagement.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -37,20 +24,26 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Support.findAll", query = "SELECT s FROM Support s")
     , @NamedQuery(name = "Support.findById", query = "SELECT s FROM Support s WHERE s.id = :id")
+    , @NamedQuery(name = "Support.findByDepartmentId", query = "SELECT s FROM Support s WHERE s.departmentId = :departmentId")
     , @NamedQuery(name = "Support.findByFullname", query = "SELECT s FROM Support s WHERE s.fullname = :fullname")
     , @NamedQuery(name = "Support.findByEmail", query = "SELECT s FROM Support s WHERE s.email = :email")
     , @NamedQuery(name = "Support.findBySubject", query = "SELECT s FROM Support s WHERE s.subject = :subject")
     , @NamedQuery(name = "Support.findByMessage", query = "SELECT s FROM Support s WHERE s.message = :message")
     , @NamedQuery(name = "Support.findByInsertDateTime", query = "SELECT s FROM Support s WHERE s.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "Support.findBySolvedDateTime", query = "SELECT s FROM Support s WHERE s.solvedDateTime = :solvedDateTime")})
+    , @NamedQuery(name = "Support.findBySolvedDateTime", query = "SELECT s FROM Support s WHERE s.solvedDateTime = :solvedDateTime")
+    , @NamedQuery(name = "Support.findByStatus", query = "SELECT s FROM Support s WHERE s.status = :status")})
 public class Support implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "department_id")
+    private int departmentId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -80,14 +73,12 @@ public class Support implements Serializable {
     @Column(name = "solved_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date solvedDateTime;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "supportId", fetch = FetchType.LAZY)
-    private List<SuportStatus> suportStatusList;
-    @JoinColumn(name = "status_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Status statusId;
-    @JoinColumn(name = "department_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Department departmentId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "status_id")
+    private int status;
+
+
 
     public Support() {
     }
@@ -96,13 +87,15 @@ public class Support implements Serializable {
         this.id = id;
     }
 
-    public Support(Integer id, String fullname, String email, String subject, String message, Date insertDateTime) {
+    public Support(Integer id, int departmentId, String fullname, String email, String subject, String message, Date insertDateTime, int status) {
         this.id = id;
+        this.departmentId = departmentId;
         this.fullname = fullname;
         this.email = email;
         this.subject = subject;
         this.message = message;
         this.insertDateTime = insertDateTime;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -111,6 +104,14 @@ public class Support implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 
     public String getFullname() {
@@ -161,30 +162,15 @@ public class Support implements Serializable {
         this.solvedDateTime = solvedDateTime;
     }
 
-    @XmlTransient
-    public List<SuportStatus> getSuportStatusList() {
-        return suportStatusList;
+    public int getStatus() {
+        return status;
     }
 
-    public void setSuportStatusList(List<SuportStatus> suportStatusList) {
-        this.suportStatusList = suportStatusList;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public Status getStatusId() {
-        return statusId;
-    }
 
-    public void setStatusId(Status statusId) {
-        this.statusId = statusId;
-    }
-
-    public Department getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(Department departmentId) {
-        this.departmentId = departmentId;
-    }
 
     @Override
     public int hashCode() {
@@ -208,7 +194,16 @@ public class Support implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.teachermanagement.entity.Support[ id=" + id + " ]";
+        return "Support{" +
+                "id=" + id +
+                ", departmentId=" + departmentId +
+                ", fullname='" + fullname + '\'' +
+                ", email='" + email + '\'' +
+                ", subject='" + subject + '\'' +
+                ", message='" + message + '\'' +
+                ", insertDateTime=" + insertDateTime +
+                ", solvedDateTime=" + solvedDateTime +
+                ", status=" + status +
+                '}';
     }
-    
 }

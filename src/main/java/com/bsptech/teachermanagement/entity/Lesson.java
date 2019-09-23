@@ -6,25 +6,22 @@
 package com.bsptech.teachermanagement.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,7 +35,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Lesson.findById", query = "SELECT l FROM Lesson l WHERE l.id = :id")
     , @NamedQuery(name = "Lesson.findByName", query = "SELECT l FROM Lesson l WHERE l.name = :name")
     , @NamedQuery(name = "Lesson.findByAbout", query = "SELECT l FROM Lesson l WHERE l.about = :about")
+    , @NamedQuery(name = "Lesson.findByPlaylistUrl", query = "SELECT l FROM Lesson l WHERE l.playlistUrl = :playlistUrl")
+    , @NamedQuery(name = "Lesson.findByPrice", query = "SELECT l FROM Lesson l WHERE l.price = :price")
     , @NamedQuery(name = "Lesson.findByThumbnailPath", query = "SELECT l FROM Lesson l WHERE l.thumbnailPath = :thumbnailPath")
+    , @NamedQuery(name = "Lesson.findByClassId", query = "SELECT l FROM Lesson l WHERE l.classId = :classId")
     , @NamedQuery(name = "Lesson.findByInsertDateTime", query = "SELECT l FROM Lesson l WHERE l.insertDateTime = :insertDateTime")
     , @NamedQuery(name = "Lesson.findByLastUpdateTime", query = "SELECT l FROM Lesson l WHERE l.lastUpdateTime = :lastUpdateTime")})
 public class Lesson implements Serializable {
@@ -58,8 +58,18 @@ public class Lesson implements Serializable {
     @Column(name = "about")
     private String about;
     @Size(max = 255)
+    @Column(name = "playlist_url")
+    private String playlistUrl;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "price")
+    private BigDecimal price;
+    @Size(max = 255)
     @Column(name = "thumbnail_path")
     private String thumbnailPath;
+    @Column(name = "class_id")
+    private Integer classId;
     @Basic(optional = false)
     @NotNull
     @Column(name = "insert_date_time")
@@ -68,10 +78,6 @@ public class Lesson implements Serializable {
     @Column(name = "last_update_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateTime;
-    @OneToMany(mappedBy = "lessonId", fetch = FetchType.LAZY)
-    private List<LessonSection> lessonSectionList;
-    @OneToMany(mappedBy = "lessonId", fetch = FetchType.LAZY)
-    private List<ClassLesson> classLessonList;
 
     public Lesson() {
     }
@@ -80,9 +86,10 @@ public class Lesson implements Serializable {
         this.id = id;
     }
 
-    public Lesson(Integer id, String name, Date insertDateTime) {
+    public Lesson(Integer id, String name, BigDecimal price, Date insertDateTime) {
         this.id = id;
         this.name = name;
+        this.price = price;
         this.insertDateTime = insertDateTime;
     }
 
@@ -110,12 +117,36 @@ public class Lesson implements Serializable {
         this.about = about;
     }
 
+    public String getPlaylistUrl() {
+        return playlistUrl;
+    }
+
+    public void setPlaylistUrl(String playlistUrl) {
+        this.playlistUrl = playlistUrl;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public String getThumbnailPath() {
         return thumbnailPath;
     }
 
     public void setThumbnailPath(String thumbnailPath) {
         this.thumbnailPath = thumbnailPath;
+    }
+
+    public Integer getClassId() {
+        return classId;
+    }
+
+    public void setClassId(Integer classId) {
+        this.classId = classId;
     }
 
     public Date getInsertDateTime() {
@@ -132,24 +163,6 @@ public class Lesson implements Serializable {
 
     public void setLastUpdateTime(Date lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
-    }
-
-    @XmlTransient
-    public List<LessonSection> getLessonSectionList() {
-        return lessonSectionList;
-    }
-
-    public void setLessonSectionList(List<LessonSection> lessonSectionList) {
-        this.lessonSectionList = lessonSectionList;
-    }
-
-    @XmlTransient
-    public List<ClassLesson> getClassLessonList() {
-        return classLessonList;
-    }
-
-    public void setClassLessonList(List<ClassLesson> classLessonList) {
-        this.classLessonList = classLessonList;
     }
 
     @Override

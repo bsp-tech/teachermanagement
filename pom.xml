@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.bsptech</groupId>
     <artifactId>teachermanagement</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>teachermanagement</name>
     <description>This project created for students and teacher.</description>
 
@@ -79,7 +79,6 @@
             <artifactId>thymeleaf-with-dialect</artifactId>
             <version>${thymeleaf-with-dialect.version}</version>
         </dependency>
-        
     </dependencies>
 
     <build>
