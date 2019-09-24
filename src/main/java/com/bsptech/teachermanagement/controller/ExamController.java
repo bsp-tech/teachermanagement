@@ -6,6 +6,8 @@
 package com.bsptech.teachermanagement.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,17 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Goshgar
  */
 @Controller
-@RequestMapping(value = "/user")
-public class UserController {
+@RequestMapping(value = "/exam")
+public class ExamController {
 
-
-    @RequestMapping(path = "/login")
-    public ModelAndView login(ModelAndView modelAndView) {
-        modelAndView.setViewName("user/form");
+    @GetMapping
+    public ModelAndView index(ModelAndView modelAndView) {
+        modelAndView.setViewName("/exam/exams");
         return modelAndView;
     }
-
-
-
 
 }

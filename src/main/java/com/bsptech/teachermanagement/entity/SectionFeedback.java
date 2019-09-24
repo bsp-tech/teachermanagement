@@ -31,11 +31,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "section_feedback")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "SectionFeedback.findAll", query = "SELECT s FROM SectionFeedback s")
-    , @NamedQuery(name = "SectionFeedback.findById", query = "SELECT s FROM SectionFeedback s WHERE s.id = :id")
-    , @NamedQuery(name = "SectionFeedback.findByContent", query = "SELECT s FROM SectionFeedback s WHERE s.content = :content")
-    , @NamedQuery(name = "SectionFeedback.findByInsertDateTime", query = "SELECT s FROM SectionFeedback s WHERE s.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "SectionFeedback.findByAuthorName", query = "SELECT s FROM SectionFeedback s WHERE s.authorName = :authorName")})
+        @NamedQuery(name = "SectionFeedback.findAll", query = "SELECT s FROM SectionFeedback s")
+        , @NamedQuery(name = "SectionFeedback.findById", query = "SELECT s FROM SectionFeedback s WHERE s.id = :id")
+        , @NamedQuery(name = "SectionFeedback.findByContent", query = "SELECT s FROM SectionFeedback s WHERE s.content = :content")
+        , @NamedQuery(name = "SectionFeedback.findByInsertDateTime", query = "SELECT s FROM SectionFeedback s WHERE s.insertDateTime = :insertDateTime")
+        , @NamedQuery(name = "SectionFeedback.findByAuthorName", query = "SELECT s FROM SectionFeedback s WHERE s.authorName = :authorName")})
 public class SectionFeedback implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -135,5 +135,5 @@ public class SectionFeedback implements Serializable {
     public String toString() {
         return "com.bsptech.teachermanagement.entity.SectionFeedback[ id=" + id + " ]";
     }
-    
+
 }
