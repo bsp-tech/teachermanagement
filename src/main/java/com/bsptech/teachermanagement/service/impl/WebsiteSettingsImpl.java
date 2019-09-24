@@ -20,3 +20,4 @@ public class WebsiteSettingsImpl implements WebsiteSettingsInter {
         return list.get(0);
     }
 }
+
