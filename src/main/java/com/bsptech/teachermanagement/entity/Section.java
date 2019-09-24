@@ -30,14 +30,14 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "section")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Section.findAll", query = "SELECT s FROM Section s")
-    , @NamedQuery(name = "Section.findById", query = "SELECT s FROM Section s WHERE s.id = :id")
-    , @NamedQuery(name = "Section.findByName", query = "SELECT s FROM Section s WHERE s.name = :name")
-    , @NamedQuery(name = "Section.findByPrice", query = "SELECT s FROM Section s WHERE s.price = :price")
-    , @NamedQuery(name = "Section.findByVideoCount", query = "SELECT s FROM Section s WHERE s.videoCount = :videoCount")
-    , @NamedQuery(name = "Section.findByPlaylistUrl", query = "SELECT s FROM Section s WHERE s.playlistUrl = :playlistUrl")
-    , @NamedQuery(name = "Section.findByThumbnailPath", query = "SELECT s FROM Section s WHERE s.thumbnailPath = :thumbnailPath")
-    , @NamedQuery(name = "Section.findByAbout", query = "SELECT s FROM Section s WHERE s.about = :about")})
+        @NamedQuery(name = "Section.findAll", query = "SELECT s FROM Section s")
+        , @NamedQuery(name = "Section.findById", query = "SELECT s FROM Section s WHERE s.id = :id")
+        , @NamedQuery(name = "Section.findByName", query = "SELECT s FROM Section s WHERE s.name = :name")
+        , @NamedQuery(name = "Section.findByPrice", query = "SELECT s FROM Section s WHERE s.price = :price")
+        , @NamedQuery(name = "Section.findByVideoCount", query = "SELECT s FROM Section s WHERE s.videoCount = :videoCount")
+        , @NamedQuery(name = "Section.findByPlaylistUrl", query = "SELECT s FROM Section s WHERE s.playlistUrl = :playlistUrl")
+        , @NamedQuery(name = "Section.findByThumbnailPath", query = "SELECT s FROM Section s WHERE s.thumbnailPath = :thumbnailPath")
+        , @NamedQuery(name = "Section.findByAbout", query = "SELECT s FROM Section s WHERE s.about = :about")})
 public class Section implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -180,5 +180,5 @@ public class Section implements Serializable {
     public String toString() {
         return "com.bsptech.teachermanagement.entity.Section[ id=" + id + " ]";
     }
-    
+
 }

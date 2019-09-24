@@ -12,488 +12,496 @@
 <body>
 
 <!-- breadcrumb -->
-<div layout:fragment="content">
-    <div class="container border-bottom border-success">
-        <div class="col-md-12">
-            <h2 class="text-success mt-3 mb-2">FİZİK Konuları</h2>
-            <ol class="breadcrumb mb-0 px-0 pb-2 bg-white">
-                <li aria-current="page" class="breadcrumb-item"><a class="font-weight-bold text-dark text-decoration-none"
-                                                                   href="index.html">Anasayfa</a></li>
-                <li aria-current="page" class="breadcrumb-item"><a class="font-weight-bold text-dark text-decoration-none"
-                                                                   href="dersler.html">Dersler</a></li>
-                <li aria-current="page" class="breadcrumb-item active"><a
-                        class="font-weight-bold text-success text-decoration-none" href="sections.html">FİZİK</a>
-                </li>
-            </ol>
-        </div>
-    </div>
-
-    <!-- content -->
-
-    <div class="container py-3">
-        <div class="row">
-            <div class="col-md-3 mb-4">
-                <div class="border border-muted">
-                    <div class="bg-success text-center py-1">
-                        <h5 class="m-0">
-                            <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
-                                Anlatımlı Paket</a>
-                        </h5>
-                    </div>
-                    <div class="border-bottom border-success position-relative">
-                        <a href="/lessons/details">
-                            <img alt="" class="img-fluid w-100" style="height:150px" th:src="@{/img/FİZİK.png}">
-                        </a>
-                    </div>
-                    <div class="d-flex py-2 px-2">
-                        <a class="mr-2" href="">
-                            <img alt="" class="img-fluid" style="height:50px;width:50px" th:src="@{/img/hoca.jpg}">
-                        </a>
-                        <div class="mt-2">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
-                                    ÖNCÜL</a>
-                            </h6>
-                            <h6>
-                                <a class="text-muted font-weight-light text-decoration-none"
-                                   href="/lessons/details">Eğitmen</a>
-                            </h6>
-                        </div>
-                    </div>
-                    <div class="d-flex text-center justify-content-center py-1">
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                    </div>
-                    <div class="d-flex justify-content-between px-3 pt-3">
-                        <div class="text-left">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
-                            </p>
-                        </div>
-                        <div class="text-right">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="border border-muted">
-                    <div class="bg-success text-center py-1">
-                        <h5 class="m-0">
-                            <a class="text-light text-decoration-none"
-                               href="/lessons/details"
-                            >Fizik TYT-AYT Konu
-                                Anlatımlı Paket</a>
-                        </h5>
-                    </div>
-                    <div class="border-bottom border-success position-relative">
-                        <a href="/lessons/details">
-                            <img alt="" class="img-fluid w-100" style="height:150px" th:src="@{/img/FİZİK.png}">
-                        </a>
-                    </div>
-                    <div class="d-flex py-2 px-2">
-                        <a class="mr-2" href="">
-                            <img alt="" class="img-fluid" style="height:50px;width:50px" th:src="@{/img/hoca.jpg}">
-                        </a>
-                        <div class="mt-2">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
-                                    ÖNCÜL</a>
-                            </h6>
-                            <h6>
-                                <a class="text-muted font-weight-light text-decoration-none"
-                                   href="/lessons/details">Eğitmen</a>
-                            </h6>
-                        </div>
-                    </div>
-                    <div class="d-flex text-center justify-content-center py-1">
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                    </div>
-                    <div class="d-flex justify-content-between px-3 pt-3">
-                        <div class="text-left">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
-                            </p>
-                        </div>
-                        <div class="text-right">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="border border-muted">
-                    <div class="bg-success text-center py-1">
-                        <h5 class="m-0">
-                            <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
-                                Anlatımlı Paket</a>
-                        </h5>
-                    </div>
-                    <div class="border-bottom border-success position-relative">
-                        <a href="/lessons/details">
-                            <img alt="" class="img-fluid w-100" style="height:150px" th:src="@{/img/FİZİK.png}">
-                        </a>
-                    </div>
-                    <div class="d-flex py-2 px-2">
-                        <a class="mr-2" href="">
-                            <img alt="" class="img-fluid" style="height:50px;width:50px" th:src="@{/img/hoca.jpg}">
-                        </a>
-                        <div class="mt-2">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
-                                    ÖNCÜL</a>
-                            </h6>
-                            <h6>
-                                <a class="text-muted font-weight-light text-decoration-none"
-                                   href="/lessons/details">Eğitmen</a>
-                            </h6>
-                        </div>
-                    </div>
-                    <div class="d-flex text-center justify-content-center py-1">
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                    </div>
-                    <div class="d-flex justify-content-between px-3 pt-3">
-                        <div class="text-left">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
-                            </p>
-                        </div>
-                        <div class="text-right">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="border border-muted">
-                    <div class="bg-success text-center py-1">
-                        <h5 class="m-0">
-                            <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
-                                Anlatımlı Paket</a>
-                        </h5>
-                    </div>
-                    <div class="border-bottom border-success position-relative">
-                        <a href="/lessons/details">
-                            <img alt="" class="img-fluid w-100" style="height:150px" th:src="@{/img/FİZİK.png}">
-                        </a>
-                    </div>
-                    <div class="d-flex py-2 px-2">
-                        <a class="mr-2" href="">
-                            <img alt="" class="img-fluid" style="height:50px;width:50px" th:src="@{/img/hoca.jpg}">
-                        </a>
-                        <div class="mt-2">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
-                                    ÖNCÜL</a>
-                            </h6>
-                            <h6>
-                                <a class="text-muted font-weight-light text-decoration-none"
-                                   href="/lessons/details">Eğitmen</a>
-                            </h6>
-                        </div>
-                    </div>
-                    <div class="d-flex text-center justify-content-center py-1">
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                    </div>
-                    <div class="d-flex justify-content-between px-3 pt-3">
-                        <div class="text-left">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
-                            </p>
-                        </div>
-                        <div class="text-right">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="border border-muted">
-                    <div class="bg-success text-center py-1">
-                        <h5 class="m-0">
-                            <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
-                                Anlatımlı Paket</a>
-                        </h5>
-                    </div>
-                    <div class="border-bottom border-success position-relative">
-                        <a href="/lessons/details">
-                            <img alt="" class="img-fluid w-100" style="height:150px" th:src="@{/img/FİZİK.png}">
-                        </a>
-                    </div>
-                    <div class="d-flex py-2 px-2">
-                        <a class="mr-2" href="">
-                            <img alt="" class="img-fluid" style="height:50px;width:50px" th:src="@{/img/hoca.jpg}">
-                        </a>
-                        <div class="mt-2">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
-                                    ÖNCÜL</a>
-                            </h6>
-                            <h6>
-                                <a class="text-muted font-weight-light text-decoration-none"
-                                   href="/lessons/details">Eğitmen</a>
-                            </h6>
-                        </div>
-                    </div>
-                    <div class="d-flex text-center justify-content-center py-1">
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                    </div>
-                    <div class="d-flex justify-content-between px-3 pt-3">
-                        <div class="text-left">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
-                            </p>
-                        </div>
-                        <div class="text-right">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="border border0-muted">
-                    <div class="bg-success text-center py-1">
-                        <h5 class="m-0">
-                            <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
-                                Anlatımlı Paket</a>
-                        </h5>
-                    </div>
-                    <div class="border-bottom border-success position-relative">
-                        <a href="/lessons/details">
-                            <img alt="" class="img-fluid w-100" src="img/FİZİK.png" style="height:150px">
-                        </a>
-                    </div>
-                    <div class="d-flex py-2 px-2">
-                        <a class="mr-2" href="">
-                            <img alt="" class="img-fluid" src="img/hoca.jpg" style="height:50px;width:50px">
-                        </a>
-                        <div class="mt-2">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
-                                    ÖNCÜL</a>
-                            </h6>
-                            <h6>
-                                <a class="text-muted font-weight-light text-decoration-none"
-                                   href="/lessons/details">Eğitmen</a>
-                            </h6>
-                        </div>
-                    </div>
-                    <div class="d-flex text-center justify-content-center py-1">
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                    </div>
-                    <div class="d-flex justify-content-between px-3 pt-3">
-                        <div class="text-left">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
-                            </p>
-                        </div>
-                        <div class="text-right">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="border border-muted">
-                    <div class="bg-success text-center py-1">
-                        <h5 class="m-0">
-                            <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
-                                Anlatımlı Paket</a>
-                        </h5>
-                    </div>
-                    <div class="border-bottom border-success position-relative">
-                        <a href="/lessons/details">
-                            <img alt="" class="img-fluid w-100" src="img/FİZİK.png" style="height:150px">
-                        </a>
-                    </div>
-                    <div class="d-flex py-2 px-2">
-                        <a class="mr-2" href="">
-                            <img alt="" class="img-fluid" src="img/hoca.jpg" style="height:50px;width:50px">
-                        </a>
-                        <div class="mt-2">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
-                                    ÖNCÜL</a>
-                            </h6>
-                            <h6>
-                                <a class="text-muted font-weight-light text-decoration-none"
-                                   href="/lessons/details">Eğitmen</a>
-                            </h6>
-                        </div>
-                    </div>
-                    <div class="d-flex text-center justify-content-center py-1">
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                    </div>
-                    <div class="d-flex justify-content-between px-3 pt-3">
-                        <div class="text-left">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
-                            </p>
-                        </div>
-                        <div class="text-right">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="border border-muted">
-                    <div class="bg-success text-center py-1">
-                        <h5 class="m-0">
-                            <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
-                                Anlatımlı Paket</a>
-                        </h5>
-                    </div>
-                    <div class="border-bottom border-success position-relative">
-                        <a href="/lessons/details">
-                            <img alt="" class="img-fluid w-100" src="img/FİZİK.png" style="height:150px">
-                        </a>
-                    </div>
-                    <div class="d-flex py-2 px-2">
-                        <a class="mr-2" href="">
-                            <img alt="" class="img-fluid" src="img/hoca.jpg" style="height:50px;width:50px">
-                        </a>
-                        <div class="mt-2">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
-                                    ÖNCÜL</a>
-                            </h6>
-                            <h6>
-                                <a class="text-muted font-weight-light text-decoration-none"
-                                   href="/lessons/details">Eğitmen</a>
-                            </h6>
-                        </div>
-                    </div>
-                    <div class="d-flex text-center justify-content-center py-1">
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                        <i class="fas fa-star text-warning fa-xs"></i>
-                    </div>
-                    <div class="d-flex justify-content-between px-3 pt-3">
-                        <div class="text-left">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
-                            </p>
-                        </div>
-                        <div class="text-right">
-                            <h6 class="mb-1">
-                                <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
-                            </h6>
-                            <p class="mb-1">
-                                <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mx-auto">
-                <!-- pagination -->
-                <nav aria-label="Page navigation example" class="mt-4 mb-0">
-                    <ul class="pagination justify-content-center flex-wrap">
-                        <li class="page-item">
-                            <a class="page-link text-secondary" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link bg-success text-light" href="#">1</a></li>
-                        <li class="page-item">
-                            <a class="page-link text-secondary" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-
-        </div>
+<div layout:fragment="content"></div>
+<div class="container border-bottom border-success">
+    <div class="col-md-12">
+        <h2 class="text-success mt-3 mb-2">FİZİK Konuları</h2>
+        <ol class="breadcrumb mb-0 px-0 pb-2 bg-white">
+            <li aria-current="page" class="breadcrumb-item"><a class="font-weight-bold text-dark text-decoration-none"
+                                                               href="index.html">Anasayfa</a></li>
+            <li aria-current="page" class="breadcrumb-item"><a class="font-weight-bold text-dark text-decoration-none"
+                                                               href="dersler.html">Dersler</a></li>
+            <li aria-current="page" class="breadcrumb-item active"><a
+                    class="font-weight-bold text-success text-decoration-none" href="sections.html">FİZİK</a>
+            </li>
+        </ol>
     </div>
 </div>
 
+<!-- content -->
+
+<div class="container py-3">
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="border border-muted">
+                <div class="bg-success text-center py-1">
+                    <h5 class="m-0">
+                        <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
+                            Anlatımlı Paket</a>
+                    </h5>
+                </div>
+                <div class="border-bottom border-success position-relative">
+                    <a href="/lessons/details">
+                        <img alt="" class="img-fluid w-100" style="height:150px" th:src="@{/img/FİZİK.png}">
+                    </a>
+                </div>
+                <div class="d-flex py-2 px-2">
+                    <a class="mr-2" href="">
+                        <img alt="" class="img-fluid" style="height:50px;width:50px" th:src="@{/img/hoca.jpg}">
+                    </a>
+                    <div class="mt-2">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
+                                ÖNCÜL</a>
+                        </h6>
+                        <h6>
+                            <a class="text-muted font-weight-light text-decoration-none"
+                               href="/lessons/details">Eğitmen</a>
+                        </h6>
+                    </div>
+                </div>
+                <div class="d-flex text-center justify-content-center py-1">
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                </div>
+                <div class="d-flex justify-content-between px-3 pt-3">
+                    <div class="text-left">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
+                        </p>
+                    </div>
+                    <div class="text-right">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="border border-muted">
+                <div class="bg-success text-center py-1">
+                    <h5 class="m-0">
+                        <a class="text-light text-decoration-none"
+                           href="/lessons/details"
+                        >Fizik TYT-AYT Konu
+                            Anlatımlı Paket</a>
+                    </h5>
+                </div>
+                <div class="border-bottom border-success position-relative">
+                    <a href="/lessons/details">
+                        <img alt="" class="img-fluid w-100" style="height:150px" th:src="@{/img/FİZİK.png}">
+                    </a>
+                </div>
+                <div class="d-flex py-2 px-2">
+                    <a class="mr-2" href="">
+                        <img alt="" class="img-fluid" style="height:50px;width:50px" th:src="@{/img/hoca.jpg}">
+                    </a>
+                    <div class="mt-2">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
+                                ÖNCÜL</a>
+                        </h6>
+                        <h6>
+                            <a class="text-muted font-weight-light text-decoration-none"
+                               href="/lessons/details">Eğitmen</a>
+                        </h6>
+                    </div>
+                </div>
+                <div class="d-flex text-center justify-content-center py-1">
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                </div>
+                <div class="d-flex justify-content-between px-3 pt-3">
+                    <div class="text-left">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
+                        </p>
+                    </div>
+                    <div class="text-right">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="border border-muted">
+                <div class="bg-success text-center py-1">
+                    <h5 class="m-0">
+                        <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
+                            Anlatımlı Paket</a>
+                    </h5>
+                </div>
+                <div class="border-bottom border-success position-relative">
+                    <a href="/lessons/details">
+                        <img alt="" class="img-fluid w-100" style="height:150px" th:src="@{/img/FİZİK.png}">
+                    </a>
+                </div>
+                <div class="d-flex py-2 px-2">
+                    <a class="mr-2" href="">
+                        <img alt="" class="img-fluid" style="height:50px;width:50px" th:src="@{/img/hoca.jpg}">
+                    </a>
+                    <div class="mt-2">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
+                                ÖNCÜL</a>
+                        </h6>
+                        <h6>
+                            <a class="text-muted font-weight-light text-decoration-none"
+                               href="/lessons/details">Eğitmen</a>
+                        </h6>
+                    </div>
+                </div>
+                <div class="d-flex text-center justify-content-center py-1">
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                </div>
+                <div class="d-flex justify-content-between px-3 pt-3">
+                    <div class="text-left">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
+                        </p>
+                    </div>
+                    <div class="text-right">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="border border-muted">
+                <div class="bg-success text-center py-1">
+                    <h5 class="m-0">
+                        <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
+                            Anlatımlı Paket</a>
+                    </h5>
+                </div>
+                <div class="border-bottom border-success position-relative">
+                    <a href="/lessons/details">
+                        <img alt="" class="img-fluid w-100" style="height:150px" th:src="@{/img/FİZİK.png}">
+                    </a>
+                </div>
+                <div class="d-flex py-2 px-2">
+                    <a class="mr-2" href="">
+                        <img alt="" class="img-fluid" style="height:50px;width:50px" th:src="@{/img/hoca.jpg}">
+                    </a>
+                    <div class="mt-2">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
+                                ÖNCÜL</a>
+                        </h6>
+                        <h6>
+                            <a class="text-muted font-weight-light text-decoration-none"
+                               href="/lessons/details">Eğitmen</a>
+                        </h6>
+                    </div>
+                </div>
+                <div class="d-flex text-center justify-content-center py-1">
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                </div>
+                <div class="d-flex justify-content-between px-3 pt-3">
+                    <div class="text-left">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
+                        </p>
+                    </div>
+                    <div class="text-right">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="border border-muted">
+                <div class="bg-success text-center py-1">
+                    <h5 class="m-0">
+                        <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
+                            Anlatımlı Paket</a>
+                    </h5>
+                </div>
+                <div class="border-bottom border-success position-relative">
+                    <a href="/lessons/details">
+                        <img alt="" class="img-fluid w-100" style="height:150px" th:src="@{/img/FİZİK.png}">
+                    </a>
+                </div>
+                <div class="d-flex py-2 px-2">
+                    <a class="mr-2" href="">
+                        <img alt="" class="img-fluid" style="height:50px;width:50px" th:src="@{/img/hoca.jpg}">
+                    </a>
+                    <div class="mt-2">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
+                                ÖNCÜL</a>
+                        </h6>
+                        <h6>
+                            <a class="text-muted font-weight-light text-decoration-none"
+                               href="/lessons/details">Eğitmen</a>
+                        </h6>
+                    </div>
+                </div>
+                <div class="d-flex text-center justify-content-center py-1">
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                </div>
+                <div class="d-flex justify-content-between px-3 pt-3">
+                    <div class="text-left">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
+                        </p>
+                    </div>
+                    <div class="text-right">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="border border0-muted">
+                <div class="bg-success text-center py-1">
+                    <h5 class="m-0">
+                        <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
+                            Anlatımlı Paket</a>
+                    </h5>
+                </div>
+                <div class="border-bottom border-success position-relative">
+                    <a href="/lessons/details">
+                        <img alt="" class="img-fluid w-100" src="img/FİZİK.png" style="height:150px">
+                    </a>
+                </div>
+                <div class="d-flex py-2 px-2">
+                    <a class="mr-2" href="">
+                        <img alt="" class="img-fluid" src="img/hoca.jpg" style="height:50px;width:50px">
+                    </a>
+                    <div class="mt-2">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
+                                ÖNCÜL</a>
+                        </h6>
+                        <h6>
+                            <a class="text-muted font-weight-light text-decoration-none"
+                               href="/lessons/details">Eğitmen</a>
+                        </h6>
+                    </div>
+                </div>
+                <div class="d-flex text-center justify-content-center py-1">
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                </div>
+                <div class="d-flex justify-content-between px-3 pt-3">
+                    <div class="text-left">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
+                        </p>
+                    </div>
+                    <div class="text-right">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="border border-muted">
+                <div class="bg-success text-center py-1">
+                    <h5 class="m-0">
+                        <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
+                            Anlatımlı Paket</a>
+                    </h5>
+                </div>
+                <div class="border-bottom border-success position-relative">
+                    <a href="/lessons/details">
+                        <img alt="" class="img-fluid w-100" src="img/FİZİK.png" style="height:150px">
+                    </a>
+                </div>
+                <div class="d-flex py-2 px-2">
+                    <a class="mr-2" href="">
+                        <img alt="" class="img-fluid" src="img/hoca.jpg" style="height:50px;width:50px">
+                    </a>
+                    <div class="mt-2">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
+                                ÖNCÜL</a>
+                        </h6>
+                        <h6>
+                            <a class="text-muted font-weight-light text-decoration-none"
+                               href="/lessons/details">Eğitmen</a>
+                        </h6>
+                    </div>
+                </div>
+                <div class="d-flex text-center justify-content-center py-1">
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                </div>
+                <div class="d-flex justify-content-between px-3 pt-3">
+                    <div class="text-left">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
+                        </p>
+                    </div>
+                    <div class="text-right">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="border border-muted">
+                <div class="bg-success text-center py-1">
+                    <h5 class="m-0">
+                        <a class="text-light text-decoration-none" href="/lessons/details">Fizik TYT-AYT Konu
+                            Anlatımlı Paket</a>
+                    </h5>
+                </div>
+                <div class="border-bottom border-success position-relative">
+                    <a href="/lessons/details">
+                        <img alt="" class="img-fluid w-100" src="img/FİZİK.png" style="height:150px">
+                    </a>
+                </div>
+                <div class="d-flex py-2 px-2">
+                    <a class="mr-2" href="">
+                        <img alt="" class="img-fluid" src="img/hoca.jpg" style="height:50px;width:50px">
+                    </a>
+                    <div class="mt-2">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="/lessons/details">UMUT
+                                ÖNCÜL</a>
+                        </h6>
+                        <h6>
+                            <a class="text-muted font-weight-light text-decoration-none"
+                               href="/lessons/details">Eğitmen</a>
+                        </h6>
+                    </div>
+                </div>
+                <div class="d-flex text-center justify-content-center py-1">
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                    <i class="fas fa-star text-warning fa-xs"></i>
+                </div>
+                <div class="d-flex justify-content-between px-3 pt-3">
+                    <div class="text-left">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">438</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Video Sayısı</a>
+                        </p>
+                    </div>
+                    <div class="text-right">
+                        <h6 class="mb-1">
+                            <a class="text-dark font-weight-normal text-decoration-none" href="">300 TL</a>
+                        </h6>
+                        <p class="mb-1">
+                            <a class="text-muted font-weight-light text-decoration-none" href="">Ders Ücreti</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mx-auto">
+            <!-- pagination -->
+            <nav aria-label="Page navigation example" class="mt-4 mb-0">
+                <ul class="pagination justify-content-center flex-wrap">
+                    <li class="page-item">
+                        <a class="page-link text-secondary" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link bg-success text-light" href="#">1</a></li>
+                    <li class="page-item">
+                        <a class="page-link text-secondary" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!--<script src="layout.js"></script>-->
 </body>
 </html>

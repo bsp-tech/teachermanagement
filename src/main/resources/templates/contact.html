@@ -7,6 +7,9 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Blog</title>
+
+    <link rel="stylesheet" href="../css/sweetalert.css">
+
 </head>
 
 <div layout:fragment="content">
@@ -37,45 +40,53 @@
                     <div class="form-area w-100">
                         <div class="w-100">
                             <h1 class="text-gray px-3 fa-2x font-weight-300 text-gray">Mesaj gönderin</h1>
-                            <form class="px-3">
+
                                 <div class="form-group">
-                                    <label for="inputState">Departman :*</label>
-                                    <select class="custom-select custom-select-sm">
-                                        <option selected>Müşteri Hizmetleri</option>
+                                    <label for="comboDepartmentId">Departman :*</label>
+                                    <select class="custom-select custom-select-sm" name="comboDepartment" id="comboDepartmentId">
+                                        <option selected>Müştəri Xidmətləri</option>
                                         <option value="1">Teknik Destek</option>
                                         <option value="2">İstek & Öneri</option>
                                         <option value="3">İade ve ya İptal</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Adınız Soyadınız: *</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1"
-                                           aria-describedby="emailHelp" placeholder="Adınız Soyadınız:">
+                                    <label for="nameSurnameContactId">Adınız Soyadınız: *</label>
+                                    <input type="text" class="form-control" name="nameSurnameContact" id="nameSurnameContactId"
+                                           aria-describedby="nameSurnameHelp" placeholder="Adınız Soyadınız:">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">E-Posta Adresiniz: *</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                    <label for="emailContactId">E-Mail Adresiniz: *</label>
+                                    <input type="email" class="form-control" name="emailContact" id="emailContactId"
                                            aria-describedby="emailHelp" placeholder="E-Posta Adresiniz: *">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Konu: *</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1"
-                                           aria-describedby="emailHelp" placeholder="Konu:">
+                                    <label for="subjectContactId">Mövzu: *</label>
+                                    <input type="text" class="form-control" name="subjectContact" id="subjectContactId"
+                                           aria-describedby="subjectHelp" placeholder="Mövzu:">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Mesajınız: *</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                    <label for="messageContactId">Mesajınız: *</label>
+                                    <textarea class="form-control" name="messageContact" id="messageContactId" rows="3"
                                               placeholder="Mesajınız: "></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-success m-auto">Gönder</button>
-                            </form>
+                                <button type="submit" id="addContactBtnId"  class="btn btn-success m-auto">Göndər</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/sweetalert.js"></script>
+    <script src="../js/contact.js"></script>
+
+
     </body>
+
 </div>
 
 </html>

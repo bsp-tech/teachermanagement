@@ -35,6 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Post.findById", query = "SELECT p FROM Post p WHERE p.id = :id")
     , @NamedQuery(name = "Post.findByTitle", query = "SELECT p FROM Post p WHERE p.title = :title")
     , @NamedQuery(name = "Post.findByApproved", query = "SELECT p FROM Post p WHERE p.approved = :approved")
+    , @NamedQuery(name = "Post.findByClassId", query = "SELECT p FROM Post p WHERE p.classId = :classId")
+    , @NamedQuery(name = "Post.findByDepartmentId", query = "SELECT p FROM Post p WHERE p.departmentId = :departmentId")
+    , @NamedQuery(name = "Post.findByUserId", query = "SELECT p FROM Post p WHERE p.userId = :userId")
     , @NamedQuery(name = "Post.findByInsertDateTime", query = "SELECT p FROM Post p WHERE p.insertDateTime = :insertDateTime")
     , @NamedQuery(name = "Post.findByLastUpdateTime", query = "SELECT p FROM Post p WHERE p.lastUpdateTime = :lastUpdateTime")})
 public class Post implements Serializable {
@@ -62,6 +65,18 @@ public class Post implements Serializable {
     private short approved;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "class_id")
+    private int classId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "department_id")
+    private int departmentId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "user_id")
+    private int userId;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
@@ -76,11 +91,14 @@ public class Post implements Serializable {
         this.id = id;
     }
 
-    public Post(Integer id, String title, String content, short approved, Date insertDateTime) {
+    public Post(Integer id, String title, String content, short approved, int classId, int departmentId, int userId, Date insertDateTime) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.approved = approved;
+        this.classId = classId;
+        this.departmentId = departmentId;
+        this.userId = userId;
         this.insertDateTime = insertDateTime;
     }
 
@@ -114,6 +132,30 @@ public class Post implements Serializable {
 
     public void setApproved(short approved) {
         this.approved = approved;
+    }
+
+    public int getClassId() {
+        return classId;
+    }
+
+    public void setClassId(int classId) {
+        this.classId = classId;
+    }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Date getInsertDateTime() {

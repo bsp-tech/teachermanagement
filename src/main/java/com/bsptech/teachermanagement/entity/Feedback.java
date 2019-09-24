@@ -25,10 +25,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "feedback")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Feedback.findAll", query = "SELECT f FROM Feedback f")
-    , @NamedQuery(name = "Feedback.findById", query = "SELECT f FROM Feedback f WHERE f.id = :id")
-    , @NamedQuery(name = "Feedback.findByContent", query = "SELECT f FROM Feedback f WHERE f.content = :content")
-    , @NamedQuery(name = "Feedback.findByAuthorName", query = "SELECT f FROM Feedback f WHERE f.authorName = :authorName")})
+        @NamedQuery(name = "Feedback.findAll", query = "SELECT f FROM Feedback f")
+        , @NamedQuery(name = "Feedback.findById", query = "SELECT f FROM Feedback f WHERE f.id = :id")
+        , @NamedQuery(name = "Feedback.findByContent", query = "SELECT f FROM Feedback f WHERE f.content = :content")
+        , @NamedQuery(name = "Feedback.findByAuthorName", query = "SELECT f FROM Feedback f WHERE f.authorName = :authorName")})
 public class Feedback implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -109,5 +109,5 @@ public class Feedback implements Serializable {
     public String toString() {
         return "com.bsptech.teachermanagement.entity.Feedback[ id=" + id + " ]";
     }
-    
+
 }
