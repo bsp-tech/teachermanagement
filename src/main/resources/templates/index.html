@@ -2,7 +2,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:with="http://www.thymeleaf.org/extras/with"
       layout:decorate="~{base}"
-      >
+>
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -10,10 +10,10 @@
     <title>Ana Sehife</title>
 
 </head>
-<body>
 
 
 <div layout:fragment="content" th:object="${settings}">
+    <body>
     <!--Section 1-->
     <section>
         <video autoplay="" id="video_div" muted="" style="width: 100%">
@@ -1093,47 +1093,49 @@
             </div>
         </div>
     </section>
+
+    <!--<script th:src="@{/js/layout.js}"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+
+    <script>
+        $('.carousel2').owlCarousel({
+            loop: true,
+            margin: 10,
+
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 2
+                }
+            }
+        });
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            navText: [$('.arrow-left'), $('.arrow-right')],
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+
+    </script>
+    </body>
 </div>
-
-<!--<script th:src="@{/js/layout.js}"></script>-->
-
-<script>
-    $('.carousel2').owlCarousel({
-        loop: true,
-        margin: 10,
-
-        dots: false,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 2
-            },
-            1000: {
-                items: 2
-            }
-        }
-    });
-    $('.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 10,
-        nav: true,
-        navText: [$('.arrow-left'), $('.arrow-right')],
-        dots: false,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 3
-            },
-            1000: {
-                items: 4
-            }
-        }
-    })
-
-</script>
-</body>
 </html>

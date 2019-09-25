@@ -17,8 +17,9 @@ public class AboutController {
 
     @GetMapping
     public ModelAndView about(ModelAndView modelAndView) {
-        WebsiteSettings websiteSettings = websiteSettingsInter.find();
-        modelAndView.addObject("settings",websiteSettings);
+        Integer id = 1;
+        WebsiteSettings websiteSettings = websiteSettingsInter.findById(id);
+        modelAndView.addObject("settings", websiteSettings);
         modelAndView.setViewName("about");
         return modelAndView;
     }

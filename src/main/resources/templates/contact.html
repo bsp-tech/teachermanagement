@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Blog</title>
 
-    <link rel="stylesheet" href="../css/sweetalert.css">
+    <link rel="stylesheet" th:href="@{/css/sweetalert.css}">
 
 </head>
 
@@ -38,21 +38,24 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="form-area w-100">
-                        <div class="w-100">
-                            <h1 class="text-gray px-3 fa-2x font-weight-300 text-gray">Mesaj gönderin</h1>
+                        <form action="/addContact">
+                            <div class="w-100">
+                                <h1 class="text-gray px-3 fa-2x font-weight-300 text-gray">Mesaj gönderin</h1>
 
                                 <div class="form-group">
                                     <label for="comboDepartmentId">Departman :*</label>
-                                    <select class="custom-select custom-select-sm" name="comboDepartment" id="comboDepartmentId">
-                                        <option selected>Müştəri Xidmətləri</option>
-                                        <option value="1">Teknik Destek</option>
-                                        <option value="2">İstek & Öneri</option>
-                                        <option value="3">İade ve ya İptal</option>
+                                    <select class="custom-select custom-select-sm" name="comboDepartment"
+                                            id="comboDepartmentId">
+                                        <div th:each="d:${departments}">
+                                            <option th:text="${d.name}"></option>
+                                        </div>
+
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="nameSurnameContactId">Adınız Soyadınız: *</label>
-                                    <input type="text" class="form-control" name="nameSurnameContact" id="nameSurnameContactId"
+                                    <input type="text" class="form-control" name="nameSurnameContact"
+                                           id="nameSurnameContactId"
                                            aria-describedby="nameSurnameHelp" placeholder="Adınız Soyadınız:">
                                 </div>
                                 <div class="form-group">
@@ -70,8 +73,11 @@
                                     <textarea class="form-control" name="messageContact" id="messageContactId" rows="3"
                                               placeholder="Mesajınız: "></textarea>
                                 </div>
-                                <button type="submit" id="addContactBtnId"  class="btn btn-success m-auto">Göndər</button>
-                        </div>
+                                <button type="submit" id="addContactBtnId" class="btn btn-success m-auto">Göndər
+                                </button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -79,10 +85,8 @@
     </div>
 
 
-
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/sweetalert.js"></script>
-    <script src="../js/contact.js"></script>
+    <script th:src="@{/js/sweetalert.js}"></script>
+    <script th:src="@{/js/contact.js}"></script>
 
 
     </body>

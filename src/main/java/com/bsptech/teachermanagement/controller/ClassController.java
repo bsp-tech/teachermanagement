@@ -7,7 +7,7 @@ package com.bsptech.teachermanagement.controller;
 
 import com.bsptech.teachermanagement.entity.Class;
 import com.bsptech.teachermanagement.entity.WebsiteSettings;
-import com.bsptech.teachermanagement.service.inter.ClassInter;
+import com.bsptech.teachermanagement.service.inter.ClassServiceInter;
 import com.bsptech.teachermanagement.service.inter.WebsiteSettingsInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,19 +25,19 @@ import java.util.List;
 public class ClassController {
 
     @Autowired
-    ClassInter classInter;
+    ClassServiceInter classInter;
 
     @Autowired
     WebsiteSettingsInter websiteSettingsInter;
 
     @GetMapping
     public ModelAndView index(ModelAndView modelAndView) {
-
+        Integer id = 1;
         List<Class> list = classInter.findAll();
-        WebsiteSettings settings = websiteSettingsInter.find();
+        WebsiteSettings settings = websiteSettingsInter.findById(id);
 
-        modelAndView.addObject("classes",list);
-        modelAndView.addObject("settings",settings);
+        modelAndView.addObject("classes", list);
+        modelAndView.addObject("settings", settings);
         modelAndView.setViewName("class/index");
         return modelAndView;
     }

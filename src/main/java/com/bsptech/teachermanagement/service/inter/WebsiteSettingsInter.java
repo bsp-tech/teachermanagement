@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface WebsiteSettingsInter {
 
-    WebsiteSettings find();
+    WebsiteSettings findById(Integer id);
 }
 

@@ -40,35 +40,35 @@ public class ContactController {
     }
 
 
-    @RequestMapping(path ={"/addContact"} , method = {RequestMethod.POST})
-    public @ResponseBody
-    String addContact(@RequestParam("comboDepartment") String comboDepartment, @RequestParam("nameSurnameContact") String nameSurnameContact,
-                      @RequestParam("emailContact") String emailContact, @RequestParam("subjectContact") String subjectContact,
-                      @RequestParam("messageContact") String messageContact) {
-
-        String response = "failed";
-
-        Support support = new Support();
-        support.setDepartmentId(Integer.parseInt(comboDepartment));
-        support.setFullname(nameSurnameContact);
-        support.setEmail(emailContact);
-        support.setSubject(subjectContact);
-        support.setMessage(messageContact);
-        support.setInsertDateTime(new java.sql.Date(new Date().getTime()));
-        support.setStatus(1);
-        Support sup = supportServiceInter.save(support);
-
-        if (sup.getStatus() == 1) {
-
-            response = "success";
-
-        } else {
-
-            response = "failed";
-        }
-
-        return response;
-    }
+//    @RequestMapping(path ={"/addContact"} , method = {RequestMethod.POST})
+//    public @ResponseBody
+//    String addContact(@RequestParam("comboDepartment") String comboDepartment, @RequestParam("nameSurnameContact") String nameSurnameContact,
+//                      @RequestParam("emailContact") String emailContact, @RequestParam("subjectContact") String subjectContact,
+//                      @RequestParam("messageContact") String messageContact) {
+//
+//        String response = "failed";
+//
+//        Support support = new Support();
+//        support.setDepartmentId(Integer.parseInt(comboDepartment));
+//        support.setFullname(nameSurnameContact);
+//        support.setEmail(emailContact);
+//        support.setSubject(subjectContact);
+//        support.setMessage(messageContact);
+//        support.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+//        support.setStatusId(1);
+//        Support sup = supportServiceInter.save(support);
+//
+//        if (sup.getStatus() == 1) {
+//
+//            response = "success";
+//
+//        } else {
+//
+//            response = "failed";
+//        }
+//
+//        return response;
+//    }
 
 
 }

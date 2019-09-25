@@ -4,7 +4,7 @@ import com.bsptech.teachermanagement.entity.Class;
 
 import java.util.List;
 
-public interface ClassInter {
+public interface ClassServiceInter {
 
     List<Class> findAll();
 }

@@ -27,8 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "lesson_section")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "LessonSection.findAll", query = "SELECT l FROM LessonSection l")
-        , @NamedQuery(name = "LessonSection.findById", query = "SELECT l FROM LessonSection l WHERE l.id = :id")})
+    @NamedQuery(name = "LessonSection.findAll", query = "SELECT l FROM LessonSection l")
+    , @NamedQuery(name = "LessonSection.findById", query = "SELECT l FROM LessonSection l WHERE l.id = :id")})
 public class LessonSection implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -99,5 +99,5 @@ public class LessonSection implements Serializable {
     public String toString() {
         return "com.bsptech.teachermanagement.entity.LessonSection[ id=" + id + " ]";
     }
-
+    
 }

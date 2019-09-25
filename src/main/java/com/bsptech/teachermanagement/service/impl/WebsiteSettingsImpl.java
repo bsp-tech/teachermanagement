@@ -15,9 +15,8 @@ public class WebsiteSettingsImpl implements WebsiteSettingsInter {
     WebsiteSettingDataInter websiteSettingDataInter;
 
     @Override
-    public WebsiteSettings find() {
-        List<WebsiteSettings> list =(List<WebsiteSettings>) websiteSettingDataInter.findAll();
-        return list.get(0);
+    public WebsiteSettings findById(Integer id) {
+        return websiteSettingDataInter.findById(id).get();
     }
 }
 
