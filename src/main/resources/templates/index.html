@@ -902,55 +902,17 @@
                 </div>
             </div>
             <div class="owl-carousel carousel2 owl-theme">
-                <div class="item">
+                <div class="item" th:each="f : ${feedbacks}">
                     <div class="row">
                         <div class=" col-md-3 col-6">
                             <img alt="" class="w-100" th:src="@{/img/boy.png}">
                         </div>
                         <div class="col-md-9 col-6">
-                            <p class="pt-2">İşte aradığım potansiyel deneyim, enerji ve samimiyet için teşekkür
-                                ederim.</p>
-                            <p class="text-success pt-1 font-weight-normal">Ozan Vural</p>
+                            <p class="pt-2" th:text="${f.content}"></p>
+                            <p class="text-success pt-1 font-weight-normal" th:text="${f.authorName}"></p>
                         </div>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="row">
-                        <div class=" col-md-3 col-6">
-                            <img alt="" class="w-100" th:src="@{/img/girl.png}">
-                        </div>
-                        <div class="col-md-9 col-6">
-                            <p class="pt-2">Merhaba ben açık lise'ye gidiyorum fiziği seviyorum ama arkadaşım önerdi çok
-                                kral adamışsınız :)</p>
-                            <p class="text-success pt-1 font-weight-norm">Gizem Deniz Tayşun</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="row">
-                        <div class=" col-md-3 col-6">
-                            <img alt="" class="w-100" th:src="@{/img/boy.png}">
-                        </div>
-                        <div class="col-md-9 col-6">
-                            <p class="pt-2">İşte aradığım potansiyel deneyim, enerji ve samimiyet için teşekkür
-                                ederim.</p>
-                            <p class="text-success pt-1 font-weight-norm">Ozan Vural</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="row">
-                        <div class=" col-md-3 col-6">
-                            <img alt="" class="w-100" th:src="@{/img/girl.png}">
-                        </div>
-                        <div class="col-md-9 col-6">
-                            <p class="pt-2">Merhaba ben açık lise'ye gidiyorum fiziği seviyorum ama arkadaşım önerdi çok
-                                kral adamışsınız :)</p>
-                            <p class="text-success pt-1 font-weight-norm">Gizem Deniz Tayşun</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
         </div>
