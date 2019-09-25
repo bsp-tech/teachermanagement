@@ -102,7 +102,7 @@ public class Status implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.teachermanagement.entity.Status[ id=" + id + " ]";
+        return "com.bsptech.teachermanagement.entity.StatusDataInter[ id=" + id + " ]";
     }
     
 }
