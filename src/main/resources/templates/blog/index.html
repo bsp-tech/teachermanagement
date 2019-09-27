@@ -34,227 +34,31 @@
                 <div class="row">
                     <!-- blogs -->
                     <div class="col-md-8">
-                        <div class="row border-bottom border-muted pb-4">
+
+
+                        <div class="row border-bottom border-muted pb-4" th:each="post : ${posts}">
                             <div class="col-md-4 text-center">
                                 <a href="details.html">
-                                    <img alt="" class="img-fluid" src="img/blogresim.jpg">
+                                    <img alt="" class="img-fluid" th:src="${post.thumbnailPath}">
                                 </a>
                             </div>
                             <div class="col-md-8">
                                 <h5 class="pt-3">
-                                    <a class="text-dark font-weight-normal text-decoration-none" href="details.html">
-                                        Bitmeyen Kampanya Son Katılım: 31 Ağustos 2019 23:59
+                                    <a class="text-dark font-weight-normal text-decoration-none" th:text="${post.title}"
+                                       th:href="@{/blog/details}">
+
                                     </a>
                                 </h5>
                                 <ul class="list-inline mt-3 mb-3">
                                     <li class="font-weight-light h6">
-                                        <i class="far fa-user text-success mr-2"></i>Umut ÖNCÜL
+                                        <i class="far fa-user text-success mr-2"></i><span
+                                            th:text="${post.userId.name}+' '+${post.userId.surname}"></span>
                                     </li>
                                 </ul>
-                                <p class="font-weight-light mb-3 h6"></p>
+                                <p class="font-weight-light mb-3 h6 text-secondary" th:text="${post.content}"></p>
                                 <div class="d-flex justify-content-between">
                                     <h1></h1>
-                                    <a class="btn btn-success font-weight-light text-light" href="/blog/details"
-                                       role="button"><i
-                                            class="fa fa-angle-double-right fa-xs"></i> Devamını Oku...</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row border-bottom border-muted pb-4">
-                            <div class="col-md-4 text-center">
-                                <a href="details.html">
-                                    <img alt="" class="img-fluid" src="img/blogresim.jpg">
-                                </a>
-                            </div>
-                            <div class="col-md-8">
-                                <h5 class="pt-3">
-                                    <a class="text-dark  font-weight-normal text-decoration-none" href="details.html">
-                                        Fizik Dersi Nasıl Çalışılır?
-                                    </a>
-                                </h5>
-                                <ul class="list-inline mt-3 mb-3">
-                                    <li class="font-weight-light h6">
-                                        <i class="far fa-user text-success mr-2"></i>Umut ÖNCÜL
-                                    </li>
-                                </ul>
-                                <p class="font-weight-light text-secondary mb-3 h6">Genel anlamda ders çalışma
-                                    teknikleri, çalışma ortamının yaratılması, ders çalışacak öğrencinin uyku açlık
-                                    durumu veya moral durumu gibi öğelerin dışında benim konuşmak istediğim fizik
-                                    dersini nasıl çalışacağımız yönündedir.</p>
-                                <div class="d-flex justify-content-between">
-                                    <h1></h1>
-                                    <a class="btn btn-success font-weight-light text-light" href="details.html"
-                                       role="button"><i
-                                            class="fa fa-angle-double-right fa-xs"></i> Devamını Oku...</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row border-bottom border-muted pb-4">
-                            <div class="col-md-4 text-center">
-                                <a href="details.html">
-                                    <img alt="" class="img-fluid" src="img/blogresim.jpg">
-                                </a>
-                            </div>
-                            <div class="col-md-8">
-                                <h5 class="pt-3">
-                                    <a class="text-dark font-weight-normal text-decoration-none" href="details.html">
-                                        Yapılan Bu Çalışmanın Amacı
-                                    </a>
-                                </h5>
-                                <ul class="list-inline mt-3 mb-3">
-                                    <li class="font-weight-light h6">
-                                        <i class="far fa-user text-success mr-2"></i>Umut ÖNCÜL
-                                    </li>
-                                </ul>
-                                <p class="font-weight-light mb-3 h6 text-secondary">Ülkemizin her yerinde aynı şekilde
-                                    eğitim verilememesi nedeniyle öğrencilerimiz 9. Sınıftan 12. Sınıfa kadar aldıkları
-                                    eğitim sekteye uğrayabilmekte, gerçekleşen tayinler bazen derslerin boş geçmesine
-                                    neden olabilmektedir. Ne yazık ki bazen de derse giren öğretm...</p>
-                                <div class="d-flex justify-content-between">
-                                    <h1></h1>
-                                    <a class="btn btn-success font-weight-light text-light" href="details.html"
-                                       role="button"><i
-                                            class="fa fa-angle-double-right fa-xs"></i> Devamını Oku...</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row border-bottom border-muted pb-4">
-                            <div class="col-md-4 text-center">
-                                <a href="details.html">
-                                    <img alt="" class="img-fluid" src="img/blogresim.jpg">
-                                </a>
-                            </div>
-                            <div class="col-md-8">
-                                <h5 class="pt-3">
-                                    <a class="text-dark font-weight-normal text-decoration-none" href="details.html">
-                                        TYT ve AYT Denemesi Nasıl Çözülür?
-                                    </a>
-                                </h5>
-                                <ul class="list-inline mt-3 mb-3">
-                                    <li class="font-weight-light h6">
-                                        <i class="far fa-user text-success mr-2"></i>Umut ÖNCÜL
-                                    </li>
-                                </ul>
-                                <p class="font-weight-light mb-3 h6 text-secondary">Öncelikle denemeleri moralimiz
-                                    bozulun diye çözmüyoruz. Ancak ilk zamanlarda hep öyle oluyor değil mi? Peki bu
-                                    aşamada nasıl fayda sağlayıp ta gelişme sağlayacağız? Öncelikle deneme çözmenin
-                                    eksiklerimizi bulmak için yapıldığını unutmamak gerekir.</p>
-                                <div class="d-flex justify-content-between">
-                                    <h1></h1>
-                                    <a class="btn btn-success font-weight-light text-light" href="details.html"
-                                       role="button"><i
-                                            class="fa fa-angle-double-right fa-xs"></i> Devamını Oku...</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row border-bottom border-muted pb-4">
-                            <div class="col-md-4 text-center">
-                                <a href="details.html">
-                                    <img alt="" class="img-fluid" src="img/blogresim.jpg">
-                                </a>
-                            </div>
-                            <div class="col-md-8">
-                                <h5 class="pt-3">
-                                    <a class="text-dark font-weight-normal text-decoration-none" href="details.html">
-                                        Bitmeyen Kampanya Son Katılım: 31 Ağustos 2019 23:59
-                                    </a>
-                                </h5>
-                                <ul class="list-inline mt-3 mb-3">
-                                    <li class="font-weight-light h6">
-                                        <i class="far fa-user text-success mr-2"></i>Umut ÖNCÜL
-                                    </li>
-                                </ul>
-                                <p class="font-weight-light mb-3 h6 text-secondary"></p>
-                                <div class="d-flex justify-content-between">
-                                    <h1></h1>
-                                    <a class="btn btn-success font-weight-light text-light" href="details.html"
-                                       role="button"><i
-                                            class="fa fa-angle-double-right fa-xs"></i> Devamını Oku...</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row border-bottom border-muted pb-4">
-                            <div class="col-md-4 text-center">
-                                <a href="details.html">
-                                    <img alt="" class="img-fluid" src="img/blogresim.jpg">
-                                </a>
-                            </div>
-                            <div class="col-md-8">
-                                <h5 class="pt-3">
-                                    <a class="text-dark font-weight-normal text-decoration-none" href="details.html">
-                                        Fizik Dersi Nasıl Çalışılır?
-                                    </a>
-                                </h5>
-                                <ul class="list-inline mt-3 mb-3">
-                                    <li class="font-weight-light h6">
-                                        <i class="far fa-user text-success mr-2"></i>Umut ÖNCÜL
-                                    </li>
-                                </ul>
-                                <p class="font-weight-light mb-3 h6 text-secondary">Genel anlamda ders çalışma
-                                    teknikleri, çalışma ortamının yaratılması, ders çalışacak öğrencinin uyku açlık
-                                    durumu veya moral durumu gibi öğelerin dışında benim konuşmak istediğim fizik
-                                    dersini nasıl çalışacağımız yönündedir.</p>
-                                <div class="d-flex justify-content-between">
-                                    <h1></h1>
-                                    <a class="btn btn-success font-weight-light text-light" href="details.html"
-                                       role="button"><i
-                                            class="fa fa-angle-double-right fa-xs"></i> Devamını Oku...</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row border-bottom border-muted pb-4">
-                            <div class="col-md-4 text-center">
-                                <a href="details.html">
-                                    <img alt="" class="img-fluid" src="img/blogresim.jpg">
-                                </a>
-                            </div>
-                            <div class="col-md-8">
-                                <h5 class="pt-3">
-                                    <a class="text-dark font-weight-normal text-decoration-none" href="details.html">
-                                        Yapılan Bu Çalışmanın Amacı
-                                    </a>
-                                </h5>
-                                <ul class="list-inline mt-3 mb-3">
-                                    <li class="font-weight-light h6">
-                                        <i class="far fa-user text-success mr-2"></i>Umut ÖNCÜL
-                                    </li>
-                                </ul>
-                                <p class="font-weight-light mb-3 h6 text-secondary">Ülkemizin her yerinde aynı şekilde
-                                    eğitim verilememesi nedeniyle öğrencilerimiz 9. Sınıftan 12. Sınıfa kadar aldıkları
-                                    eğitim sekteye uğrayabilmekte, gerçekleşen tayinler bazen derslerin boş geçmesine
-                                    neden olabilmektedir. Ne yazık ki bazen de derse giren öğretm...</p>
-                                <div class="d-flex justify-content-between">
-                                    <h1></h1>
-                                    <a class="btn btn-success font-weight-light text-light" href="details.html"
-                                       role="button"><i
-                                            class="fa fa-angle-double-right fa-xs"></i> Devamını Oku...</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row border-bottom border-muted pb-4">
-                            <div class="col-md-4 text-center">
-                                <a href="details.html">
-                                    <img alt="" class="img-fluid" src="img/blogresim.jpg">
-                                </a>
-                            </div>
-                            <div class="col-md-8">
-                                <h5 class="pt-3">
-                                    <a class="text-dark font-weight-normal text-decoration-none" href="details.html">
-                                        TYT ve AYT Denemesi Nasıl Çözülür?
-                                    </a>
-                                </h5>
-                                <ul class="list-inline mt-3 mb-3">
-                                    <li class="font-weight-light h6">
-                                        <i class="far fa-user text-success mr-2"></i>Umut ÖNCÜL
-                                    </li>
-                                </ul>
-                                <p class="font-weight-light mb-3 h6 text-secondary">Öncelikle denemeleri moralimiz
-                                    bozulun diye çözmüyoruz. Ancak ilk zamanlarda hep öyle oluyor değil mi? Peki bu
-                                    aşamada nasıl fayda sağlayıp ta gelişme sağlayacağız? Öncelikle deneme çözmenin
-                                    eksiklerimizi bulmak için yapıldığını unutmamak gerekir.</p>
-                                <div class="d-flex justify-content-between">
-                                    <h1></h1>
-                                    <a class="btn btn-success font-weight-light text-light" href="details.html"
+                                    <a class="btn btn-success font-weight-light text-light" th:href="@{/blog/details}"
                                        role="button"><i
                                             class="fa fa-angle-double-right fa-xs"></i> Devamını Oku...</a>
                                 </div>

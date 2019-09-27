@@ -11,6 +11,7 @@
 </head>
 
 <div layout:fragment="content"  th:each="l: ${section.lessonSectionList}">
+
     <!-- breadcrumb -->
     <body>
     <div class="container border-bottom border-success">
@@ -26,6 +27,7 @@
                 <li aria-current="page" class="breadcrumb-item"><a
                         class="font-weight-bold text-dark text-decoration-none"
                         th:href="${'/lessons/details/'+l.lessonId}" th:text="${l.lessonId.name}"></a></li>
+
                 <li aria-current="page" class="breadcrumb-item active"><a
                         class="font-weight-bold text-success text-decoration-none" th:text="${section.name}">TYT-AYT
                     Konu Anlatımlı Paket</a></li>
@@ -74,6 +76,7 @@
                                 <iframe class="w-100" height="400px" src="https://www.youtube.com/embed/tgbNymZ7vqY">
                                 </iframe>
                                 <h4 class="mt-4 mb-3 text-dark font-weight-normal" th:text="${section.name}">TYT-AYT Konu Anlatımlı
+
                                     Paket</h4>
                                 <h4 class="" style="line-height: 2">
                                     <strong class="text-warning bg-danger">
@@ -136,6 +139,7 @@
                                     <div class="d-block py-4 row border border-muted content" data-id="0">
                                         <div class="col-md-12">
                                             <div class="d-flex flex-wrap justify-content-between bg-success p-3">
+
                                                 <h4 class="text-light mb-0 font-weight-normal" th:text="${f.content}"></h4>
                                                 <h4><a class="text-light text-decoration-none mb-0" href="#" th:text="${#numbers.formatDecimal( section.price, 0, 'COMMA', 2, 'POINT')}"> ₺ SATIN
                                                     AL<i
@@ -282,6 +286,7 @@
                     <div class="col-md-4" th:each="l:${section.lessonSectionList}">
                         <div class="border border-muted p-3 mb-4">
                             <h5 class="pb-3"><a class="text-dark font-weight-normal text-decoration-none" href="" th:text="${l.lessonId.name}">
+
                                 Diğer Konular</a></h5>
                             <ul class="list-inline mb-0">
                                 <li class="py-2 my-1 border-bottom border-muted">
@@ -307,8 +312,7 @@
             </div>
         </div>
     </div>
-
-    <script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/main.js}"></script>
     </body>
 </div>
 </html>
