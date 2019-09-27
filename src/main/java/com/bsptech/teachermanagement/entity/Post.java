@@ -7,18 +7,7 @@ package com.bsptech.teachermanagement.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -68,6 +57,13 @@ public class Post implements Serializable {
     @Column(name = "last_update_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateTime;
+    @Size(max = 255)
+    @NotNull
+    @Column(name = "thumbnail_path")
+    private String thumbnailPath;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private User userId;
 
     public Post() {
     }
@@ -76,12 +72,14 @@ public class Post implements Serializable {
         this.id = id;
     }
 
-    public Post(Integer id, String title, String content, short approved, Date insertDateTime) {
-        this.id = id;
+    public Post(String title,  String content, short approved, Date insertDateTime, Date lastUpdateTime, String thumbnailPath, User userId) {
         this.title = title;
         this.content = content;
         this.approved = approved;
         this.insertDateTime = insertDateTime;
+        this.lastUpdateTime = lastUpdateTime;
+        this.thumbnailPath = thumbnailPath;
+        this.userId = userId;
     }
 
     public Integer getId() {
@@ -131,6 +129,25 @@ public class Post implements Serializable {
     public void setLastUpdateTime(Date lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
     }
+
+
+    public String getThumbnailPath() {
+        return thumbnailPath;
+    }
+
+    public void setThumbnailPath(String thumbnailPath) {
+        this.thumbnailPath = thumbnailPath;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
+
+
 
     @Override
     public int hashCode() {
