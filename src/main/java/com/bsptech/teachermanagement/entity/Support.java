@@ -80,8 +80,6 @@ public class Support implements Serializable {
     @Column(name = "solved_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date solvedDateTime;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "supportId", fetch = FetchType.LAZY)
-    private List<SuportStatus> suportStatusList;
     @JoinColumn(name = "status_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Status statusId;
@@ -159,15 +157,6 @@ public class Support implements Serializable {
 
     public void setSolvedDateTime(Date solvedDateTime) {
         this.solvedDateTime = solvedDateTime;
-    }
-
-    @XmlTransient
-    public List<SuportStatus> getSuportStatusList() {
-        return suportStatusList;
-    }
-
-    public void setSuportStatusList(List<SuportStatus> suportStatusList) {
-        this.suportStatusList = suportStatusList;
     }
 
     public Status getStatusId() {

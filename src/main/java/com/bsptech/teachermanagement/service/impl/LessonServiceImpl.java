@@ -11,7 +11,6 @@ import java.util.List;
 public class LessonServiceImpl implements LessonServiceInter {
     @Autowired
     private LessonDataInter lessonDataInter;
-
     @Override
     public List<Lesson> findAll() {
         return (List<Lesson>) lessonDataInter.findAll();

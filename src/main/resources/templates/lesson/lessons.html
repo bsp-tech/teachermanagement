@@ -18,87 +18,44 @@
         <div class="col-md-12">
             <h2 class="text-success mt-3 mb-2">Tüm Dersler</h2>
             <ol class="breadcrumb mb-0 px-0 pb-2 bg-white">
-                <li aria-current="page" class="breadcrumb-item"><a class="font-weight-bold text-dark text-decoration-none"
-                                                                   href="index.html">Anasayfa</a></li>
-                <li aria-current="page" class="breadcrumb-item"><a class="font-weight-bold text-dark text-decoration-none"
-                                                                   href="lessons.html">Dersler</a></li>
+                <li aria-current="page" class="breadcrumb-item"><a
+                        class="font-weight-bold text-dark text-decoration-none"
+                        href="index.html">Anasayfa</a></li>
+                <li aria-current="page" class="breadcrumb-item"><a
+                        class="font-weight-bold text-dark text-decoration-none"
+                        href="/lessons">Dersler</a></li>
             </ol>
         </div>
     </div>
 
     <!-- content -->
     <div class="container py-5">
-        <div class="row">
+        <div class="row" th:each="lesson : ${lessonList}">
             <div class="col-md-12 mt-3">
                 <div class="row">
                     <!-- dersler -->
                     <div class="col-md-8">
                         <div class="row mb-4">
                             <div class="col-md-4 text-center">
-                                <a href="sections.html">
-                                    <img alt="" class="img-fluid" th:src="@{/img/636710610720363034.jpg}">
+                                <a th:href="${'/lessons/sections/'+lesson.id}">
+                                    <img alt="" class="img-fluid"
+                                         th:src="${lesson.thumbnailPath !=null?lesson.thumbnailPath:'/img/636710610720363034.jpg'}">
                                 </a>
                             </div>
                             <div class="col-md-8">
                                 <h5 class="mb-4 mt-4">
                                     <a class="text-dark font-weight-normal text-decoration-none"
-                                       href="sections.html">FİZİK</a>
+                                       th:href="${'/lessons/sections/'+lesson.id}">
+                                        <div th:text="${lesson.name}"></div>
+                                    </a>
                                 </h5>
-                                <p class="font-weight-light text-secondary mb-3 h6">Bu başlık altında okul sınavlarına
-                                    hazırlanan ara sınıf öğrenciler, son sınıfta olup TYT ve AYT ye hazırlananlar,
-                                    Öğretmenlik alan sınavına hazırlanan öğretmen adayları ve üniversite birinci sınıf olup
-                                    kendisini geliştirmek isteyenler için içerikler bulunmaktadır.</p>
+                                <p class="font-weight-light text-secondary mb-3 h6" th:text="${lesson.about}"></p>
                                 <div class="d-flex justify-content-between">
                                     <h1></h1>
+
                                     <a class="btn btn-success py-1 px-3 font-weight-light text-light"
-                                       href="/lessons/sections"
-                                       role="button">FİZİK DERSİ KONULARI
-                                        <i class="fa fa-angle-double-right fa-xs"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-md-4 text-center">
-                                <a href="sections.html">
-                                    <img alt="" class="img-fluid" th:src="@{/img/636710610720363034.jpg}">
-                                </a>
-                            </div>
-                            <div class="col-md-8">
-                                <h5 class="mb-4 mt-4">
-                                    <a class="text-dark font-weight-normal text-decoration-none"
-                                       href="sections.html">FİZİK</a>
-                                </h5>
-                                <p class="font-weight-light text-secondary mb-3 h6">Bu başlık altında okul sınavlarına
-                                    hazırlanan ara sınıf öğrenciler, son sınıfta olup TYT ve AYT ye hazırlananlar,
-                                    Öğretmenlik alan sınavına hazırlanan öğretmen adayları ve üniversite birinci sınıf olup
-                                    kendisini geliştirmek isteyenler için içerikler bulunmaktadır.</p>
-                                <div class="d-flex justify-content-between">
-                                    <h1></h1>
-                                    <a class="btn btn-success py-1 px-3 font-weight-light text-light" href="sections.html"
-                                       role="button">FİZİK DERSİ KONULARI
-                                        <i class="fa fa-angle-double-right fa-xs"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-md-4 text-center">
-                                <a href="sections.html">
-                                    <img alt="" class="img-fluid" th:src="@{/img/636710610720363034.jpg}">
-                                </a>
-                            </div>
-                            <div class="col-md-8">
-                                <h5 class="mb-4 mt-4">
-                                    <a class="text-dark font-weight-normal text-decoration-none"
-                                       href="sections.html">FİZİK</a>
-                                </h5>
-                                <p class="font-weight-light text-secondary mb-3 h6">Bu başlık altında okul sınavlarına
-                                    hazırlanan ara sınıf öğrenciler, son sınıfta olup TYT ve AYT ye hazırlananlar,
-                                    Öğretmenlik alan sınavına hazırlanan öğretmen adayları ve üniversite birinci sınıf olup
-                                    kendisini geliştirmek isteyenler için içerikler bulunmaktadır.</p>
-                                <div class="d-flex justify-content-between">
-                                    <h1></h1>
-                                    <a class="btn btn-success py-1 px-3 font-weight-light text-light" href="sections.html"
-                                       role="button">FİZİK DERSİ KONULARI
+                                       th:href="${'/lessons/sections/'+lesson.id}"
+                                       role="button" th:text="${lesson.name}">Dersi haqqinda
                                         <i class="fa fa-angle-double-right fa-xs"></i></a>
                                 </div>
                             </div>
@@ -106,74 +63,26 @@
                     </div>
                     <!-- konular -->
                     <div class="col-md-4">
+
                         <div class="border border-muted p-3 mb-4">
-                            <h5 class="pb-3"><a class="text-dark font-weight-normal text-decoration-none" href="">FİZİK
-                                Konuları</a></h5>
-                            <ul class="list-inline mb-0">
+                            <h5 class="pb-3"><a class="text-dark font-weight-normal text-decoration-none"th:href="${'/lessons/details/'+lesson.id}"
+                                                th:text="${lesson.name}">Metraya</a></h5>
+                            <ul class="list-inline mb-0" th:each="section:${lesson.lessonSectionList}">
+
                                 <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i>Fizik AYT Konu Anlatımlı Paket
+                                    <a class="text-muted text-decoration-none" th:href="${'/lessons/details/'+lesson.id}">
+                                        <i class="fa fa-chevron-right fa-sm mr-2" th:text="${section.sectionId.name}"></i>
                                     </a>
                                 </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i>Fizik TYT-AYT Konu Anlatımlı Paket
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Fizik TYT Konu Anlatımlı Paket
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="border border-muted p-3 mb-4">
-                            <h5 class="pb-3"><a class="text-dark font-weight-normal text-decoration-none" href="">MATEMATİK
-                                Konuları</a></h5>
-                            <ul class="list-inline mb-0">
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Üstel Fonksiyon ve Logaritma
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Sayma ve Olasılık-1
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Sayma ve Olasılık-2
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="border border-muted p-3 mb-4">
-                            <h5 class="pb-3"><a class="text-dark font-weight-normal text-decoration-none" href="">KİMYA
-                                Konuları</a></h5>
-                            <ul class="list-inline mb-0">
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Kimya TYT AYT Konu Anlatımlı Paket
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Organik Kimya-1
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Organik Kimya-2
-                                    </a>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div></div>
+    </div>
+</div>
 
 
 </body>

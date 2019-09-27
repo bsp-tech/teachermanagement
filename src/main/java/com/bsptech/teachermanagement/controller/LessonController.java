@@ -6,13 +6,12 @@
 package com.bsptech.teachermanagement.controller;
 
 import com.bsptech.teachermanagement.entity.Lesson;
+import com.bsptech.teachermanagement.entity.Section;
 import com.bsptech.teachermanagement.service.inter.LessonServiceInter;
+import com.bsptech.teachermanagement.service.inter.SectionServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -26,15 +25,21 @@ public class LessonController {
  @Autowired
  private LessonServiceInter lessonServiceInter;
 
-    @RequestMapping("/details")
-    public ModelAndView details(ModelAndView modelAndView) {
+ @Autowired
+ private SectionServiceInter sectionServiceInter;
+
+    @RequestMapping("/details/{sectionId}")
+    public ModelAndView details(@PathVariable("sectionId")Integer sectionId,ModelAndView modelAndView) {
+        Section section=sectionServiceInter.findById(sectionId);
+        modelAndView.addObject("section",section);
         modelAndView.setViewName("lesson/details");
         return modelAndView;
     }
 
-    @RequestMapping("/sections")
+    @RequestMapping( method = RequestMethod.GET ,value = "/sections/{lessonId}")
     public ModelAndView sections(@PathVariable("lessonId")Integer lessonId, ModelAndView modelAndView) {
         Lesson lesson=lessonServiceInter.findById(lessonId);
+        lesson.getLessonSectionList();
         modelAndView.addObject("lesson",lesson);
         modelAndView.setViewName("lesson/sections");
         return modelAndView;
