@@ -7,8 +7,6 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Blog</title>
-    
-
 </head>
 
 <div layout:fragment="content">
@@ -37,7 +35,9 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="form-area w-100">
+
                         <form action="/addContact" method="post">
+
                             <div class="w-100">
                                 <h1 class="text-gray px-3 fa-2x font-weight-300 text-gray">Mesaj gönderin</h1>
 
@@ -46,7 +46,9 @@
                                     <select class="custom-select custom-select-sm" name="comboDepartment"
                                             id="comboDepartmentId">
                                         <div th:each="d:${departments}">
+
                                             <option th:value="${d.id}"><span th:text="${d.name}"></span></option>
+
                                         </div>
 
                                     </select>
@@ -72,7 +74,9 @@
                                     <textarea class="form-control" name="messageContact" id="messageContactId" rows="3"
                                               placeholder="Mesajınız: "></textarea>
                                 </div>
+
                                 <button  type="submit" id="addContactBtnId" class="btn btn-success m-auto">Göndər
+
                                 </button>
                             </div>
                         </form>
@@ -83,12 +87,7 @@
         </div>
     </div>
 
-
-
-
-
     </body>
-
 </div>
 
 </html>

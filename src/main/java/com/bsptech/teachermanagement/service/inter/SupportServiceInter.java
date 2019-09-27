@@ -1,9 +1,7 @@
 package com.bsptech.teachermanagement.service.inter;
 
 import com.bsptech.teachermanagement.entity.Support;
-
-
-
+@Service
 public interface SupportServiceInter {
-     Support save(Support support);
+    public Support save(Support support);
 }

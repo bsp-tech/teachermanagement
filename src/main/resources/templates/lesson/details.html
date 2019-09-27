@@ -10,24 +10,26 @@
     <title>Document</title>
 </head>
 
-<div layout:fragment="content">
+<div layout:fragment="content"  th:each="l: ${section.lessonSectionList}">
+
     <!-- breadcrumb -->
     <body>
     <div class="container border-bottom border-success">
         <div class="col-md-12">
-            <h2 class="text-success mt-3 mb-2">Fizik TYT-AYT Konu Anlatımlı Paket</h2>
+            <h2 class="text-success mt-3 mb-2"th:text="${section.name}">TYT-AYT Konu Anlatımlı Paket</h2>
             <ol class="breadcrumb mb-0 px-0 pb-2 bg-white">
                 <li aria-current="page" class="breadcrumb-item"><a
                         class="font-weight-bold text-dark text-decoration-none"
-                        href="index.html">Anasayfa</a></li>
+                        href="index.html">Esas sehife</a></li>
                 <li aria-current="page" class="breadcrumb-item"><a
                         class="font-weight-bold text-dark text-decoration-none"
-                        href="dersler.html">Dersler</a></li>
+                        href="/lessons">Dersler</a></li>
                 <li aria-current="page" class="breadcrumb-item"><a
                         class="font-weight-bold text-dark text-decoration-none"
-                        href="fizik.html">FİZİK</a></li>
+                        th:href="${'/lessons/details/'+l.lessonId}" th:text="${l.lessonId.name}"></a></li>
+
                 <li aria-current="page" class="breadcrumb-item active"><a
-                        class="font-weight-bold text-success text-decoration-none" href="details">Fizik TYT-AYT
+                        class="font-weight-bold text-success text-decoration-none" th:text="${section.name}">TYT-AYT
                     Konu Anlatımlı Paket</a></li>
             </ol>
         </div>
@@ -55,7 +57,7 @@
                                     <i class="fas fa-book-open fa-2x mr-3 text-success"></i>
                                     <div>
                                         <h6 class="text-muted font-weight-light mb-1">DERS ADI</h6>
-                                        <h5 class="text-dark font-weight-normal">FİZİK</h5>
+                                        <h5 class="text-dark font-weight-normal"><div th:text="${l.lessonId.name}"></div></h5>
                                     </div>
                                 </div>
                             </div>
@@ -73,15 +75,18 @@
                             <div class="col-md-12">
                                 <iframe class="w-100" height="400px" src="https://www.youtube.com/embed/tgbNymZ7vqY">
                                 </iframe>
-                                <h4 class="mt-4 mb-3 text-dark font-weight-normal">Fizik TYT-AYT Konu Anlatımlı
+                                <h4 class="mt-4 mb-3 text-dark font-weight-normal" th:text="${section.name}">TYT-AYT Konu Anlatımlı
+
                                     Paket</h4>
                                 <h4 class="" style="line-height: 2">
-                                    <strong class="text-warning bg-danger">Kampanya Sınava giren arkadaşlarımızın isteği
-                                        doğrultusunda <span class="">31 Ağustos 2019</span> 23:59 a kadar
+                                    <strong class="text-warning bg-danger">
+                                        Kampanya Sınava giren arkadaşlarımızın isteği
+                                        doğrultusunda <span class=""></span> 12 iyula  kadar
                                         uzatılmıştır.</strong>
                                 </h4>
                                 <h4 class="text-primary mt-3">KAMPANYA DEVAM EDERKEN ALINAN BU PAKET İÇİN</h4>
-                                <h4 class="text-primary mt-3">SON KULLANMA TARİHİ: <span class="text-danger">1 TEMMUZ 2020 :)</span>
+                                <h4 class="text-primary mt-3" >SON KULLANMA TARİHİ:
+                                    <span class="text-danger" >:)</span>
                                 </h4>
                                 <h6 class="text-danger mt-3">Kısa bir süre için bu paketi alan üyelerimize</h6>
                                 <h4 class="" style="line-height: 2">
@@ -91,7 +96,7 @@
                                 </h4>
                                 <h6 class="text-danger mt-3 mb-2">Daha detaylı bilgi almak için aşağıdaki video linkine
                                     tıklamalısınız:</h6>
-                                <a class="text-muted h6" href="">https://youtu.be/eawJvQMoJMo </a>
+                                <a class="text-muted h6" th:href="${section.playlistUrl}"></a>
                                 <div class="mt-5">
                                     <p class="text-muted my-2">Bu paketteki konu anlatımı ve sorular YouTube da yer alan
                                         Umut Öncül videolarından tamamen farklıdır.</p>
@@ -110,7 +115,7 @@
                                         ayarlanmıştır.</p>
                                     <p class="text-muted my-2">Tüm soruların video olarak çözümü bulunmaktadır...</p>
                                 </div>
-                                <div class="mt-5">
+                                <div class="mt-5" th:each="f:${section.sectionFeedbackList}">
                                     <ul class="list-inline d-flex flex-wrap m-0 p-0 lists">
                                         <li class="active" data-id="0"><h6
                                                 class="text-success py-3 mb-0 px-3 border border-muted border-bottom-0">
@@ -134,8 +139,9 @@
                                     <div class="d-block py-4 row border border-muted content" data-id="0">
                                         <div class="col-md-12">
                                             <div class="d-flex flex-wrap justify-content-between bg-success p-3">
-                                                <h4 class="text-light mb-0 font-weight-normal">Konu Bilgileri</h4>
-                                                <h4><a class="text-light text-decoration-none mb-0" href="">300 ₺ SATIN
+
+                                                <h4 class="text-light mb-0 font-weight-normal" th:text="${f.content}"></h4>
+                                                <h4><a class="text-light text-decoration-none mb-0" href="#" th:text="${#numbers.formatDecimal( section.price, 0, 'COMMA', 2, 'POINT')}"> ₺ SATIN
                                                     AL<i
                                                             class="fa fa-angle-double-right fa-xs"></i></a></h4>
                                             </div>
@@ -146,7 +152,7 @@
                                                     <div class="text-center py-2">
                                                         <i class="fas fa-video fa-lg text-success mb-3"></i>
                                                         <h5 class="text-dark font-weight-normal mb-1">Video Sayisi:</h5>
-                                                        <h5 class="text-dark font-weight-bold m-0">438 Adet</h5>
+                                                        <h5 class="text-dark font-weight-bold m-0"><div th:text="${section.videoCount}"></diV></h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -166,8 +172,8 @@
                                                 <div class="col-md-3">
                                                     <div class="text-center p-2">
                                                         <i class="fas fa-users fa-lg text-success mb-3"></i>
-                                                        <h5 class="text-dark font-weight-normal mb-1">Eğitmen :</h5>
-                                                        <h5 class="text-dark font-weight-bold m-0">UMUT ÖNCÜL</h5>
+                                                        <h5 class="text-dark font-weight-normal mb-1">Melim :</h5>
+                                                        <h5 class="text-dark font-weight-bold m-0">Serxan Resullu</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -178,21 +184,10 @@
                                             Videolar</h5>
                                         <ul class="list-inline">
                                             <li class="my-3"><i class="fas fa-play-circle fa-lg mr-2"></i><span
-                                                    class="text-secondary"> Fizik Bilimine Giriş-1</span></li>
-                                            <li class="my-3"><i class="fas fa-play-circle fa-lg mr-2"></i><span
-                                                    class="text-secondary"> Fizik Bilimine Giriş-2</span></li>
-                                            <li class="my-3"><i class="fas fa-play-circle fa-lg mr-2"></i><span
-                                                    class="text-secondary"> Fizik Bilimine Giriş-3</span></li>
-                                            <li class="my-3"><i class="fas fa-play-circle fa-lg mr-2"></i><span
-                                                    class="text-secondary"> Fizik Bilimine Giriş-4</span></li>
-                                            <li class="my-3"><i class="fas fa-play-circle fa-lg mr-2"></i><span
-                                                    class="text-secondary"> Fizik Bilimine Giriş-5</span></li>
-                                            <li class="my-3"><i class="fas fa-play-circle fa-lg mr-2"></i><span
-                                                    class="text-secondary"> Fizik Bilimine Giriş-6</span></li>
-                                            <li class="my-3"><i class="fas fa-play-circle fa-lg mr-2"></i><span
-                                                    class="text-secondary"> Fizik Bilimine Giriş-7</span></li>
+                                                    class="text-secondary" th:text="${section.playlistUrl}"></span></li>
                                         </ul>
                                     </div>
+
                                     <div class="d-none pt-4 pb-2 px-3 border border-muted content" data-id="2">
                                         <h5 class="text-secondary font-weight-normal mb-4">Yorumlar</h5>
                                         <div>
@@ -202,87 +197,13 @@
                                                 </div>
                                                 <div class="col-md-10 col-8 p-0">
                                                     <div class="d-flex bg-success p-2 justify-content-between align-items-center">
-                                                        <h4 class="text-light font-weight-normal m-0">Büşra Nur
-                                                            Sağdıç</h4>
-                                                        <h6 class="text-light font-weight-normal m-0"><i
-                                                                class="far fa-calendar-alt mr-2"></i>20.8.2019 20:18:08
+                                                        <h4 class="text-light font-weight-normal m-0" th:text="${f.authorName}"></h4>
+                                                        <h6 class="text-light font-weight-normal m-0" th:if="${f.insertDateTime !=null}"><i
+                                                                class="far fa-calendar-alt mr-2" th:text="${f.insertDateTime}"></i>
                                                         </h6>
                                                     </div>
                                                     <div class="p-2 d-none d-md-block">
-                                                        <p class="text-secondary">Hocam ıslak saçların birbirine
-                                                            yapışması
-                                                            adezyon değil mi farklı iki madde yapışıyor su ve saç. Yoksa
-                                                            saçların birbirine yapışması olarak düşünüp kohezyon mu
-                                                            diyoruz?</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-10 p-0 d-md-none">
-                                                    <div class="p-2">
-                                                        <p class="text-secondary">Hocam ıslak saçların birbirine
-                                                            yapışması
-                                                            adezyon değil mi farklı iki madde yapışıyor su ve saç. Yoksa
-                                                            saçların birbirine yapışması olarak düşünüp kohezyon mu
-                                                            diyoruz?</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mx-1 my-3 border">
-                                                <div class="col-md-2 col-4 p-0">
-                                                    <img alt="" class="img-fluid" th:src="@{/img/default.jpg}">
-                                                </div>
-                                                <div class="col-md-10 col-8 p-0">
-                                                    <div class="d-flex bg-success p-2 justify-content-between align-items-center">
-                                                        <h4 class="text-light font-weight-normal m-0">Büşra Nur
-                                                            Sağdıç</h4>
-                                                        <h6 class="text-light font-weight-normal m-0"><i
-                                                                class="far fa-calendar-alt mr-2"></i>20.8.2019 20:18:08
-                                                        </h6>
-                                                    </div>
-                                                    <div class="p-2 d-none d-md-block">
-                                                        <p class="text-secondary">Hocam ıslak saçların birbirine
-                                                            yapışması
-                                                            adezyon değil mi farklı iki madde yapışıyor su ve saç. Yoksa
-                                                            saçların birbirine yapışması olarak düşünüp kohezyon mu
-                                                            diyoruz?</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-10 p-0 d-md-none">
-                                                    <div class="p-2">
-                                                        <p class="text-secondary">Hocam ıslak saçların birbirine
-                                                            yapışması
-                                                            adezyon değil mi farklı iki madde yapışıyor su ve saç. Yoksa
-                                                            saçların birbirine yapışması olarak düşünüp kohezyon mu
-                                                            diyoruz?</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mx-1 my-3 border">
-                                                <div class="col-md-2 col-4 p-0">
-                                                    <img alt="" class="img-fluid" th:src="@{/img/default.jpg}">
-                                                </div>
-                                                <div class="col-md-10 col-8 p-0">
-                                                    <div class="d-flex bg-success p-2 justify-content-between align-items-center">
-                                                        <h4 class="text-light font-weight-normal m-0">Büşra Nur
-                                                            Sağdıç</h4>
-                                                        <h6 class="text-light font-weight-normal m-0"><i
-                                                                class="far fa-calendar-alt mr-2"></i>20.8.2019 20:18:08
-                                                        </h6>
-                                                    </div>
-                                                    <div class="p-2 d-none d-md-block">
-                                                        <p class="text-secondary">Hocam ıslak saçların birbirine
-                                                            yapışması
-                                                            adezyon değil mi farklı iki madde yapışıyor su ve saç. Yoksa
-                                                            saçların birbirine yapışması olarak düşünüp kohezyon mu
-                                                            diyoruz?</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-10 p-0 d-md-none">
-                                                    <div class="p-2">
-                                                        <p class="text-secondary">Hocam ıslak saçların birbirine
-                                                            yapışması
-                                                            adezyon değil mi farklı iki madde yapışıyor su ve saç. Yoksa
-                                                            saçların birbirine yapışması olarak düşünüp kohezyon mu
-                                                            diyoruz?</p>
+                                                        <p class="text-secondary" th:text="${section.about}"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -324,18 +245,14 @@
                                             </nav>
                                         </div>
                                     </div>
+
                                     <div class="d-none pt-4 pb-2 px-3 border border-muted content" data-id="3">
                                         <h5 class="text-secondary font-weight-normal mb-4">Dosyalar</h5>
                                         <ul class="list-inline pl-2">
                                             <li class="py-3 border-bottom border-muted"><a
                                                     class="text-secondary text-decoration-none" href=""><i
                                                     class="fas fa-file"></i><span
-                                                    class=""> Fizik Bilimine Giriş-1</span></a></li>
-                                            <li class="py-3 border-bottom border-muted"><a
-                                                    class="text-secondary text-decoration-none" href=""><i
-                                                    class="fas fa-file"></i><span class="text-secondary"> Fizik Bilimine Giriş-2</span></a>
-                                            </li>
-
+                                                    class="" th:text="${section.playlistUrl}"> </span></a></li>
                                         </ul>
                                     </div>
                                     <div class="d-none pt-4 pb-2 px-3 border border-muted content" data-id="4">
@@ -358,7 +275,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between mt-4 mb-4">
                                     <h1></h1>
-                                    <a class="btn btn-success py-2 px-4" href="#" role="button">300 ₺ SATIN AL <i
+                                    <a class="btn btn-success py-2 px-4" href="#" role="button" th:text="${#numbers.formatDecimal( section.price, 0, 'COMMA', 2, 'POINT')}"> m Satin al<i
                                             class="fa fa-angle-double-right"></i></a>
                                 </div>
                             </div>
@@ -366,10 +283,10 @@
 
                     </div>
                     <!-- konular -->
-                    <div class="col-md-4">
+                    <div class="col-md-4" th:each="l:${section.lessonSectionList}">
                         <div class="border border-muted p-3 mb-4">
-                            <h5 class="pb-3"><a class="text-dark font-weight-normal text-decoration-none" href="">FİZİK
-                                |
+                            <h5 class="pb-3"><a class="text-dark font-weight-normal text-decoration-none" href="" th:text="${l.lessonId.name}">
+
                                 Diğer Konular</a></h5>
                             <ul class="list-inline mb-0">
                                 <li class="py-2 my-1 border-bottom border-muted">
@@ -377,75 +294,15 @@
                                         <i class="fa fa-chevron-right fa-sm mr-2"></i> Hareket Soru Paketi
                                     </a>
                                 </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-3"></i>Dinamik Soru Paketi
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Enerji Soru Paketi
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Enerji Soru Paketi
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Enerji Soru Paketi
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Enerji Soru Paketi
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Enerji Soru Paketi
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Enerji Soru Paketi
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Enerji Soru Paketi
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Enerji Soru Paketi
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Enerji Soru Paketi
-                                    </a>
-                                </li>
                             </ul>
                         </div>
-                        <div class="border border-muted p-3 mb-4">
+                        <div class="border border-muted p-3 mb-4" >
                             <h5 class="pb-3"><a class="text-dark font-weight-normal text-decoration-none"
                                                 href="">Dersler</a></h5>
                             <ul class="list-inline mb-0">
                                 <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i>Fizik
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i>Matematik
-                                    </a>
-                                </li>
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i>Kimya
+                                    <a class="text-muted text-decoration-none" th:href="${'/lessons/sections/'+l.lessonId}">
+                                        <i class="fa fa-chevron-right fa-sm mr-2" th:text="${l.lessonId.name}"></i>
                                     </a>
                                 </li>
                             </ul>
@@ -455,8 +312,7 @@
             </div>
         </div>
     </div>
-
-    <script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/main.js}"></script>
     </body>
 </div>
 </html>
