@@ -5,8 +5,10 @@
  */
 package com.bsptech.teachermanagement.controller;
 
+import com.bsptech.teachermanagement.entity.Class;
 import com.bsptech.teachermanagement.entity.Lesson;
 import com.bsptech.teachermanagement.entity.Section;
+import com.bsptech.teachermanagement.service.inter.ClassServiceInter;
 import com.bsptech.teachermanagement.service.inter.LessonServiceInter;
 import com.bsptech.teachermanagement.service.inter.SectionServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,33 +24,39 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/lessons")
 public class LessonController {
- @Autowired
- private LessonServiceInter lessonServiceInter;
 
- @Autowired
- private SectionServiceInter sectionServiceInter;
+    @Autowired
+    private LessonServiceInter lessonServiceInter;
+
+    @Autowired
+    private SectionServiceInter sectionServiceInter;
+
+    @Autowired
+    private ClassServiceInter classServiceInter;
 
     @RequestMapping("/details/{sectionId}")
-    public ModelAndView details(@PathVariable("sectionId")Integer sectionId,ModelAndView modelAndView) {
-        Section section=sectionServiceInter.findById(sectionId);
-        modelAndView.addObject("section",section);
+    public ModelAndView details(@PathVariable("sectionId") Integer sectionId, ModelAndView modelAndView) {
+        Section section = sectionServiceInter.findById(sectionId);
+        modelAndView.addObject("section", section);
         modelAndView.setViewName("lesson/details");
         return modelAndView;
     }
 
-    @RequestMapping( method = RequestMethod.GET ,value = "/sections/{lessonId}")
-    public ModelAndView sections(@PathVariable("lessonId")Integer lessonId, ModelAndView modelAndView) {
-        Lesson lesson=lessonServiceInter.findById(lessonId);
+    @RequestMapping(method = RequestMethod.GET, value = "/sections/{lessonId}")
+    public ModelAndView sections(@PathVariable("lessonId") Integer lessonId, ModelAndView modelAndView) {
+        Lesson lesson = lessonServiceInter.findById(lessonId);
         lesson.getLessonSectionList();
-        modelAndView.addObject("lesson",lesson);
+        modelAndView.addObject("lesson", lesson);
         modelAndView.setViewName("lesson/sections");
         return modelAndView;
     }
 
     @GetMapping
     public ModelAndView index(ModelAndView modelAndView) {
-        List<Lesson> lessonList=lessonServiceInter.findAll();
-        modelAndView.addObject("lessonList",lessonList);
+        List<Lesson> lessons = lessonServiceInter.findAll();
+        List<Class> classes = classServiceInter.findAll();
+        modelAndView.addObject("lessons", lessons);
+        modelAndView.addObject("classes", classes);
         modelAndView.setViewName("lesson/lessons");
         return modelAndView;
     }
