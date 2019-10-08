@@ -48,7 +48,7 @@
                                     <i class="far fa-user-circle fa-2x mr-3 text-success"></i>
                                     <div>
                                         <h6 class="text-muted font-weight-light mb-1">DERS EGİTMENİ</h6>
-                                        <h5 class="text-dark font-weight-normal">UMUT ÖNCÜL</h5>
+                                        <h5 class="text-dark font-weight-normal">Serxan Resullu</h5>
                                     </div>
                                 </div>
                             </div>
@@ -75,45 +75,10 @@
                             <div class="col-md-12">
                                 <iframe class="w-100" height="400px" src="https://www.youtube.com/embed/tgbNymZ7vqY">
                                 </iframe>
-                                <h4 class="mt-4 mb-3 text-dark font-weight-normal" th:text="${section.name}">TYT-AYT Konu Anlatımlı
-
-                                    Paket</h4>
-                                <h4 class="" style="line-height: 2">
-                                    <strong class="text-warning bg-danger">
-                                        Kampanya Sınava giren arkadaşlarımızın isteği
-                                        doğrultusunda <span class=""></span> 12 iyula  kadar
-                                        uzatılmıştır.</strong>
-                                </h4>
-                                <h4 class="text-primary mt-3">KAMPANYA DEVAM EDERKEN ALINAN BU PAKET İÇİN</h4>
-                                <h4 class="text-primary mt-3" >SON KULLANMA TARİHİ:
-                                    <span class="text-danger" >:)</span>
-                                </h4>
-                                <h6 class="text-danger mt-3">Kısa bir süre için bu paketi alan üyelerimize</h6>
-                                <h4 class="" style="line-height: 2">
-                                    <strong class="text-danger bg-warning">Hediye olarak 110TL değerindeki Tüm Fizik
-                                        Soru
-                                        Paketleri ücretsiz olarak hesaplarına tanımlanacaktır...</strong>
-                                </h4>
-                                <h6 class="text-danger mt-3 mb-2">Daha detaylı bilgi almak için aşağıdaki video linkine
-                                    tıklamalısınız:</h6>
+                                <h4 class="mt-4 mb-3 text-dark font-weight-normal" th:text="${section.name}"></h4>
                                 <a class="text-muted h6" th:href="${section.playlistUrl}"></a>
                                 <div class="mt-5">
-                                    <p class="text-muted my-2">Bu paketteki konu anlatımı ve sorular YouTube da yer alan
-                                        Umut Öncül videolarından tamamen farklıdır.</p>
-                                    <p class="text-muted my-2">Tüm videolar yeni içeriklerden oluşup videoları yeni
-                                        çekilmiştir.</p>
-                                    <p class="text-muted my-2">Tüm fizik konularını içeren toptan bir pakettir.</p>
-                                    <p class="text-muted my-2">Bu paket, sitede satışa sunulan fizik soru paketlerinden
-                                        farklıdır.</p>
-                                    <p class="text-muted my-2">Bu paket, sitede satışa sunulan fizik soru paketlerinden
-                                        farklıdır.</p>
-                                    <p class="text-muted my-2">Her konu için konu anlatımı, sonrasında örnek sorular ve
-                                        konu
-                                        bitince de kolaydan zora sıralanmış herkese hitap edebilecek testlerden
-                                        oluşmaktadır.</p>
-                                    <p class="text-muted my-2">Soru sayısı herkesi memnun edecek şekilde
-                                        ayarlanmıştır.</p>
-                                    <p class="text-muted my-2">Tüm soruların video olarak çözümü bulunmaktadır...</p>
+                                    <p class="text-muted my-2" th:text="${section.about}"></p>
                                 </div>
                                 <div class="mt-5" th:each="f:${section.sectionFeedbackList}">
                                     <ul class="list-inline d-flex flex-wrap m-0 p-0 lists">
@@ -140,7 +105,7 @@
                                         <div class="col-md-12">
                                             <div class="d-flex flex-wrap justify-content-between bg-success p-3">
 
-                                                <h4 class="text-light mb-0 font-weight-normal" th:text="${f.content}"></h4>
+                                                <h4 class="text-light mb-0 font-weight-normal"></h4>
                                                 <h4><a class="text-light text-decoration-none mb-0" href="#" th:text="${#numbers.formatDecimal( section.price, 0, 'COMMA', 2, 'POINT')}"> ₺ SATIN
                                                     AL<i
                                                             class="fa fa-angle-double-right fa-xs"></i></a></h4>
@@ -203,7 +168,7 @@
                                                         </h6>
                                                     </div>
                                                     <div class="p-2 d-none d-md-block">
-                                                        <p class="text-secondary" th:text="${section.about}"></p>
+                                                        <p class="text-secondary" th:text="${f.content}"></p>
                                                     </div>
                                                 </div>
                                             </div>
