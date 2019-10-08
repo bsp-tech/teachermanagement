@@ -5,7 +5,11 @@
  */
 package com.bsptech.teachermanagement.controller;
 
+import com.bsptech.teachermanagement.entity.Class;
+import com.bsptech.teachermanagement.entity.Lesson;
 import com.bsptech.teachermanagement.entity.Post;
+import com.bsptech.teachermanagement.service.inter.ClassServiceInter;
+import com.bsptech.teachermanagement.service.inter.LessonServiceInter;
 import com.bsptech.teachermanagement.service.inter.PostServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,17 +29,29 @@ public class BlogController {
     @Autowired
     PostServiceInter postServiceInter;
 
+    @Autowired
+    private LessonServiceInter lessonServiceInter;
 
-    @RequestMapping(value = "/blog",method = RequestMethod.GET)
+    @Autowired
+    private ClassServiceInter classServiceInter;
+
+
+    @RequestMapping(value = "/blog", method = RequestMethod.GET)
     public ModelAndView index(ModelAndView modelAndView) {
 
-        List<Post> posts=postServiceInter.findAll();
-        modelAndView.addObject("posts",posts);
+        List<Post> posts = postServiceInter.findAll();
+        List<Lesson> lessons = lessonServiceInter.findAll();
+        List<Class> classes = classServiceInter.findAll();
+
+        modelAndView.addObject("lessons", lessons);
+        modelAndView.addObject("classes", classes);
+
+        modelAndView.addObject("posts", posts);
         modelAndView.setViewName("blog/index");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/details",method = RequestMethod.GET)
+    @RequestMapping(value = "/details", method = RequestMethod.GET)
     public ModelAndView details(ModelAndView modelAndView) {
         modelAndView.setViewName("blog/details");
         return modelAndView;
