@@ -1,4 +1,6 @@
-<footer class="pt-3 pb-3 text-white" style="background: rgb(33, 35, 49)!important">
+<footer class="pt-3 pb-3 text-white" style="background: rgb(33, 35, 49)!important"
+        xmlns:th="http://www.thymeleaf.org"
+        >
     <div class="container ">
         <div class="row">
 
@@ -40,15 +42,10 @@
 
                 <div class="d-flex flex-column">
                     <h5 class="p-2 border-bottom border-success text-center">Dərslər</h5>
-                    <div class="p-2 border-bottom border-info"><a class="text-light text-decoration-none"
-                                                                  href="http://">Fizika</a>
+                    <div  class="p-2 border-bottom border-info" th:each="lesson :${lessons}"  ><a class="text-light text-decoration-none"
+                                                                  th:href="@{/lessons}" th:text="${lesson.name}"></a>
                     </div>
-                    <div class="p-2 border-bottom border-info"><a class="text-light text-decoration-none"
-                                                                  href="http://">Kimya</a>
-                    </div>
-                    <div class="p-2 border-bottom border-info"><a class="text-light text-decoration-none"
-                                                                  href="http://">Riyaziyyat</a>
-                    </div>
+
 
                 </div>
             </div>
@@ -56,16 +53,10 @@
 
                 <div class="d-flex flex-column">
                     <h5 class="p-2 text-center border-bottom border-success">Siniflər</h5>
-                    <div class="p-2 border-bottom border-warning"><a class="text-light text-decoration-none"
-                                                                     href="http://">9 cu
-                        sinif</a></div>
-                    <div class="p-2 border-bottom border-warning"><a class="text-light text-decoration-none"
-                                                                     href="http://">10 cu
-                        sinif</a></div>
-                    <div class="p-2 border-bottom border-warning"><a class="text-light text-decoration-none"
-                                                                     href="http://">11 cu
-                        sinif</a>
-                    </div>
+                    <div class="p-2 border-bottom border-warning" th:each="class:${classes}"><a class="text-light text-decoration-none"
+                                                                     th:href="@{/class}" th:text="${class.name}"></a></div>
+
+
 
                 </div>
             </div>

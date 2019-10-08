@@ -6,9 +6,13 @@
  */
 package com.bsptech.teachermanagement.controller;
 
+import com.bsptech.teachermanagement.entity.Class;
 import com.bsptech.teachermanagement.entity.Feedback;
+import com.bsptech.teachermanagement.entity.Lesson;
 import com.bsptech.teachermanagement.entity.WebsiteSettings;
+import com.bsptech.teachermanagement.service.inter.ClassServiceInter;
 import com.bsptech.teachermanagement.service.inter.FeedbackServiceInter;
+import com.bsptech.teachermanagement.service.inter.LessonServiceInter;
 import com.bsptech.teachermanagement.service.inter.WebsiteSettingsInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,19 +32,31 @@ import java.util.List;
 public class IndexController {
 
     @Autowired
-    WebsiteSettingsInter websiteSettingsInter;
+    private WebsiteSettingsInter websiteSettingsInter;
 
     @Autowired
-    FeedbackServiceInter feedbackServiceInter;
+    private FeedbackServiceInter feedbackServiceInter;
+
+    @Autowired
+    private LessonServiceInter lessonServiceInter;
+
+    @Autowired
+    private ClassServiceInter classServiceInter;
 
     @GetMapping
     public ModelAndView index(ModelAndView modelAndView) {
         Integer id = 1;
         WebsiteSettings websiteSettings = websiteSettingsInter.findById(id);
         List<Feedback> feedbacks = feedbackServiceInter.findAll();
-
+        List<Class> classes = classServiceInter.findAll();
+        List<Lesson> lessons = lessonServiceInter.findAll();
+        Lesson lesson = lessonServiceInter.findById(id);
+        modelAndView.addObject("classes", classes);
+        modelAndView.addObject("lessons", lessons);
         modelAndView.addObject("settings", websiteSettings);
-        modelAndView.addObject("feedbacks",feedbacks);
+        modelAndView.addObject("sections", lesson.getLessonSectionList());
+        modelAndView.addObject("feedbacks", feedbacks);
+        modelAndView.setViewName("layouts/footer");
         modelAndView.setViewName("index");
         return modelAndView;
     }

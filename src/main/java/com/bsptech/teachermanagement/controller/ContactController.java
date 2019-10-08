@@ -4,12 +4,10 @@
  * and open the template in the editor.
  */
 package com.bsptech.teachermanagement.controller;
-import com.bsptech.teachermanagement.entity.Department;
-import com.bsptech.teachermanagement.entity.Status;
-import com.bsptech.teachermanagement.entity.Support;
-import com.bsptech.teachermanagement.service.inter.DepartmentServiceInter;
-import com.bsptech.teachermanagement.service.inter.StatusServiceInter;
-import com.bsptech.teachermanagement.service.inter.SupportServiceInter;
+
+import com.bsptech.teachermanagement.entity.*;
+import com.bsptech.teachermanagement.entity.Class;
+import com.bsptech.teachermanagement.service.inter.*;
 import org.apache.jasper.tagplugins.jstl.core.Redirect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,32 +37,45 @@ public class ContactController {
 
 
     @Autowired
-    SupportServiceInter supportServiceInter;
-    @Autowired
-    DepartmentServiceInter departmentServiceInter;
+    private SupportServiceInter supportServiceInter;
 
     @Autowired
-    StatusServiceInter statusServiceInter;
+    private DepartmentServiceInter departmentServiceInter;
+
+    @Autowired
+    private StatusServiceInter statusServiceInter;
+
+    @Autowired
+    private LessonServiceInter lessonServiceInter;
+
+    @Autowired
+    private ClassServiceInter classServiceInter;
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public ModelAndView index(ModelAndView modelAndView) {
-        List<Department> departments=departmentServiceInter.findAll();
+        List<Department> departments = departmentServiceInter.findAll();
+        List<Lesson> lessons = lessonServiceInter.findAll();
+        List<Class> classes = classServiceInter.findAll();
+        modelAndView.addObject("lessons", lessons);
+        modelAndView.addObject("classes", classes);
+
+
         modelAndView.setViewName("contact");
-        modelAndView.addObject("departments",departments);
+        modelAndView.addObject("departments", departments);
         return modelAndView;
     }
 
-    @RequestMapping(path ={"/addContact"} , method = {RequestMethod.POST})
+    @RequestMapping(path = {"/addContact"}, method = {RequestMethod.POST})
     public ModelAndView addContact(@RequestParam("comboDepartment") String comboDepartment, @RequestParam("nameSurnameContact") String nameSurnameContact,
                                    @RequestParam("emailContact") String emailContact, @RequestParam("subjectContact") String subjectContact,
                                    @RequestParam("messageContact") String messageContact) {
 
 
-        ModelAndView modelAndView=new ModelAndView("redirect:/contact");
+        ModelAndView modelAndView = new ModelAndView("redirect:/contact");
 
-        Integer id=1;
-        Status status=statusServiceInter.findById(id);
-        Department department=departmentServiceInter.findById(Integer.parseInt(comboDepartment));
+        Integer id = 1;
+        Status status = statusServiceInter.findById(id);
+        Department department = departmentServiceInter.findById(Integer.parseInt(comboDepartment));
 
         Support support = new Support();
         support.setDepartmentId(department);
