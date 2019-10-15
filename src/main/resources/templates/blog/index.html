@@ -20,9 +20,9 @@
             <h2 class="text-success mt-3 mb-2">Blog</h2>
             <ol class="breadcrumb mb-0 bg-white justify-content-center">
                 <li aria-current="page" class="breadcrumb-item"><a
-                        class="font-weight-bold text-dark text-decoration-none" href="index.html">Anasayfa</a></li>
+                        class="font-weight-bold text-dark text-decoration-none" th:href="@{/}">Anasayfa</a></li>
                 <li aria-current="page" class="breadcrumb-item"><a
-                        class="font-weight-bold text-dark text-decoration-none" href="">Blog</a></li>
+                        class="font-weight-bold text-success text-decoration-none" th:href="${'/blog'}">Blog</a></li>
             </ol>
         </div>
     </div>
@@ -58,7 +58,7 @@
                                 <p class="font-weight-light mb-3 h6 text-secondary" th:text="${post.content}"></p>
                                 <div class="d-flex justify-content-between">
                                     <h1></h1>
-                                    <a class="btn btn-success font-weight-light text-light" th:href="@{/blog/details}"
+                                    <a class="btn btn-success font-weight-light text-light" th:href="${'/blog/details'}"
                                        role="button"><i
                                             class="fa fa-angle-double-right fa-xs"></i> Devamını Oku...</a>
                                 </div>
