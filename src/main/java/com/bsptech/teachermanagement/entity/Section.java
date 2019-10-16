@@ -69,6 +69,9 @@ public class Section implements Serializable {
     private List<SectionFeedback> sectionFeedbackList;
     @OneToMany(mappedBy = "sectionId", fetch = FetchType.LAZY)
     private List<LessonSection> lessonSectionList;
+    @Size(max = 255)
+    @Column(name = "thread_files_path")
+    private String threadFilesPath;
 
     public Section() {
     }
@@ -81,6 +84,8 @@ public class Section implements Serializable {
         this.id = id;
         this.name = name;
     }
+
+
 
     public Integer getId() {
         return id;
@@ -136,6 +141,14 @@ public class Section implements Serializable {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    public String getThreadFilesPath() {
+        return threadFilesPath;
+    }
+
+    public void setThreadFilesPath(String threadFilesPath) {
+        this.threadFilesPath = threadFilesPath;
     }
 
     @XmlTransient
