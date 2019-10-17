@@ -106,7 +106,7 @@
                             <div class="mt-2">
                                 <h6 class="mb-1">
                                     <a class="text-dark font-weight-normal text-decoration-none"
-                                       th:href="${'/lessons/details/'+section.lessonId+'/'+section.sectionId}">Sarkhan Rasullu</a>
+                                       th:href="${'/lessons/details/'+section.lessonId+'/'+section.sectionId}" th:text="${settings.author_name}"></a>
                                 </h6>
                                 <h6>
                                     <a class="text-muted font-weight-light text-decoration-none"
@@ -281,7 +281,7 @@
                     <img alt="" class="img-fluid" src="https://umutonculakademi.com/img/res/hakkimizda1.png">
                 </div>
                 <div class="col-md-8">
-                    <h4 class="mt-1 font-weight-normal">UMUT ÖNCÜL</h4>
+                    <h4 class="mt-1 font-weight-normal" th:text="${settings.author_name}"></h4>
                     <p class="h6 font-weight-normal">FİZİK ÖĞRETMENİ</p>
                     <p class="text-muted m-0" th:text="${settings.autobiography}">
                         <!--Orta Doğu Teknik Üniversitesi Fizik Öğretmenliği Bölümü`nden mezun
