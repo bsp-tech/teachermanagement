@@ -92,7 +92,7 @@
                                         <li data-id="2"><h6
                                                 class="text-secondary py-3 mb-0 px-3 border-bottom border-muted">
                                             Yorumlar
-                                            <span class="bg-success text-light p-1">135</span></h6></li>
+                                            <span class="bg-success text-light p-1" th:text="${section.sectionFeedbackList.size()}"></span></h6></li>
                                         <li data-id="3"><h6
                                                 class="text-secondary py-3 mb-0 px-3 border-bottom border-muted">Konu
                                             Dosyaları</h6></li>
@@ -164,7 +164,7 @@
                                                     <div class="d-flex bg-success p-2 justify-content-between align-items-center">
                                                         <h4 class="text-light font-weight-normal m-0" th:text="${f.authorName}"></h4>
                                                         <h6 class="text-light font-weight-normal m-0" th:if="${f.insertDateTime !=null}"><i
-                                                                class="far fa-calendar-alt mr-2" th:text="${f.insertDateTime}"></i>
+                                                                class="far fa-calendar-alt mr-2" th:text="${#dates.format(f.insertDateTime,'yyyy-MM-dd HH:mm:ss')}"></i>
                                                         </h6>
                                                     </div>
                                                     <div class="p-2 d-none d-md-block">
