@@ -19,4 +19,5 @@ public class FeedbackServiceImpl implements FeedbackServiceInter {
         List<Feedback> result = (List<Feedback>) feedbackDataInter.findAll();
         return result;
     }
+
 }

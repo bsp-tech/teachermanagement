@@ -11,7 +11,8 @@ public class SectionServiceImpl implements SectionServiceInter {
     @Autowired
     private SectionDataInter sectionDataInter;
     @Override
-    public Section findById(Integer id) {
+    public Section findById(Integer id)
+    {
         return sectionDataInter.findById(id).get();
     }
 }
