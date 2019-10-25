@@ -51,14 +51,14 @@
                     <a class="btn btn-success px-5 py-2 mb-5" th:href="${'/about'}">Devamını Oku...</a>
                 </div>
                 <!--BİR DE BENDEN DİNLEYİN-->
-                <div class="col-lg-6">
+                <div class="col-lg-6" >
                     <h4>BİR DE BENDEN <span class="text-success">DİNLEYİN</span></h4>
                     <hr class="w-25 bg-success ml-0">
                     <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen
                             class="w-100 h-75"
                             frameborder="0"
-                            src="https://www.youtube.com/embed/5K3qyBquvjw"></iframe>
+                            th:src="${settings.introduceVideoUrl}"></iframe>
                 </div>
             </div>
         </div>
@@ -155,123 +155,123 @@
         </div>
     </section>
     <!--Section-4           Mobil Uygulama Yayında !-->
-    <section class="bg-warning text-white">
-        <div class="container">
-            <div class="row pt-5 pb-0">
-                <!--Phone-->
-                <div class="col-lg-5">
-                    <img alt="" class="w-100" th:src="@{/img/phone.png}">
-                </div>
-                <!--Mobil Uygulama Yayında !-->
-                <div class="col-lg-7">
-                    <h2 class="h2 font-weight-normal"><span class="text-success">Mobil Uygulama</span> Yayında!</h2>
-                    <hr class="w-25 text-success ml-0">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="row mt-2">
-                                <div class="col-2">
-                                    <i class="fas fa-mobile-alt text-success w-100 fa-2x pt-1 pl-3"></i>
-                                </div>
-                                <div class="col-10">
-                                    <h5 class="font-weight-normal">MOBİL İZLEME</h5>
-                                    <p class="text-muted font-weight-normal">Umut Öncül Akademi serviste, otobüste,
-                                        okulda
-                                        her zaman yanında !</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row mt-2">
-                                <div class="col-2">
-                                    <i class="fas fa-play text-success w-100 fa-2x pt-1 pl-3"></i>
-                                </div>
-                                <div class="col-10">
-                                    <h5 class="font-weight-normal">TÜM DERSLER</h5>
-                                    <p class="text-muted font-weight-normal">Uygulama üzerinden giriş yaparak, videolu
-                                        konu
-                                        anlatımları ve konu testleri ile sınavlarınıza hazırlanabilirsiniz.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="row mt-2">
-                                <div class="col-2">
-                                    <i class="fas fa-bell text-success w-100 fa-2x pt-1 pl-3"></i>
-                                </div>
-                                <div class="col-10">
-                                    <h5 class="font-weight-normal">BİLDİRİMLER</h5>
-                                    <p class="text-muted font-weight-normal">Uygulama sayesinde yeniliklerden anında
-                                        haberdar olabilirsin.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row mt-2">
-                                <div class="col-2">
-                                    <i class="fas fa-clipboard text-success w-100 fa-2x pt-1 pl-3"></i>
-                                </div>
-                                <div class="col-10">
-                                    <h5 class="font-weight-normal">GÜNLÜK DENEME SORULARI</h5>
-                                    <p class="text-muted font-weight-normal">Günlük soru çözme yarışmalarına katılarak,
-                                        online olarak soruları çözebilir, diğer kullanıcılar arasında sıralamanızı
-                                        görebilirsiniz.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="row mt-2">
-                                <div class="col-2">
-                                    <i class="fas fa-atom text-success w-100 fa-2x pt-1 pl-3"></i>
-                                </div>
-                                <div class="col-10">
-                                    <h5 class="font-weight-normal">GÜNLÜK DENEME SINAVLARI</h5>
-                                    <p class="text-muted font-weight-normal">Günlük Deneme Sınavlarına katılarak, online
-                                        olarak sınavlara girebilir, diğer kullanıcılar arasında sıralamanızı
-                                        görebilirsiniz.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row mt-2">
-                                <div class="col-2">
-                                    <i class="fas fa-chart-pie text-success w-100 fa-2x pt-1 pl-3"></i>
-                                </div>
-                                <div class="col-10">
-                                    <h5 class="font-weight-normal">TÜRKİYE SIRALAMASI</h5>
-                                    <p class="text-muted font-weight-normal">Diğer kullanıcılar arasında sınav
-                                        sonuçlarınıza
-                                        ve günlük deneme sorularına göre Türkiye sıralamanızı görebilirsiniz.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <!--Google Play-->
-                            <div class="row mt-3">
-                                <div class="col-md-12">
-                                    <a href="https://play.google.com/store/movies"><img alt="" class="w-100"
-                                                                                        src="img/googleplay.png"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!--QR Kod-->
-                            <div class="row mt-3">
-                                <div class="col-md-12 pb-4">
-                                    <a href="#"><img alt="" class="w-25 pt-3 ml-4" th:src="@{/img/qr-code.png}"></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!--<section class="bg-warning text-white">-->
+        <!--<div class="container">-->
+            <!--<div class="row pt-5 pb-0">-->
+                <!--&lt;!&ndash;Phone&ndash;&gt;-->
+                <!--<div class="col-lg-5">-->
+                    <!--<img alt="" class="w-100" th:src="@{/img/phone.png}">-->
+                <!--</div>-->
+                <!--&lt;!&ndash;Mobil Uygulama Yayında !&ndash;&gt;-->
+                <!--<div class="col-lg-7">-->
+                    <!--<h2 class="h2 font-weight-normal"><span class="text-success">Mobil Uygulama</span> Yayında!</h2>-->
+                    <!--<hr class="w-25 text-success ml-0">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-md-6">-->
+                            <!--<div class="row mt-2">-->
+                                <!--<div class="col-2">-->
+                                    <!--<i class="fas fa-mobile-alt text-success w-100 fa-2x pt-1 pl-3"></i>-->
+                                <!--</div>-->
+                                <!--<div class="col-10">-->
+                                    <!--<h5 class="font-weight-normal">MOBİL İZLEME</h5>-->
+                                    <!--<p class="text-muted font-weight-normal">Umut Öncül Akademi serviste, otobüste,-->
+                                        <!--okulda-->
+                                        <!--her zaman yanında !</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<div class="row mt-2">-->
+                                <!--<div class="col-2">-->
+                                    <!--<i class="fas fa-play text-success w-100 fa-2x pt-1 pl-3"></i>-->
+                                <!--</div>-->
+                                <!--<div class="col-10">-->
+                                    <!--<h5 class="font-weight-normal">TÜM DERSLER</h5>-->
+                                    <!--<p class="text-muted font-weight-normal">Uygulama üzerinden giriş yaparak, videolu-->
+                                        <!--konu-->
+                                        <!--anlatımları ve konu testleri ile sınavlarınıza hazırlanabilirsiniz.</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-md-6">-->
+                            <!--<div class="row mt-2">-->
+                                <!--<div class="col-2">-->
+                                    <!--<i class="fas fa-bell text-success w-100 fa-2x pt-1 pl-3"></i>-->
+                                <!--</div>-->
+                                <!--<div class="col-10">-->
+                                    <!--<h5 class="font-weight-normal">BİLDİRİMLER</h5>-->
+                                    <!--<p class="text-muted font-weight-normal">Uygulama sayesinde yeniliklerden anında-->
+                                        <!--haberdar olabilirsin.</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<div class="row mt-2">-->
+                                <!--<div class="col-2">-->
+                                    <!--<i class="fas fa-clipboard text-success w-100 fa-2x pt-1 pl-3"></i>-->
+                                <!--</div>-->
+                                <!--<div class="col-10">-->
+                                    <!--<h5 class="font-weight-normal">GÜNLÜK DENEME SORULARI</h5>-->
+                                    <!--<p class="text-muted font-weight-normal">Günlük soru çözme yarışmalarına katılarak,-->
+                                        <!--online olarak soruları çözebilir, diğer kullanıcılar arasında sıralamanızı-->
+                                        <!--görebilirsiniz.</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-md-6">-->
+                            <!--<div class="row mt-2">-->
+                                <!--<div class="col-2">-->
+                                    <!--<i class="fas fa-atom text-success w-100 fa-2x pt-1 pl-3"></i>-->
+                                <!--</div>-->
+                                <!--<div class="col-10">-->
+                                    <!--<h5 class="font-weight-normal">GÜNLÜK DENEME SINAVLARI</h5>-->
+                                    <!--<p class="text-muted font-weight-normal">Günlük Deneme Sınavlarına katılarak, online-->
+                                        <!--olarak sınavlara girebilir, diğer kullanıcılar arasında sıralamanızı-->
+                                        <!--görebilirsiniz.</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<div class="row mt-2">-->
+                                <!--<div class="col-2">-->
+                                    <!--<i class="fas fa-chart-pie text-success w-100 fa-2x pt-1 pl-3"></i>-->
+                                <!--</div>-->
+                                <!--<div class="col-10">-->
+                                    <!--<h5 class="font-weight-normal">TÜRKİYE SIRALAMASI</h5>-->
+                                    <!--<p class="text-muted font-weight-normal">Diğer kullanıcılar arasında sınav-->
+                                        <!--sonuçlarınıza-->
+                                        <!--ve günlük deneme sorularına göre Türkiye sıralamanızı görebilirsiniz.</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-md-6">-->
+                            <!--&lt;!&ndash;Google Play&ndash;&gt;-->
+                            <!--<div class="row mt-3">-->
+                                <!--<div class="col-md-12">-->
+                                    <!--<a href="https://play.google.com/store/movies"><img alt="" class="w-100"-->
+                                                                                        <!--src="img/googleplay.png"></a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--&lt;!&ndash;QR Kod&ndash;&gt;-->
+                            <!--<div class="row mt-3">-->
+                                <!--<div class="col-md-12 pb-4">-->
+                                    <!--<a href="#"><img alt="" class="w-25 pt-3 ml-4" th:src="@{/img/qr-code.png}"></a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</section>-->
     <!--Section-5           UMUT ÖNCÜL-->
     <section class="py-5">
         <!-- about section -->
