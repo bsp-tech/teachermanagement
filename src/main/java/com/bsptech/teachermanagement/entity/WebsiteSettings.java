@@ -85,6 +85,12 @@ public class WebsiteSettings implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "author_name")
     private String author_name;
+    @Size(max = 255)
+    @Column(name="about_img_path")
+    private String aboutImgPath;
+    @Size(max = 255)
+    @Column(name="contact_img_path")
+    private String contactImgPath;
 
     public WebsiteSettings() {
     }
@@ -100,6 +106,7 @@ public class WebsiteSettings implements Serializable {
         this.phone = phone;
         this.autobiography = autobiography;
     }
+
 
     public Integer getId() {
         return id;
@@ -179,6 +186,22 @@ public class WebsiteSettings implements Serializable {
 
     public void setAuthor_name(String author_name) {
         this.author_name = author_name;
+    }
+
+    public String getAboutImgPath() {
+        return aboutImgPath;
+    }
+
+    public void setAboutImgPath(String aboutImgPath) {
+        this.aboutImgPath = aboutImgPath;
+    }
+
+    public String getContactImgPath() {
+        return contactImgPath;
+    }
+
+    public void setContactImgPath(String contactImgPath) {
+        this.contactImgPath = contactImgPath;
     }
 
     @Override
