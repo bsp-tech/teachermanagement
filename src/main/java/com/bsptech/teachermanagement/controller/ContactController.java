@@ -51,14 +51,19 @@ public class ContactController {
     @Autowired
     private ClassServiceInter classServiceInter;
 
+    @Autowired
+    private WebsiteSettingsInter websiteSettingsInter;
+
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public ModelAndView index(ModelAndView modelAndView) {
+        Integer id=1;
         List<Department> departments = departmentServiceInter.findAll();
         List<Lesson> lessons = lessonServiceInter.findAll();
         List<Class> classes = classServiceInter.findAll();
+        WebsiteSettings settings = websiteSettingsInter.findById(id);
         modelAndView.addObject("lessons", lessons);
         modelAndView.addObject("classes", classes);
-
+        modelAndView.addObject("settings",settings);
 
         modelAndView.setViewName("contact");
         modelAndView.addObject("departments", departments);
