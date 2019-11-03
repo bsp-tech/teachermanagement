@@ -53,6 +53,15 @@ public class BlogController {
 
     @RequestMapping(value = "/details", method = RequestMethod.GET)
     public ModelAndView details(ModelAndView modelAndView) {
+
+        List<Post> posts = postServiceInter.findAll();
+        List<Lesson> lessons = lessonServiceInter.findAll();
+        List<Class> classes = classServiceInter.findAll();
+
+        modelAndView.addObject("lessons", lessons);
+        modelAndView.addObject("classes", classes);
+
+        modelAndView.addObject("posts", posts);
         modelAndView.setViewName("blog/details");
         return modelAndView;
     }
