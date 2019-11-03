@@ -13,6 +13,8 @@ import com.bsptech.teachermanagement.service.inter.LessonServiceInter;
 import com.bsptech.teachermanagement.service.inter.PostServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +25,7 @@ import java.util.List;
  * @author Goshgar
  */
 @Controller
+@RequestMapping(value = "/blog")
 public class BlogController {
 
 
@@ -36,7 +39,7 @@ public class BlogController {
     private ClassServiceInter classServiceInter;
 
 
-    @RequestMapping(value = "/blog", method = RequestMethod.GET)
+   @GetMapping
     public ModelAndView index(ModelAndView modelAndView) {
 
         List<Post> posts = postServiceInter.findAll();
@@ -51,8 +54,14 @@ public class BlogController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/details", method = RequestMethod.GET)
-    public ModelAndView details(ModelAndView modelAndView) {
+    @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
+    public ModelAndView details(ModelAndView modelAndView, @PathVariable("id") Integer id) {
+        modelAndView.addObject("post", postServiceInter.findById(id));
+        List<Lesson> lessons = lessonServiceInter.findAll();
+        List<Class> classes = classServiceInter.findAll();
+
+        modelAndView.addObject("lessons", lessons);
+        modelAndView.addObject("classes", classes);
         modelAndView.setViewName("blog/details");
         return modelAndView;
     }

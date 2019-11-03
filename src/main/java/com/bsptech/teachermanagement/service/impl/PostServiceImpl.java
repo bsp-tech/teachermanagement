@@ -18,4 +18,8 @@ public class PostServiceImpl implements PostServiceInter {
     public List<Post> findAll() {
         return (List<Post>) postDataInter.findAll();
     }
+    @Override
+    public  Post findById(Integer id){
+        return postDataInter.findById(id).get();
+    }
 }

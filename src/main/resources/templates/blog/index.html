@@ -58,7 +58,7 @@
                                 <p class="font-weight-light mb-3 h6 text-secondary" th:text="${post.content}"></p>
                                 <div class="d-flex justify-content-between">
                                     <h1></h1>
-                                    <a class="btn btn-success font-weight-light text-light" th:href="${'/blog/details'}"
+                                    <a class="btn btn-success font-weight-light text-light" th:href="${'/blog/details/'+post.id}"
                                        role="button"><i
                                             class="fa fa-angle-double-right fa-xs"></i> Devamını Oku...</a>
                                 </div>
