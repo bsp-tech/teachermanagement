@@ -8,15 +8,7 @@ package com.bsptech.teachermanagement.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -34,7 +26,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Section.findById", query = "SELECT s FROM Section s WHERE s.id = :id")
     , @NamedQuery(name = "Section.findByName", query = "SELECT s FROM Section s WHERE s.name = :name")
     , @NamedQuery(name = "Section.findByPrice", query = "SELECT s FROM Section s WHERE s.price = :price")
-    , @NamedQuery(name = "Section.findByVideoCount", query = "SELECT s FROM Section s WHERE s.videoCount = :videoCount")
     , @NamedQuery(name = "Section.findByPlaylistUrl", query = "SELECT s FROM Section s WHERE s.playlistUrl = :playlistUrl")
     , @NamedQuery(name = "Section.findByThumbnailPath", query = "SELECT s FROM Section s WHERE s.thumbnailPath = :thumbnailPath")
     , @NamedQuery(name = "Section.findByAbout", query = "SELECT s FROM Section s WHERE s.about = :about")})
@@ -54,8 +45,6 @@ public class Section implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "price")
     private BigDecimal price;
-    @Column(name = "video_count")
-    private Integer videoCount;
     @Size(max = 255)
     @Column(name = "playlist_url")
     private String playlistUrl;
@@ -72,6 +61,8 @@ public class Section implements Serializable {
     @Size(max = 255)
     @Column(name = "thread_files_path")
     private String threadFilesPath;
+    @OneToMany(mappedBy = "sectionId" , fetch = FetchType.LAZY)
+    private List<Video> videoId;
 
     public Section() {
     }
@@ -111,12 +102,12 @@ public class Section implements Serializable {
         this.price = price;
     }
 
-    public Integer getVideoCount() {
-        return videoCount;
+    public List<Video> getVideoId() {
+        return videoId;
     }
 
-    public void setVideoCount(Integer videoCount) {
-        this.videoCount = videoCount;
+    public void setVideoId(List<Video> videoId) {
+        this.videoId = videoId;
     }
 
     public String getPlaylistUrl() {
