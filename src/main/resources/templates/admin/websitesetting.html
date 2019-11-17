@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+    <html xmlns:th="http://www.thymeleaf.org">
+
+        <head>
+        <html> 
+            <head>
+                <meta charset="UTF-8">
+                <meta content="width=device-width, initial-scale=1.0" name="viewport">
+                <meta content="ie=edge" http-equiv="X-UA-Compatible">
+                <title>Admin Panel</title>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+            <body>
+
+                <div th:replace="admin/header"></div>
+
+                <div class="col-" th:object = "${settings}">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Author Name</th>
+                                    <th>Autobiography</th>
+                                    <th>Description</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>About Image Path</th>
+                                    <th>Banner Path</th>
+                                    <th>Contact Image Path</th>
+                                    <th>Introduce Video Url</th>
+                                    <th>Insert DataTime</th>
+                                    <th>Last Update DataTime</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John</td>
+                                    <td>Doe</td>
+                                    <td>efef</td>
+                                    <td>fewfefw</td>
+                                    <td>ethh</td>
+                                    <td>jehrhrh</td>
+                                    <td>jehrhrh</td>
+                                    <td>jehrhrh</td>
+                                    <td>jehrhrh</td>
+                                    <td>jehrhrh</td>
+                                    <td>jehrhrh</td>
+                                    <td>jjehrhrh</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </body>
+        </html>
