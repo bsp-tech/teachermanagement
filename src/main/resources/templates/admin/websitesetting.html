@@ -14,51 +14,125 @@ and open the template in the editor.
                 <meta content="width=device-width, initial-scale=1.0" name="viewport">
                 <meta content="ie=edge" http-equiv="X-UA-Compatible">
                 <title>Admin Panel</title>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
+
             <body>
+
+
 
                 <div th:replace="admin/header"></div>
 
-                <div class="col-" th:object = "${settings}">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Author Name</th>
-                                    <th>Autobiography</th>
-                                    <th>Description</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>About Image Path</th>
-                                    <th>Banner Path</th>
-                                    <th>Contact Image Path</th>
-                                    <th>Introduce Video Url</th>
-                                    <th>Insert DataTime</th>
-                                    <th>Last Update DataTime</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>efef</td>
-                                    <td>fewfefw</td>
-                                    <td>ethh</td>
-                                    <td>jehrhrh</td>
-                                    <td>jehrhrh</td>
-                                    <td>jehrhrh</td>
-                                    <td>jehrhrh</td>
-                                    <td>jehrhrh</td>
-                                    <td>jehrhrh</td>
-                                    <td>jjehrhrh</td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                <div class="modal" tabindex="-1" role="dialog" id="insertModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="id">ID</label>
+                                    <input type="text" name="id" class="form-control"placeholder="ID"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="author_name">Author Name</label>
+                                    <input type="text" name="author_name" class="form-control" placeholder="author_name"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="autobiography">Autobiography</label>
+                                    <input type="text" name="autobiography" class="form-control" placeholder="autobiography"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <input type="text" name="description" class="form-control" placeholder="description"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="number" name="phone" class="form-control" placeholder="phone"/>
+                                </div>
+       <!--I was here last time-->
+                                <div class="form-group">
+                                    <label for="author_name">Age</label>
+                                    <input type="number" name="age" class="form-control" placeholder="age"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="author_name">Age</label>
+                                    <input type="number" name="age" class="form-control" placeholder="age"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+
+
+                <!--                <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
+                                        onclick="setIdForUpdate('<%=s.getId()%>')"
+                                        >
+                                </button> -->
+                <br>
+                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button>
+                <br>
+                <br>
+
+                <div class="table-bordered table-responsive" th:object = "${settings}">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Author Name</th>
+                                <th>Autobiography</th>
+                                <th>Description</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>About Image Path</th>
+                                <th>Banner Path</th>
+                                <th>Contact Image Path</th>
+                                <th>Introduce Video Url</th>
+                                <th>Insert Time</th>
+                                <th>Last Update Time</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="setting : ${settings}">
+                                <td th:text="${setting.id}"></td>
+                                <td th:text="${setting.author_name}"></td>
+                                <td th:text="${setting.autobiography}"></td>
+                                <td th:text="${setting.description}"></td>
+                                <td th:text="${setting.phone}"></td>
+                                <td th:text="${setting.email}"></td>
+                                <td th:text="${setting.aboutImgPath}"></td>
+                                <td th:text="${setting.bannerPath}"></td>
+                                <td th:text="${setting.contactImgPath}"></td>
+                                <td th:text="${setting.introduceVideoUrl}"></td>
+                                <td th:text="${setting.insertDateTime}"></td>
+                                <td th:text="${setting.lastUpdateDateTime}"></td>
+                                <td>
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
+                                            onclick="setIdForUpdate('<%=s.getId()%>')"
+                                            >
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </body>
         </html>
