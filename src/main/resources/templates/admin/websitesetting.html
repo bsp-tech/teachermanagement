@@ -7,19 +7,25 @@ and open the template in the editor.
 <html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
     <html xmlns:th="http://www.thymeleaf.org">
 
-        <head>
         <html> 
             <head>
                 <meta charset="UTF-8">
                 <meta content="width=device-width, initial-scale=1.0" name="viewport">
                 <meta content="ie=edge" http-equiv="X-UA-Compatible">
-                <title>Admin Panel</title>
+                <title>WebSite Settings</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+                <script>
+                    function setIdForUpdate(id) {
+                        document.getElementById("sendIdForUpdate").value = id;
+                    }
+                </script>
+
+            </head>
 
             <body>
 
@@ -84,74 +90,71 @@ and open the template in the editor.
                                 </div>
                                 <div class="modal-footer">
 
-                                    <button type="submit" class="btn btn-success">Add</button>
-                                    <button type="submit" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-success" value="Add">
+                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                
+
                 <!--I will write update-->  
-                
+
                 <div class="modal" tabindex="-1" role="dialog" id="updateModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Add</h5>
+                                <h5 class="modal-title">Update</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="/admin/add" method="POST"
-                                  modelAttribute="admin">
+                            <form action="/admin/update" method="POST">
+
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="id">ID</label>
-                                        <input type="text" name="id" class="form-control"placeholder="ID" required="required"/>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="author_name">Author Name</label>
-                                        <input type="text" name="author_name" class="form-control" placeholder="author_name" required="required"/>
+                                        <input type="text" name="author_name" class="form-control" placeholder="author_name"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="autobiography">Autobiography</label>
-                                        <input type="text" name="autobiography" class="form-control" placeholder="autobiography" required="required"/>
+                                        <input type="text" name="autobiography" class="form-control" placeholder="autobiography"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Description</label>
-                                        <input type="text" name="description" class="form-control" placeholder="description" required="required"/>
+                                        <input type="text" name="description" class="form-control" placeholder="description"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">Phone</label>
-                                        <input type="number" name="phone" class="form-control" placeholder="phone" required="required"/>
+                                        <input type="number" name="phone" class="form-control" placeholder="phone"/>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="text" name="email" class="form-control" placeholder="email" required="required"/>
+                                        <input type="text" name="email" class="form-control" placeholder="email"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="aboutImgPath">About Imgage Path</label>
-                                        <input type="text" name="aboutImgPath" class="form-control" placeholder="about Imgage Path" required="required"/>
+                                        <label for="aboutImgPath">About Image Path</label>
+                                        <input type="text" name="aboutImgPath" class="form-control" placeholder="about Image Path"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="bannerPath">Banner Path</label>
-                                        <input type="text" name="bannerPath" class="form-control" placeholder="banner Path" required="required"/>
+                                        <input type="text" name="bannerPath" class="form-control" placeholder="banner Path"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="contactImgPath">Contact Imgage Path</label>
-                                        <input type="text" name="contactImgPath" class="form-control" placeholder="contact Image Path" required="required"/>
+                                        <label for="contactImgPath">Contact Image Path</label>
+                                        <input type="text" name="contactImgPath" class="form-control" placeholder="contact Image Path"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="introduceVideoUrl">Introduce Video Url</label>
-                                        <input type="text" name="introduceVideoUrl" class="form-control" placeholder="introduce Video Url" required="required"/>
+                                        <input type="text" name="introduceVideoUrl" class="form-control" placeholder="introduce Video Url"/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-
-                                    <button type="submit" class="btn btn-success">Add</button>
-                                    <button type="submit" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    
+                                    <input type="hidden" name="id" id="sendIdForUpdate"/>
+                                    <input type="submit" class="btn btn-success" value="Update">
+                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
                                 </div>
                             </form>
                         </div>
@@ -159,11 +162,6 @@ and open the template in the editor.
                 </div>
 
 
-
-                <!--                <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
-                                        onclick="setIdForUpdate('<%=s.getId()%>')"
-                                        >
-                                </button> -->
                 <br>
                 <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button>
                 <br>
@@ -175,7 +173,7 @@ and open the template in the editor.
                             <tr>
                                 <th>ID</th>
                                 <th>Author Name</th>
-                                <th>Autobiography</th>
+                                <th style="padding-left: 140px;padding-right: 140px;">Autobiography</th>
                                 <th style="padding-left: 170px;padding-right: 170px;">Description</th>
                                 <th>Phone</th>
                                 <th>Email</th>
@@ -204,7 +202,7 @@ and open the template in the editor.
                                 <td th:text="${setting.lastUpdateDateTime}"></td>
                                 <td>
                                     <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
-                                            onclick="setIdForUpdate('${setting.id}')"
+                                            th:onclick="|setIdForUpdate('${setting.id}')|"
                                             >
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </button> 
