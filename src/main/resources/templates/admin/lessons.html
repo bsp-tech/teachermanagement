@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+    <html xmlns:th="http://www.thymeleaf.org">
+
+        <html> 
+            <head>
+                <meta charset="UTF-8">
+                <meta content="width=device-width, initial-scale=1.0" name="viewport">
+                <meta content="ie=edge" http-equiv="X-UA-Compatible">
+                <title>Lessons</title>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+                <script>
+                    function setIdForDelete(id) {
+                        document.getElementById("sendIdForDelete").value = id;
+                    }
+                </script>
+            </head>
+            <body>
+
+                <div th:replace="admin/header"></div>
+
+                <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/admin/delete" method="POST">
+
+                                <div class="modal-body">
+                                    <p>Are you sure to delete selected lesson?</p> 
+                                </div>
+                                <div class="modal-footer">
+
+                                    <input type="hidden" name="id" id="sendIdForDelete"/>
+                                    <input type="submit" class="btn btn-success" value="Delete">
+                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br>
+                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button>
+                <br>
+                <br>
+
+                <div class="table-bordered table-responsive" th:object = "${lessons}">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th style="padding-left: 100px;padding-right: 100px;">About</th>
+                                <th>Thumbnail Path</th>
+                                <th>Insert Time</th>
+                                <th>Last Update Time</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="lesson : ${lessons}">
+
+                                <td th:text="${lesson.id}"></td>
+                                <td th:text="${lesson.name}"></td>
+                                <td th:text="${lesson.about}"></td>
+                                <td th:text="${lesson.thumbnailPath}"></td>
+                                <td th:text="${lesson.insertDateTime}"></td>
+                                <td th:text="${lesson.lastUpdateTime}"></td>
+
+                                <td>
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
+                                            th:onclick="|setIdForUpdate('${lesson.id}')|"
+                                            >
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button> 
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                                            th:onclick="|setIdForDelete('${lesson.id}')|"  
+                                            >
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+
+                                    </button> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+            </body>
+        </html>
