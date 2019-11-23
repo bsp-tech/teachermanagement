@@ -7,10 +7,12 @@ package com.bsptech.teachermanagement.controller.admin;
 
 import com.bsptech.teachermanagement.dao.LessonDataInter;
 import com.bsptech.teachermanagement.entity.Lesson;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,6 +43,16 @@ public class AdminLessonController {
     public ModelAndView delete(@RequestParam("id") Integer id,ModelAndView modelAndView) {
         lessonDataInter.deleteById(id);
         
+        modelAndView.setViewName("redirect:/admin/lessons");
+        
+        return modelAndView;
+    }
+    
+    @PostMapping("/add")
+    public ModelAndView add(@ModelAttribute("admin") Lesson lessons,ModelAndView modelAndView) {
+        
+        lessons.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+        lessonDataInter.save(lessons);
         modelAndView.setViewName("redirect:/admin/lessons");
         
         return modelAndView;
