@@ -6,6 +6,7 @@
  */
 package com.bsptech.teachermanagement.controller;
 
+import com.bsptech.teachermanagement.dao.FAQDataInter;
 import com.bsptech.teachermanagement.entity.Class;
 import com.bsptech.teachermanagement.entity.Feedback;
 import com.bsptech.teachermanagement.entity.Lesson;
@@ -36,7 +37,8 @@ public class IndexController {
 
     @Autowired
     private FeedbackServiceInter feedbackServiceInter;
-
+@Autowired
+    FAQDataInter faqDataInter;
     @Autowired
     private LessonServiceInter lessonServiceInter;
 
@@ -56,6 +58,7 @@ public class IndexController {
         modelAndView.addObject("settings", websiteSettings);
         modelAndView.addObject("sections", lesson.getLessonSectionList());
         modelAndView.addObject("feedbacks", feedbacks);
+        modelAndView.addObject("faqs",faqDataInter.findAll());
         modelAndView.setViewName("layouts/footer");
         modelAndView.setViewName("index");
         return modelAndView;
