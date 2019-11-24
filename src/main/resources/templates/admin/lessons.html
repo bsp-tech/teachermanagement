@@ -24,12 +24,19 @@ and open the template in the editor.
                         document.getElementById("sendIdForDelete").value = id;
                     }
                 </script>
+
+                <script>
+                    function setIdForUpdate(id) {
+                        document.getElementById("sendIdForUpdate").value = id;
+                    }
+                </script>
+
             </head>
             <body>
 
                 <div th:replace="admin/header"></div>
-                
-                
+
+
                 <div class="modal" tabindex="-1" role="dialog" id="insertModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -65,8 +72,45 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                
-                
+
+                <div class="modal" tabindex="-1" role="dialog" id="updateModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Update</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/admin/update" method="POST">
+
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" name="name" class="form-control"placeholder="Name"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="about">About</label>
+                                        <input type="text" name="about" class="form-control"placeholder="About"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="thumbnailPath">ThumbnailPath</label>
+                                        <input type="text" name="thumbnailPath" class="form-control"placeholder="ThumbnailPath"/>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+
+                                    <input type="hidden" name="id" id="sendIdForUpdate">
+                                    <input type="submit" class="btn btn-success" value="Update">
+                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -91,12 +135,31 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
+
+
+                <br>
+                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Lesson</button>
+                <br>
+                <br>
                 
+                <div>
+                    <form class="form-inline" action="/admin/search" method="GET">
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control" name="name" placeholder="Name">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" name="about" placeholder="About">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" name="thumbnailPath" placeholder="ThumbnailPath">
+                            </div>
+                            <input type="submit" class="btn btn-success" value="Search">
+                        </div>
+                    </form>
+                </div>
                 <br>
-                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button>
-                <br>
-                <br>
-                
+
 
                 <div class="table-bordered table-responsive" th:object = "${lessons}">
                     <table class="table">
