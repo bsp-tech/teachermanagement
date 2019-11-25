@@ -45,13 +45,12 @@ public class AdminLessonController {
             @RequestParam("about") String about,
             @RequestParam("thumbnailPath") String thumbnailPath,
             ModelAndView modelAndView) {
-        if ((name == null || name.isEmpty()) && (about == null || about.isEmpty()) && (thumbnailPath == null || thumbnailPath.isEmpty())) {
-            modelAndView.setViewName("redirect:/admin/lessons");
-        } 
-        else if ((name != null && !name.isEmpty()) || (about != null && !about.isEmpty()) || (thumbnailPath != null && !thumbnailPath.isEmpty())) {
+        if ((name != null && !name.isEmpty()) || (about != null && !about.isEmpty()) || (thumbnailPath != null && !thumbnailPath.isEmpty())) {
             List<Lesson> result = lessonDataInter.getLessonsForSearching(name, about, thumbnailPath);
             modelAndView.addObject("lessons", result);
             modelAndView.setViewName("/admin/lessons");
+        } else {
+            modelAndView.setViewName("redirect:/admin/lessons");
         }
 
         return modelAndView;
@@ -73,22 +72,25 @@ public class AdminLessonController {
             @RequestParam(name = "about", required = false) String about,
             @RequestParam(name = "thumbnailPath", required = false) String thumbnailPath, ModelAndView modelAndView) {
 
-        Optional<Lesson> result = lessonDataInter.findById(id);
-        Lesson lesson = result.get();
+        if ((name != null && !name.isEmpty() || (about != null && !about.isEmpty()) || (thumbnailPath != null && !thumbnailPath.isEmpty()))) {
+            Optional<Lesson> result = lessonDataInter.findById(id);
+            Lesson lesson = result.get();
 
-        if (name != null && !name.isEmpty()) {
-            lesson.setName(name);
-        }
-        if (about != null && !about.isEmpty()) {
-            lesson.setAbout(about);
-        }
-        if (thumbnailPath != null && !thumbnailPath.isEmpty()) {
-            lesson.setThumbnailPath(thumbnailPath);
+            if (name != null && !name.isEmpty()) {
+                lesson.setName(name);
+            }
+            if (about != null && !about.isEmpty()) {
+                lesson.setAbout(about);
+            }
+            if (thumbnailPath != null && !thumbnailPath.isEmpty()) {
+                lesson.setThumbnailPath(thumbnailPath);
+            }
+
+            lesson.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
+
+            lessonDataInter.save(lesson);
         }
 
-        lesson.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
-
-        lessonDataInter.save(lesson);
         modelAndView.setViewName("redirect:/admin/lessons");
 
         return modelAndView;
