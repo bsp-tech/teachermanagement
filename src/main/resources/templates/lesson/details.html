@@ -117,7 +117,7 @@
                                                     <div class="text-center py-2">
                                                         <i class="fas fa-video fa-lg text-success mb-3"></i>
                                                         <h5 class="text-dark font-weight-normal mb-1">Video Sayisi:</h5>
-                                                        <h5 class="text-dark font-weight-bold m-0"><div th:text="${section.videoCount}"></diV></h5>
+                                                        <h5 class="text-dark font-weight-bold m-0"><div th:text="${section.videoId.size()}"></diV></h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -249,18 +249,6 @@
                     </div>
                     <!-- konular -->
                     <div class="col-md-4" th:each="l:${section.lessonSectionList}">
-                        <div class="border border-muted p-3 mb-4">
-                            <h5 class="pb-3"><a class="text-dark font-weight-normal text-decoration-none" href="" th:text="${l.lessonId.name}">
-
-                                Diğer Konular</a></h5>
-                            <ul class="list-inline mb-0">
-                                <li class="py-2 my-1 border-bottom border-muted">
-                                    <a class="text-muted text-decoration-none" href="">
-                                        <i class="fa fa-chevron-right fa-sm mr-2"></i> Hareket Soru Paketi
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                         <div class="border border-muted p-3 mb-4" >
                             <h5 class="pb-3"><a class="text-dark font-weight-normal text-decoration-none"
                                                 href="">Dersler</a></h5>
@@ -277,7 +265,8 @@
             </div>
         </div>
     </div>
-<script th:src="@{/js/main.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     </body>
 </div>
 </html>

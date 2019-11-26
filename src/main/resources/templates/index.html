@@ -45,9 +45,7 @@
                         başarılı bir grubun eğitiminden sorulumlu olmuştur.
                         -->
                     </p>
-                    <p class="text-muted pl-3 m-1"> 8600 'den FAZLA KAYITLI ÖĞRENCİ</p>
-                    <p class="text-muted pl-3 m-1"> 12 YILLIK DENEYİM</p>
-                    <p class="text-muted pl-3 m-1 mb-3"> UZMAN EĞİTMEN KADROSU</p>
+
                     <a class="btn btn-success px-5 py-2 mb-5" th:href="${'/about'}">Devamını Oku...</a>
                 </div>
                 <!--BİR DE BENDEN DİNLEYİN-->
@@ -126,7 +124,7 @@
                                 <h6 class="mb-1">
                                     <a class="text-dark font-weight-normal text-decoration-none"
                                        th:href="${'/lessons/details/'+section.sectionId}"
-                                       th:text="${section.sectionId.videoCount}"></a>
+                                       th:text="${section.sectionId.videoId.size()}"></a>
                                 </h6>
                                 <p class="mb-1">
                                     <a class="text-muted font-weight-light text-decoration-none"
@@ -339,132 +337,32 @@
                 <div class="col-lg-5 mb-4">
                     <div class="row">
                         <div class="col-12">
-                            <h4 class="font-weight-normal my-2"><i class="far fa-question-circle pr-2"></i> MERAK <span
-                                    class="text-success">ETTİKLERİNİZ</span></h4>
+                            <h4 class="font-weight-normal my-2"><i class="far fa-question-circle pr-2"></i>FAQ</h4>
                             <hr class="w-25 bg-success ml-0">
                         </div>
                     </div>
                     <!--Collapse-->
-                    <div id="accordion">
+                    <div id="accordion" th:each="faq:${faqs}">
                         <div class="card border-0">
                             <div class="card-header px-0 bg-white" id="headingOne">
                                 <h6 class="mb-0 font-weight-normal d-flex align-items-center">
-                                    <button aria-controls="collapseOne" aria-expanded="true"
-                                            class="p-0 mr-2 btn btn-link collapsed" data-target="#collapseOne"
+                                    <button th:aria-controls="${'collapse'+''+faq.id}" aria-expanded="true"
+                                            class="p-0 mr-2 btn btn-link collapsed" th:data-target="${'#collapse'+''+faq.id}"
                                             data-toggle="collapse">
                                         <i class="fas fa-plus-square text-success fa-2x"></i>
                                     </button>
-                                    <span>Online Ders Nedir ?</span>
+                                    <span th:text="${faq?.header}">Online Ders Nedir ?</span>
                                 </h6>
                             </div>
                             <div aria-labelledby="headingOne" class="collapse" data-parent="#accordion"
-                                 id="collapseOne">
-                                <div class="card-body text-muted">
+                                 th:id="${'collapse'+''+faq.id}">
+                                <div class="card-body text-muted" th:text="${faq?.content}">
                                     Katılımcıların internet üzerinde oluşturulan sınıflarda eğitim almasını sağlayan bir
                                     sistemdir.
                                 </div>
                             </div>
                         </div>
-                        <div class="card border-0">
-                            <div class="card-header px-0 bg-white" id="headingTwo">
-                                <h6 class="mb-0 font-weight-normal d-flex align-items-center">
-                                    <button aria-controls="collapseTwo" aria-expanded="false"
-                                            class="p-0 mr-2 btn btn-link collapsed" data-target="#collapseTwo"
-                                            data-toggle="collapse">
-                                        <i class="fas fa-plus-square text-success fa-2x"></i>
-                                    </button>
-                                    <span>Nasıl Üye Olabilirim?</span>
-                                </h6>
-                            </div>
-                            <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordion"
-                                 id="collapseTwo">
-                                <div class="card-body text-muted">
-                                    Üst taraftaki menüden kayıt ol butonuna basarak ve e-mail adresini yazarak kayıt
-                                    olabilirsin
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card border-0">
-                            <div class="card-header px-0 bg-white" id="headingThree">
-                                <h6 class="mb-0 font-weight-normal d-flex align-items-center">
-                                    <button aria-controls="collapseThree" aria-expanded="false"
-                                            class="p-0 mr-2 btn btn-link collapsed" data-target="#collapseThree"
-                                            data-toggle="collapse">
-                                        <i class="fas fa-plus-square text-success fa-2x"></i>
-                                    </button>
-                                    <span>Dersleri Nereden İzleyebilirim?</span>
-                                </h6>
-                            </div>
-                            <div aria-labelledby="headingThree" class="collapse" data-parent="#accordion"
-                                 id="collapseThree">
-                                <div class="card-body text-muted">
-                                    Üst menüde bulunan 'Dersler' kısmından tüm derslere ulaşabilirsiniz. Sınıf
-                                    seviyesine
-                                    uygun derslere ulaşmak için 'Sınıflar' menüsünü kullanabilirsiniz.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card border-0">
-                            <div class="card-header px-0 bg-white" id="headingFour">
-                                <h6 class="mb-0 font-weight-normal d-flex align-items-center">
-                                    <button aria-controls="collapseFour" aria-expanded="false"
-                                            class="p-0 mr-2 btn btn-link collapsed" data-target="#collapseFour"
-                                            data-toggle="collapse">
-                                        <i class="fas fa-plus-square text-success fa-2x"></i>
-                                    </button>
-                                    <span>Derslerin kota kullanımı ne kadardır?</span>
-                                </h6>
-                            </div>
-                            <div aria-labelledby="headingFour" class="collapse" data-parent="#accordion"
-                                 id="collapseFour">
-                                <div class="card-body text-muted">
-                                    Ortalama bir derste 50 MB veri aktarılmaktadır.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="row">
-                        <div class="col-12">
-                            <h4 class="font-weight-normal my-2"><i class="far fa-image pr-2"></i>BİR FOTOĞRAF <span
-                                    class="text-success">ÇEKİLEBİLİR MİYİZ ?</span></h4>
-                            <hr class="w-25 bg-success ml-0 my-4 mb-3">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 col-6 mb-3">
-                            <a href="#">
-                                <img alt="" class="w-100 p-1 rounded border" th:src="@{/img/ins.jpg}">
-                            </a>
-                        </div>
-                        <div class="col-md-4 col-6 mb-3">
-                            <a href="#">
-                                <img alt="" class="w-100 p-1 rounded border" th:src="@{/img/ins.jpg}">
-                            </a>
-                        </div>
-                        <div class="col-md-4 col-6 mb-3">
-                            <a href="#">
-                                <img alt="" class="w-100 p-1 rounded border" th:src="@{/img/ins.jpg}">
-                            </a>
-                        </div>
 
-                        <div class="col-md-4 col-6 mb-3">
-                            <a href="#">
-                                <img alt="" class="w-100 p-1 rounded border" th:src="@{/img/ins.jpg}">
-                            </a>
-                        </div>
-
-                        <div class="col-md-4 col-6 mb-3">
-                            <a href="#">
-                                <img alt="" class="w-100 p-1 rounded border" th:src="@{/img/ins.jpg}">
-                            </a>
-                        </div>
-                        <div class="col-md-4 col-6 mb-3">
-                            <a href="#">
-                                <img alt="" class="w-100 p-1 rounded border" th:src="@{/img/ins.jpg}">
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
