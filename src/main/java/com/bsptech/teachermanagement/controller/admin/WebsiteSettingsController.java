@@ -37,7 +37,7 @@ public class WebsiteSettingsController {
         return modelAndView;
     }
 
-    @PostMapping("/add")
+    @PostMapping("/addSettings")
     public ModelAndView add(@ModelAttribute("admin") WebsiteSettings websiteSettings, ModelAndView modelAndView) {
 
         websiteSettings.setInsertDateTime(new java.sql.Date(new Date().getTime()));
@@ -46,7 +46,7 @@ public class WebsiteSettingsController {
         return modelAndView;
     }
 
-    @PostMapping("/update")
+    @PostMapping("/updateSettings")
     public ModelAndView update(@RequestParam(name = "id", required = false) Integer id, @RequestParam(name = "author_name", required = false) String author_name,
             @RequestParam(name = "autobiography", required = false) String autobiography, @RequestParam(name = "description", required = false) String description,
             @RequestParam(name = "phone", required = false) String phone, @RequestParam(name = "email", required = false) String email,

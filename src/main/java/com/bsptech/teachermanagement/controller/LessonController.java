@@ -44,6 +44,8 @@ public class LessonController {
     public ModelAndView details(@PathVariable("sectionId") Integer sectionId, ModelAndView modelAndView) {
         Section section = sectionServiceInter.findById(sectionId);
         modelAndView.addObject("section", section);
+        modelAndView.addObject("lessons", lessonServiceInter.findAll());
+        modelAndView.addObject("classes", classServiceInter.findAll());
         modelAndView.setViewName("lesson/details");
         return modelAndView;
     }
