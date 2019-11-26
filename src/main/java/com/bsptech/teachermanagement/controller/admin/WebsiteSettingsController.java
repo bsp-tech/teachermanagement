@@ -32,9 +32,9 @@ public class WebsiteSettingsController {
         return modelAndView;
     }
 
+
     @PostMapping(value = "/add")
     public ModelAndView add(@ModelAttribute("admin") WebsiteSettings websiteSettings) {
-
         websiteSettings.setInsertDateTime(new java.sql.Date(new Date().getTime()));
         websiteSettingDataInter.save(websiteSettings);
 
