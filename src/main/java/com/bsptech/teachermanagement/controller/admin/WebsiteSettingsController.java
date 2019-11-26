@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.bsptech.teachermanagement.controller.admin;
 
 import com.bsptech.teachermanagement.dao.WebsiteSettingDataInter;
@@ -40,8 +35,6 @@ public class WebsiteSettingsController {
 
     @PostMapping(value = "/add")
     public ModelAndView add(@ModelAttribute("admin") WebsiteSettings websiteSettings) {
-
-
         websiteSettings.setInsertDateTime(new java.sql.Date(new Date().getTime()));
         websiteSettingDataInter.save(websiteSettings);
 

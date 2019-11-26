@@ -24,13 +24,13 @@ import org.springframework.web.servlet.ModelAndView;
  * @author murad_isgandar
  */
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/lessons")
 public class AdminLessonController {
 
     @Autowired
     private LessonDataInter lessonDataInter;
 
-    @GetMapping("/lessons")
+    @GetMapping
     public ModelAndView page(ModelAndView modelAndView) {
 
         Iterable<Lesson> lessons = lessonDataInter.findAll();
@@ -40,7 +40,7 @@ public class AdminLessonController {
         return modelAndView;
     }
 
-    @GetMapping("/search")
+    @GetMapping(value = "/search")
     public ModelAndView search(@RequestParam("name") String name,
             @RequestParam("about") String about,
             @RequestParam("thumbnailPath") String thumbnailPath,
@@ -50,27 +50,27 @@ public class AdminLessonController {
             modelAndView.addObject("lessons", result);
             modelAndView.setViewName("/admin/lessons");
         } else {
-            modelAndView.setViewName("redirect:/admin/lessons");
+            return new ModelAndView("redirect:/admin/lessons");
         }
 
         return modelAndView;
     }
 
-    @PostMapping("/add")
-    public ModelAndView add(@ModelAttribute("admin") Lesson lessons, ModelAndView modelAndView) {
+    @PostMapping(value = "/add")
+    public ModelAndView add(@ModelAttribute("admin") Lesson lessons) {
 
         lessons.setInsertDateTime(new java.sql.Date(new Date().getTime()));
         lessonDataInter.save(lessons);
-        modelAndView.setViewName("redirect:/admin/lessons");
+        ModelAndView modelAndView = new ModelAndView("redirect:/admin/lessons");
 
         return modelAndView;
     }
 
-    @PostMapping("/update")
+    @PostMapping(value = "/update")
     public ModelAndView update(@RequestParam(name = "id") Integer id,
             @RequestParam(name = "name", required = false) String name,
             @RequestParam(name = "about", required = false) String about,
-            @RequestParam(name = "thumbnailPath", required = false) String thumbnailPath, ModelAndView modelAndView) {
+            @RequestParam(name = "thumbnailPath", required = false) String thumbnailPath) {
 
         if ((name != null && !name.isEmpty() || (about != null && !about.isEmpty()) || (thumbnailPath != null && !thumbnailPath.isEmpty()))) {
             Optional<Lesson> result = lessonDataInter.findById(id);
@@ -91,17 +91,15 @@ public class AdminLessonController {
             lessonDataInter.save(lesson);
         }
 
-        modelAndView.setViewName("redirect:/admin/lessons");
-
+        ModelAndView modelAndView = new ModelAndView("redirect:/admin/lessons");
         return modelAndView;
     }
 
-    @PostMapping("/delete")
-    public ModelAndView delete(@RequestParam("id") Integer id, ModelAndView modelAndView) {
+    @PostMapping(value = "/delete")
+    public ModelAndView delete(@RequestParam("id") Integer id) {
         lessonDataInter.deleteById(id);
 
-        modelAndView.setViewName("redirect:/admin/lessons");
-
+        ModelAndView modelAndView = new ModelAndView("redirect:/admin/lessons");
         return modelAndView;
     }
 
