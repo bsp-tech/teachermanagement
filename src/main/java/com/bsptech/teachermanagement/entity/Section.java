@@ -63,6 +63,8 @@ public class Section implements Serializable {
     private String threadFilesPath;
     @OneToMany(mappedBy = "sectionId" , fetch = FetchType.LAZY)
     private List<Video> videoId;
+    @OneToMany(mappedBy = "sectionId" , fetch = FetchType.LAZY)
+    private List<File>fileList;
 
     public Section() {
     }
@@ -158,6 +160,14 @@ public class Section implements Serializable {
 
     public void setLessonSectionList(List<LessonSection> lessonSectionList) {
         this.lessonSectionList = lessonSectionList;
+    }
+     @XmlTransient
+    public List<File> getFileList() {
+        return fileList;
+    }
+
+    public void setFileList(List<File> fileList) {
+        this.fileList = fileList;
     }
 
     @Override

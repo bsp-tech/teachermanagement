@@ -16,9 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-/**
- * @author Goshgar
- */
+
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
