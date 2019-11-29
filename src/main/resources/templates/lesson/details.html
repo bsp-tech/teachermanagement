@@ -86,7 +86,7 @@
                                                 class="text-success py-3 mb-0 px-3 border border-muted border-bottom-0">
                                             Konu
                                             Detayı</h6></li>
-                                        <li data-id="1"><h6
+                                        <li data-id="1" ><h6
                                                 class="text-secondary py-3 mb-0 px-3 border-bottom border-muted">Konu
                                             videoları</h6></li>
                                         <li data-id="2"><h6
@@ -213,11 +213,11 @@
 
                                     <div class="d-none pt-4 pb-2 px-3 border border-muted content" data-id="3">
                                         <h5 class="text-secondary font-weight-normal mb-4">Dosyalar</h5>
-                                        <ul class="list-inline pl-2">
+                                        <ul class="list-inline pl-2" th:each="file:${section.fileList}">
                                             <li class="py-3 border-bottom border-muted"><a
-                                                    class="text-secondary text-decoration-none" href=""><i
+                                                    class="text-secondary text-decoration-none" th:href="${file.url}"><i
                                                     class="fas fa-file"></i><span
-                                                    class="" th:text="${section.threadFilesPath}"> </span></a></li>
+                                                    class="" th:text="${file.name}"> </span></a></li>
                                         </ul>
                                     </div>
                                     <div class="d-none pt-4 pb-2 px-3 border border-muted content" data-id="4">
