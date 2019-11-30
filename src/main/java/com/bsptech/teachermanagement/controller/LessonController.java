@@ -46,6 +46,7 @@ public class LessonController {
         modelAndView.addObject("section", section);
         modelAndView.addObject("lessons", lessonServiceInter.findAll());
         modelAndView.addObject("classes", classServiceInter.findAll());
+        modelAndView.addObject("settings",websiteSettingsInter.findById(1));
         modelAndView.setViewName("lesson/details");
         return modelAndView;
     }
@@ -72,6 +73,7 @@ public class LessonController {
         List<Class> classes = classServiceInter.findAll();
         modelAndView.addObject("lessons", lessons);
         modelAndView.addObject("classes", classes);
+        modelAndView.addObject("settings",websiteSettingsInter.findById(1));
         modelAndView.setViewName("lesson/lessons");
         return modelAndView;
     }

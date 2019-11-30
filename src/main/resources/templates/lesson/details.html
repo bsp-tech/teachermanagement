@@ -48,7 +48,7 @@
                                     <i class="far fa-user-circle fa-2x mr-3 text-success"></i>
                                     <div>
                                         <h6 class="text-muted font-weight-light mb-1">DERS EGİTMENİ</h6>
-                                        <h5 class="text-dark font-weight-normal">Serxan Resullu</h5>
+                                        <h5 class="text-dark font-weight-normal" th:text="${settings?.author_name}">Serxan Resullu</h5>
                                     </div>
                                 </div>
                             </div>
@@ -137,8 +137,8 @@
                                                 <div class="col-md-3">
                                                     <div class="text-center p-2">
                                                         <i class="fas fa-users fa-lg text-success mb-3"></i>
-                                                        <h5 class="text-dark font-weight-normal mb-1">Melim :</h5>
-                                                        <h5 class="text-dark font-weight-bold m-0">Serxan Resullu</h5>
+                                                        <h5 class="text-dark font-weight-normal mb-1">Author :</h5>
+                                                        <h5 class="text-dark font-weight-bold m-0" th:text="${settings?.author_name}">Serxan Resullu</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -172,42 +172,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- pagination -->
-                                            <nav aria-label="Page navigation example" class="mt-4 mb-0">
-                                                <ul class="pagination justify-content-center flex-wrap">
-                                                    <li class="page-item">
-                                                        <a class="page-link text-secondary" href="#"
-                                                           tabindex="-1">Previous</a>
-                                                    </li>
-                                                    <li class="w-100">
-                                                        <ul class="d-flex list-inline justify-content-center">
-                                                            <li class="page-item active"><a
-                                                                    class="page-link bg-success text-light"
-                                                                    href="#">1</a>
-                                                            </li>
-                                                            <li class="page-item"><a
-                                                                    class="page-link bg-light text-secondary"
-                                                                    href="#">2</a>
-                                                            </li>
-                                                            <li class="page-item"><a
-                                                                    class="page-link bg-light text-secondary"
-                                                                    href="#">3</a>
-                                                            </li>
-                                                            <li class="page-item"><a
-                                                                    class="page-link bg-light text-secondary"
-                                                                    href="#">4</a>
-                                                            </li>
-                                                            <li class="page-item"><a
-                                                                    class="page-link bg-light text-secondary"
-                                                                    href="#">5</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link text-secondary" href="#">Next</a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
+
                                         </div>
                                     </div>
 
