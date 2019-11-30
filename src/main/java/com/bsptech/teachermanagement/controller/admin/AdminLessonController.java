@@ -35,7 +35,7 @@ public class AdminLessonController {
 
         Iterable<Lesson> lessons = lessonDataInter.findAll();
         modelAndView.addObject("lessons", lessons);
-        modelAndView.setViewName("/admin/lessons");
+        modelAndView.setViewName("admin/lessons");
 
         return modelAndView;
     }
