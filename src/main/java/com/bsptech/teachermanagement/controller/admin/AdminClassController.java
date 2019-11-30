@@ -6,12 +6,16 @@
 package com.bsptech.teachermanagement.controller.admin;
 
 import com.bsptech.teachermanagement.dao.ClassDataInter;
+import com.bsptech.teachermanagement.dao.ClassLessonDataInter;
+import com.bsptech.teachermanagement.dao.LessonDataInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.bsptech.teachermanagement.entity.Class;
+import com.bsptech.teachermanagement.entity.ClassLesson;
+import com.bsptech.teachermanagement.entity.Lesson;
 import java.util.Date;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,12 +32,22 @@ public class AdminClassController {
 
     @Autowired
     private ClassDataInter classDataInter;
-
+    
+    @Autowired
+    private LessonDataInter lessonDataInter;
+    
+    @Autowired
+    private ClassLessonDataInter classLessonDataInter;
+    
     @GetMapping
     public ModelAndView page(ModelAndView modelAndView) {
 
         Iterable<Class> classes = classDataInter.findAll();
+        Iterable<Lesson> lessons = lessonDataInter.findAll();
+        Iterable<ClassLesson> classLessons = classLessonDataInter.findAll();
         modelAndView.addObject("classes", classes);
+        modelAndView.addObject("lessons", lessons);
+        modelAndView.addObject("classLessons", classLessons);
         modelAndView.setViewName("admin/classes");
         return modelAndView;
     }
@@ -63,8 +77,6 @@ public class AdminClassController {
         return new ModelAndView("redirect:/admin/classes");
     }
     
-    
-    
     @PostMapping(value = "/delete")
     public ModelAndView delete(@ModelAttribute("id") Integer id) {
 
@@ -72,6 +84,19 @@ public class AdminClassController {
         return new ModelAndView("redirect:/admin/classes");
     }
     
+    @PostMapping(value = "/addClassLesson")
+    public ModelAndView addClassLesson(@ModelAttribute("classLesson") ClassLesson classLesson) {
+        classLessonDataInter.save(classLesson);
+        
+        return new ModelAndView("redirect:/admin/classes");
+    }
+    
+    @PostMapping(value = "/deleteClassLesson")
+    public ModelAndView deleteClassLesson(@RequestParam("id") Integer id) {
+        classLessonDataInter.deleteById(id);
+        
+        return new ModelAndView("redirect:/admin/classes");
+    }
     
 
 }

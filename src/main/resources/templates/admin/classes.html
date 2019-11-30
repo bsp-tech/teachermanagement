@@ -17,7 +17,7 @@ and open the template in the editor.
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-                
+
                 <script>
                     function setIdForDelete(id) {
                         document.getElementById("sendIdForDelete").value = id;
@@ -28,6 +28,22 @@ and open the template in the editor.
                         document.getElementById("sendIdForUpdate").value = id;
                     }
                 </script>
+                <script>
+                    function setClassIdForAddClassLesson(id) {
+                        document.getElementById("sendClassIdForAddClassLesson").value = id;
+                    }
+                </script>
+                <script>
+                    function setLessonIdForAddClassLesson(id) {
+                        document.getElementById("sendLessonIdForAddClassLesson").value = id;
+                    }
+                </script>
+                <script>
+                    function setClassLessonIdForDeleteClassLesson(id) {
+                        document.getElementById("sendClassLessonIdForDeleteClassLesson").value = id;
+                    }
+                </script>
+                
             </head>
             <body>
 
@@ -37,7 +53,11 @@ and open the template in the editor.
                 <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Class</button>
                 <br>
                 <br>
-                
+
+                <button type="button" style="margin-left: 15px;" class="btn btn-info" data-toggle="modal" data-target="#showLessons">Show lessons</button> 
+                <br>
+                <br>
+
                 <div class="modal" tabindex="-1" role="dialog" id="insertModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -69,7 +89,7 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal" tabindex="-1" role="dialog" id="updateModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -97,7 +117,7 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -123,6 +143,95 @@ and open the template in the editor.
                     </div>
                 </div>
 
+                <div class="modal" tabindex="-1" role="dialog" id="addClassLesson">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add Lesson to selected Class</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/admin/classes/addClassLesson" method="POST"
+                                  modelAttribute="classLesson">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="about">ID</label>
+                                        <input type="text" name="id" class="form-control"placeholder="ID" required="required" />
+                                    </div>
+                                    <div class="table-bordered table-responsive" th:object = "${lessons}">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr th:each="lesson : ${lessons}">
+                                                    <td th:text="${lesson.name}"></td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary"
+                                                                th:onclick="|setLessonIdForAddClassLesson('${lesson.id}')|">
+                                                            Choose</button>    
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div> 
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" name="lessonId" id="sendLessonIdForAddClassLesson"/>
+                                    <input type="hidden" name="classId" id="sendClassIdForAddClassLesson"/>
+                                    <input type="submit" class="btn btn-success" value="Add">
+                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal" tabindex="-1" role="dialog" id="showLessons">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Lessons of all classes</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/admin/classes/deleteClassLesson" method="POST">
+                                <div class="modal-body">
+                                    <div class="table-bordered table-responsive" th:obj="${classLessons}">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Class</th>
+                                                    <th>Name</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="classLesson : ${classLessons}">
+                                                    <td th:text="${classLesson.id}"></td>
+                                                    <td th:text="${classLesson.classId.name}"></td>
+                                                    <td th:text="${classLesson.lessonId.name}"></td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-danger"
+                                                                th:onclick="|setClassLessonIdForDeleteClassLesson('${classLesson.id}')|">
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        </button>    
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div> 
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" name="id" id="sendClassLessonIdForDeleteClassLesson"/>
+                                    <input type="submit" class="btn btn-success" value="Ok">
+                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="table-bordered table-responsive" th:object = "${classes}">
                     <table class="table">
                         <thead>
@@ -131,17 +240,21 @@ and open the template in the editor.
                                 <th>Name</th>
                                 <th>Insert Time</th>
                                 <th>Last Update Time</th>
+                                <th>Class-Lesson</th>
                                 <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="class : ${classes}">
-
                                 <td th:text="${class.id}"></td>
                                 <td th:text="${class.name}"></td>
                                 <td th:text="${class.insertDateTime}"></td>
                                 <td th:text="${class.lastUpdateDateTime}"></td>
+                                <td>
+                                    <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#addClassLesson"
+                                            th:onclick="|setClassIdForAddClassLesson('${class.id}')|">Add lesson</button> 
 
+                                </td>
                                 <td>
                                     <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
                                             th:onclick="|setIdForUpdate('${class.id}')|"
