@@ -48,7 +48,7 @@ public class AdminLessonController {
         if ((name != null && !name.isEmpty()) || (about != null && !about.isEmpty()) || (thumbnailPath != null && !thumbnailPath.isEmpty())) {
             List<Lesson> result = lessonDataInter.getLessonsForSearching(name, about, thumbnailPath);
             modelAndView.addObject("lessons", result);
-            modelAndView.setViewName("/admin/lessons");
+            modelAndView.setViewName("admin/lessons");
         } else {
             return new ModelAndView("redirect:/admin/lessons");
         }
@@ -57,7 +57,7 @@ public class AdminLessonController {
     }
 
     @PostMapping(value = "/add")
-    public ModelAndView add(@ModelAttribute("admin") Lesson lessons) {
+    public ModelAndView add(@ModelAttribute("lesson") Lesson lessons) {
 
         lessons.setInsertDateTime(new java.sql.Date(new Date().getTime()));
         lessonDataInter.save(lessons);
