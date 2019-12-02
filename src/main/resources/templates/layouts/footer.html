@@ -49,7 +49,7 @@
                 <div class="d-flex flex-column">
                     <h5 class="p-2 border-bottom border-success text-center">Dərslər</h5>
                     <div  class="p-2 border-bottom border-info" th:each="lesson :${lessons}"  ><a class="text-light text-decoration-none"
-                                                                  th:href="@{/lessons}" th:text="${lesson.name}"></a>
+                                                                  th:href="${'/lessons/sections/'+lesson.id}" th:text="${lesson.name}"></a>
                     </div>
 
 
