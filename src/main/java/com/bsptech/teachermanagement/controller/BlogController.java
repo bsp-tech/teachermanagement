@@ -11,6 +11,7 @@ import com.bsptech.teachermanagement.entity.Post;
 import com.bsptech.teachermanagement.service.inter.ClassServiceInter;
 import com.bsptech.teachermanagement.service.inter.LessonServiceInter;
 import com.bsptech.teachermanagement.service.inter.PostServiceInter;
+import com.bsptech.teachermanagement.service.inter.WebsiteSettingsInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +39,8 @@ public class BlogController {
     @Autowired
     private ClassServiceInter classServiceInter;
 
+    @Autowired
+    WebsiteSettingsInter websiteSettingsInter;
 
    @GetMapping
     public ModelAndView index(ModelAndView modelAndView) {
@@ -45,7 +48,7 @@ public class BlogController {
         List<Post> posts = postServiceInter.findAll();
         List<Lesson> lessons = lessonServiceInter.findAll();
         List<Class> classes = classServiceInter.findAll();
-
+      modelAndView.addObject("settings",websiteSettingsInter.findById(1));
         modelAndView.addObject("lessons", lessons);
         modelAndView.addObject("classes", classes);
 
@@ -59,7 +62,7 @@ public class BlogController {
         modelAndView.addObject("post", postServiceInter.findById(id));
         List<Lesson> lessons = lessonServiceInter.findAll();
         List<Class> classes = classServiceInter.findAll();
-
+        modelAndView.addObject("settings",websiteSettingsInter.findById(1));
         modelAndView.addObject("lessons", lessons);
         modelAndView.addObject("classes", classes);
         modelAndView.setViewName("blog/details");

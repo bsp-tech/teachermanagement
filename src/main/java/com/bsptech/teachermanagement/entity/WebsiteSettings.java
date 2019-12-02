@@ -21,23 +21,22 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
  * @author Goshgar
  */
 @Entity
 @Table(name = "website_settings")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "WebsiteSettings.findAll", query = "SELECT w FROM WebsiteSettings w")
-    , @NamedQuery(name = "WebsiteSettings.findById", query = "SELECT w FROM WebsiteSettings w WHERE w.id = :id")
-    , @NamedQuery(name = "WebsiteSettings.findByBannerPath", query = "SELECT w FROM WebsiteSettings w WHERE w.bannerPath = :bannerPath")
-    , @NamedQuery(name = "WebsiteSettings.findByDescription", query = "SELECT w FROM WebsiteSettings w WHERE w.description = :description")
-    , @NamedQuery(name = "WebsiteSettings.findByEmail", query = "SELECT w FROM WebsiteSettings w WHERE w.email = :email")
-    , @NamedQuery(name = "WebsiteSettings.findByPhone", query = "SELECT w FROM WebsiteSettings w WHERE w.phone = :phone")
-    , @NamedQuery(name = "WebsiteSettings.findByAutobiography", query = "SELECT w FROM WebsiteSettings w WHERE w.autobiography = :autobiography")
-    , @NamedQuery(name = "WebsiteSettings.findByIntroduceVideoUrl", query = "SELECT w FROM WebsiteSettings w WHERE w.introduceVideoUrl = :introduceVideoUrl")
-    , @NamedQuery(name = "WebsiteSettings.findByInsertDateTime", query = "SELECT w FROM WebsiteSettings w WHERE w.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "WebsiteSettings.findByLastUpdateDateTime", query = "SELECT w FROM WebsiteSettings w WHERE w.lastUpdateDateTime = :lastUpdateDateTime")})
+        @NamedQuery(name = "WebsiteSettings.findAll", query = "SELECT w FROM WebsiteSettings w")
+        , @NamedQuery(name = "WebsiteSettings.findById", query = "SELECT w FROM WebsiteSettings w WHERE w.id = :id")
+        , @NamedQuery(name = "WebsiteSettings.findByBannerPath", query = "SELECT w FROM WebsiteSettings w WHERE w.bannerPath = :bannerPath")
+        , @NamedQuery(name = "WebsiteSettings.findByDescription", query = "SELECT w FROM WebsiteSettings w WHERE w.description = :description")
+        , @NamedQuery(name = "WebsiteSettings.findByEmail", query = "SELECT w FROM WebsiteSettings w WHERE w.email = :email")
+        , @NamedQuery(name = "WebsiteSettings.findByPhone", query = "SELECT w FROM WebsiteSettings w WHERE w.phone = :phone")
+        , @NamedQuery(name = "WebsiteSettings.findByAutobiography", query = "SELECT w FROM WebsiteSettings w WHERE w.autobiography = :autobiography")
+        , @NamedQuery(name = "WebsiteSettings.findByIntroduceVideoUrl", query = "SELECT w FROM WebsiteSettings w WHERE w.introduceVideoUrl = :introduceVideoUrl")
+        , @NamedQuery(name = "WebsiteSettings.findByInsertDateTime", query = "SELECT w FROM WebsiteSettings w WHERE w.insertDateTime = :insertDateTime")
+        , @NamedQuery(name = "WebsiteSettings.findByLastUpdateDateTime", query = "SELECT w FROM WebsiteSettings w WHERE w.lastUpdateDateTime = :lastUpdateDateTime")})
 public class WebsiteSettings implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -86,13 +85,53 @@ public class WebsiteSettings implements Serializable {
     @Column(name = "author_name")
     private String author_name;
     @Size(max = 255)
-    @Column(name="about_img_path")
+    @Column(name = "about_img_path")
     private String aboutImgPath;
     @Size(max = 255)
-    @Column(name="contact_img_path")
+    @Column(name = "contact_img_path")
     private String contactImgPath;
+    @Size(min = 10, max = 2000)
+    private String facebookUrl;
+    @Size(min = 10, max = 2000)
+    private String instagramUrl;
+    @Size(min = 10, max = 2000)
+    private String youtubeUrl;
+    @Size(min = 10, max = 2000)
+    private String whatsappUrl;
 
     public WebsiteSettings() {
+    }
+
+    public String getFacebookUrl() {
+        return facebookUrl;
+    }
+
+    public void setFacebookUrl(String facebookUrl) {
+        this.facebookUrl = facebookUrl;
+    }
+
+    public String getInstagramUrl() {
+        return instagramUrl;
+    }
+
+    public void setInstagramUrl(String instagramUrl) {
+        this.instagramUrl = instagramUrl;
+    }
+
+    public String getYoutubeUrl() {
+        return youtubeUrl;
+    }
+
+    public void setYoutubeUrl(String youtubeUrl) {
+        this.youtubeUrl = youtubeUrl;
+    }
+
+    public String getWhatsappUrl() {
+        return whatsappUrl;
+    }
+
+    public void setWhatsappUrl(String whatsappUrl) {
+        this.whatsappUrl = whatsappUrl;
     }
 
     public WebsiteSettings(Integer id) {
@@ -205,28 +244,8 @@ public class WebsiteSettings implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof WebsiteSettings)) {
-            return false;
-        }
-        WebsiteSettings other = (WebsiteSettings) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public String toString() {
         return "com.bsptech.teachermanagement.entity.WebsiteSettings[ id=" + id + " ]";
     }
-    
+
 }
