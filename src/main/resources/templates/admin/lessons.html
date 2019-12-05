@@ -165,7 +165,6 @@ and open the template in the editor.
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Name</th>
                                 <th style="padding-left: 100px;padding-right: 100px;">About</th>
                                 <th>Thumbnail Path</th>
@@ -177,7 +176,6 @@ and open the template in the editor.
                         <tbody>
                             <tr th:each="lesson : ${lessons}">
 
-                                <td th:text="${lesson.id}"></td>
                                 <td th:text="${lesson.name}"></td>
                                 <td th:text="${lesson.about}"></td>
                                 <td th:text="${lesson.thumbnailPath}"></td>

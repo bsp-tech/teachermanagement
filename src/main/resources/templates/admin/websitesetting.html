@@ -41,10 +41,6 @@
                                   modelAttribute="admin">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="id">ID</label>
-                                        <input type="text" name="id" class="form-control"placeholder="ID" required="required"/>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="author_name">Author Name</label>
                                         <input type="text" name="author_name" class="form-control" placeholder="author_name" required="required"/>
                                     </div>
@@ -164,7 +160,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Author Name</th>
                                 <th style="padding-left: 140px;padding-right: 140px;">Autobiography</th>
                                 <th style="padding-left: 170px;padding-right: 170px;">Description</th>
@@ -181,7 +176,6 @@
                         </thead>
                         <tbody>
                             <tr th:each="setting : ${settings}">
-                                <td th:text="${setting.id}"></td>
                                 <td th:text="${setting.author_name}"></td>
                                 <td th:text="${setting.autobiography}"></td>
                                 <td th:text="${setting.description}"></td>

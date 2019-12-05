@@ -7,6 +7,7 @@ package com.bsptech.teachermanagement.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -33,8 +34,8 @@ public class Section implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -54,6 +55,14 @@ public class Section implements Serializable {
     @Size(max = 500)
     @Column(name = "about")
     private String about;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "insert_date_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date insertDateTime;
+    @Column(name = "last_update_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastUpdateTime;
     @OneToMany(mappedBy = "sectionId", fetch = FetchType.LAZY)
     private List<SectionFeedback> sectionFeedbackList;
     @OneToMany(mappedBy = "sectionId", fetch = FetchType.LAZY)
@@ -144,6 +153,23 @@ public class Section implements Serializable {
         this.threadFilesPath = threadFilesPath;
     }
 
+    public Date getInsertDateTime() {
+        return insertDateTime;
+    }
+
+    public void setInsertDateTime(Date insertDateTime) {
+        this.insertDateTime = insertDateTime;
+    }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+    
     @XmlTransient
     public List<SectionFeedback> getSectionFeedbackList() {
         return sectionFeedbackList;

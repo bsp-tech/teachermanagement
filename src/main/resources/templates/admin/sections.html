@@ -70,10 +70,6 @@ and open the template in the editor.
                                   modelAttribute="section">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="id">ID</label>
-                                        <input type="text" name="id" class="form-control"placeholder="ID" required="required"/>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="name">Name</label>
                                         <input type="text" name="name" class="form-control"placeholder="Name" required="required"/>
                                     </div>
@@ -188,12 +184,13 @@ and open the template in the editor.
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Name</th>
                                 <th style="padding-left: 100px;padding-right: 100px;">About</th>
                                 <th>Playlist URL</th>
                                 <th>Thread Files Path</th>
                                 <th>Thumbnail Path</th>
+                                <th>Insert Time</th>
+                                <th>Last Update Time</th>
                                 <th>Price</th>
                                 <th>Options</th>
                             </tr>
@@ -201,12 +198,13 @@ and open the template in the editor.
                         <tbody>
                             <tr th:each="section : ${sections}">
 
-                                <td th:text="${section.id}"></td>
                                 <td th:text="${section.name}"></td>
                                 <td th:text="${section.about}"></td>
                                 <td th:text="${section.playlistUrl}"></td>
                                 <td th:text="${section.threadFilesPath}"></td>
                                 <td th:text="${section.thumbnailPath}"></td>
+                                <td th:text="${section.insertDateTime}"></td>
+                                <td th:text="${section.lastUpdateTime}"></td>
                                 <td th:text="${section.price}"></td>
 
                                 <td>
