@@ -8,6 +8,7 @@ package com.bsptech.teachermanagement.controller.admin;
 import com.bsptech.teachermanagement.dao.SectionDataInter;
 import com.bsptech.teachermanagement.entity.Section;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,7 @@ public class AdminSectionController {
     @PostMapping(value = "/add")
     public ModelAndView add(@ModelAttribute("section") Section section) {
 
+        section.setInsertDateTime(new java.sql.Date(new Date().getTime()));
         sectionDataInter.save(section);
         return new ModelAndView("redirect:/admin/sections");
     }
@@ -98,6 +100,7 @@ public class AdminSectionController {
                 section.setPrice(price);
             }
 
+            section.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
             sectionDataInter.save(section);
 
         }

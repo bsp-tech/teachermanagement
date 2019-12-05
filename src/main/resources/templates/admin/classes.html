@@ -71,10 +71,6 @@ and open the template in the editor.
                                   modelAttribute="class">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="name">ID</label>
-                                        <input type="text" name="id" class="form-control"placeholder="ID" required="required"/>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="about">Name</label>
                                         <input type="text" name="name" class="form-control"placeholder="Name" required="required"/>
                                     </div>
@@ -155,10 +151,6 @@ and open the template in the editor.
                             <form action="/admin/classes/addClassLesson" method="POST"
                                   modelAttribute="classLesson">
                                 <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="about">ID</label>
-                                        <input type="text" name="id" class="form-control"placeholder="ID" required="required" />
-                                    </div>
                                     <div class="table-bordered table-responsive" th:object = "${lessons}">
                                         <table class="table">
                                             <tbody>
@@ -200,15 +192,13 @@ and open the template in the editor.
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
                                                     <th>Class</th>
-                                                    <th>Name</th>
+                                                    <th>Lesson</th>
                                                     <th>Delete</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr th:each="classLesson : ${classLessons}">
-                                                    <td th:text="${classLesson.id}"></td>
                                                     <td th:text="${classLesson.classId.name}"></td>
                                                     <td th:text="${classLesson.lessonId.name}"></td>
                                                     <td>
@@ -236,7 +226,6 @@ and open the template in the editor.
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Insert Time</th>
                                 <th>Last Update Time</th>
@@ -246,7 +235,6 @@ and open the template in the editor.
                         </thead>
                         <tbody>
                             <tr th:each="class : ${classes}">
-                                <td th:text="${class.id}"></td>
                                 <td th:text="${class.name}"></td>
                                 <td th:text="${class.insertDateTime}"></td>
                                 <td th:text="${class.lastUpdateDateTime}"></td>
