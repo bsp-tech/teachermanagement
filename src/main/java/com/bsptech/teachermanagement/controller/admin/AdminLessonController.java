@@ -6,7 +6,11 @@
 package com.bsptech.teachermanagement.controller.admin;
 
 import com.bsptech.teachermanagement.dao.LessonDataInter;
+import com.bsptech.teachermanagement.dao.LessonSectionDataInter;
+import com.bsptech.teachermanagement.dao.SectionDataInter;
 import com.bsptech.teachermanagement.entity.Lesson;
+import com.bsptech.teachermanagement.entity.LessonSection;
+import com.bsptech.teachermanagement.entity.Section;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -30,11 +34,21 @@ public class AdminLessonController {
     @Autowired
     private LessonDataInter lessonDataInter;
 
+    @Autowired
+    private SectionDataInter sectionDataInter;
+
+    @Autowired
+    private LessonSectionDataInter lessonSectionDataInter;
+
     @GetMapping
     public ModelAndView page(ModelAndView modelAndView) {
 
         Iterable<Lesson> lessons = lessonDataInter.findAll();
+        Iterable<Section> sections = sectionDataInter.findAll();
+        Iterable<LessonSection> lessonsection = lessonSectionDataInter.findAll();
         modelAndView.addObject("lessons", lessons);
+        modelAndView.addObject("sections", sections);
+        modelAndView.addObject("lessonsections", lessonsection);
         modelAndView.setViewName("admin/lessons");
 
         return modelAndView;
@@ -101,6 +115,20 @@ public class AdminLessonController {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/admin/lessons");
         return modelAndView;
+    }
+    
+    @PostMapping(value = "/addLessonSection")
+    public ModelAndView addLessonSection(@ModelAttribute("lessonSection") LessonSection lessonSection) {
+        
+        lessonSectionDataInter.save(lessonSection);
+        return new ModelAndView("redirect:/admin/lessons");
+    }
+    
+    @PostMapping(value = "/deleteLessonSection")
+    public ModelAndView deleteLessonSection(@RequestParam("id") Integer id) {
+        
+        lessonSectionDataInter.deleteById(id);
+        return new ModelAndView("redirect:/admin/lessons");
     }
 
 }

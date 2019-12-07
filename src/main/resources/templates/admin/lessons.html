@@ -30,6 +30,21 @@ and open the template in the editor.
                         document.getElementById("sendIdForUpdate").value = id;
                     }
                 </script>
+                <script>
+                    function setLessonIdForAddLessonSection(id) {
+                        document.getElementById("sendLessonIdForAddLessonSection").value = id;
+                    }
+                </script>
+                <script>
+                    function setSectionIdForAddLessonSection(id) {
+                        document.getElementById("sendSectionIdForAddLessonSection").value = id;
+                    }
+                </script>
+                <script>
+                    function setLessonSectionIdForDeleteLessonSection(id) {
+                        document.getElementById("sendLessonSectionIdForDeleteLessonSection").value = id;
+                    }
+                </script>
 
             </head>
             <body>
@@ -136,9 +151,96 @@ and open the template in the editor.
                     </div>
                 </div>
 
+                <div class="modal" tabindex="-1" role="dialog" id="addLessonSection">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add Section to selected Lesson</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/admin/lessons/addLessonSection" method="POST"
+                                  modelAttribute="lessonSection">
+                                <div class="modal-body">
+                                    <div class="table-bordered table-responsive" th:object = "${sections}">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr th:each="section : ${sections}">
+                                                    <td th:text="${section.name}"></td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary"
+                                                                th:onclick="|setSectionIdForAddLessonSection('${section.id}')|">
+                                                            Choose</button>    
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div> 
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" name="lessonId" id="sendLessonIdForAddLessonSection"/>
+                                    <input type="hidden" name="sectionId" id="sendSectionIdForAddLessonSection"/>
+                                    <input type="submit" class="btn btn-success" value="Add">
+                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal" tabindex="-1" role="dialog" id="showSections">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Sections of all lessons</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/admin/lessons/deleteLessonSection" method="POST">
+                                <div class="modal-body">
+                                    <div class="table-bordered table-responsive" th:obj="${lessonsections}">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Lesson</th>
+                                                    <th>Section</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="lessonsection : ${lessonsections}">
+                                                    <td th:text="${lessonsection.lessonId.name}"></td>
+                                                    <td th:text="${lessonsection.sectionId.name}"></td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-danger"
+                                                                th:onclick="|setLessonSectionIdForDeleteLessonSection('${lessonsection.id}')|">
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        </button>    
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div> 
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" name="id" id="sendLessonSectionIdForDeleteLessonSection"/>
+                                    <input type="submit" class="btn btn-success" value="Ok">
+                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
 
                 <br>
                 <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Lesson</button>
+                <br>
+                <br>
+                
+                <button type="button" style="margin-left: 15px;" class="btn btn-info" data-toggle="modal" data-target="#showSections">Show sections</button> 
                 <br>
                 <br>
 
@@ -170,6 +272,7 @@ and open the template in the editor.
                                 <th>Thumbnail Path</th>
                                 <th>Insert Time</th>
                                 <th>Last Update Time</th>
+                                <th>Lesson-Section</th>
                                 <th>Options</th>
                             </tr>
                         </thead>
@@ -181,7 +284,12 @@ and open the template in the editor.
                                 <td th:text="${lesson.thumbnailPath}"></td>
                                 <td th:text="${lesson.insertDateTime}"></td>
                                 <td th:text="${lesson.lastUpdateTime}"></td>
+                                
+                                <td>
+                                    <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#addLessonSection"
+                                            th:onclick="|setLessonIdForAddLessonSection('${lesson.id}')|">Add section</button> 
 
+                                </td>
                                 <td>
                                     <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
                                             th:onclick="|setIdForUpdate('${lesson.id}')|"
