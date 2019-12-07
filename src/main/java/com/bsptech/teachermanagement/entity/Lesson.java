@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -68,9 +69,9 @@ public class Lesson implements Serializable {
     @Column(name = "last_update_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateTime;
-    @OneToMany(mappedBy = "lessonId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "lessonId", fetch = FetchType.LAZY)
     private List<LessonSection> lessonSectionList;
-    @OneToMany(mappedBy = "lessonId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "lessonId", fetch = FetchType.LAZY)
     private List<ClassLesson> classLessonList;
 
     public Lesson() {

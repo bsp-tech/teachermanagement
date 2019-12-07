@@ -65,7 +65,7 @@ public class Section implements Serializable {
     private Date lastUpdateTime;
     @OneToMany(mappedBy = "sectionId", fetch = FetchType.LAZY)
     private List<SectionFeedback> sectionFeedbackList;
-    @OneToMany(mappedBy = "sectionId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "sectionId", fetch = FetchType.LAZY)
     private List<LessonSection> lessonSectionList;
     @Size(max = 255)
     @Column(name = "thread_files_path")
