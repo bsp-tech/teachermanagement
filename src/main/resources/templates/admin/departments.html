@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+    <html xmlns:th="http://www.thymeleaf.org">
+        <html>
+            <head>
+                <title>Departments</title>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                
+                <script>
+                    function setIdForUpdate(id) {
+                        document.getElementById("sendIdForUpdate").value = id;
+                    }
+                </script>
+                
+                <script>
+                    function setIdForDelete(id) {
+                        document.getElementById("sendIdForDelete").value = id;
+                    }
+                </script>
+                
+                
+            </head>
+            <body>
+                
+                <div th:replace="admin/header"></div>
+                
+                
+                <br>
+                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Department</button>
+                <br>
+                <br>
+                
+                
+                <div class="modal" tabindex="-1" role="dialog" id="insertModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/admin/departments/add" method="POST"
+                                  modelAttribute="department">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="about">Name</label>
+                                        <input type="text" name="name" class="form-control"placeholder="Name" required="required"/>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+
+                                    <input type="submit" class="btn btn-success" value="Add">
+                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal" tabindex="-1" role="dialog" id="updateModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Update</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/admin/departments/update" method="POST">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="about">Name</label>
+                                        <input type="text" name="name" class="form-control"placeholder="Name" />
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+
+                                    <input type="hidden" name="id" id="sendIdForUpdate">
+                                    <input type="submit" class="btn btn-success" value="Update">
+                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/admin/departments/delete" method="POST">
+
+                                <div class="modal-body">
+                                    <p>Are you sure to delete selected department?</p> 
+                                </div>
+                                <div class="modal-footer">
+
+                                    <input type="hidden" name="id" id="sendIdForDelete"/>
+                                    <input type="submit" class="btn btn-success" value="Delete">
+                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="table-bordered table-responsive" th:object = "${departments}">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Insert Time</th>
+                                <th>Last Update Time</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="department : ${departments}">
+                                <td th:text="${department.name}"></td>
+                                <td th:text="${department.insertDateTime}"></td>
+                                <td th:text="${department.lastUpdateDateTime}"></td>
+                                <td>
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
+                                            th:onclick="|setIdForUpdate('${department.id}')|"
+                                            >
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button> 
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                                            th:onclick="|setIdForDelete('${department.id}')|"  
+                                            >
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+
+                                    </button> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                
+            </body>
+        </html>
