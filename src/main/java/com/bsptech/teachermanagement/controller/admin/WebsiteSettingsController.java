@@ -32,11 +32,14 @@ public class WebsiteSettingsController {
         return modelAndView;
     }
 
-
     @PostMapping(value = "/add")
     public ModelAndView add(@ModelAttribute("admin") WebsiteSettings websiteSettings) {
-        websiteSettings.setInsertDateTime(new java.sql.Date(new Date().getTime()));
-        websiteSettingDataInter.save(websiteSettings);
+        long l = websiteSettingDataInter.count();
+        
+        if (l == 0) {
+            websiteSettings.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+            websiteSettingDataInter.save(websiteSettings);
+        }
 
         ModelAndView modelAndView = new ModelAndView("redirect:/admin/settings");
 
@@ -50,14 +53,22 @@ public class WebsiteSettingsController {
             @RequestParam(name = "aboutImgPath", required = false) String aboutImgPath,
             @RequestParam(name = "bannerPath", required = false) String bannerPath,
             @RequestParam(name = "contactImgPath", required = false) String contactImgPath,
-            @RequestParam(name = "introduceVideoUrl", required = false) String introduceVideoUrl
+            @RequestParam(name = "introduceVideoUrl", required = false) String introduceVideoUrl,
+            @RequestParam(name = "facebookUrl", required = false) String facebookUrl,
+            @RequestParam(name = "instagramUrl", required = false) String instagramUrl,
+            @RequestParam(name = "youtubeUrl", required = false) String youtubeUrl,
+            @RequestParam(name = "whatsappUrl", required = false) String whatsappUrl
     ) {
 
         if ((author_name != null && !author_name.isEmpty()) || (autobiography != null && !autobiography.isEmpty())
                 || (description != null && !description.isEmpty()) || (phone != null && !phone.isEmpty())
                 || (email != null && !email.isEmpty()) || (aboutImgPath != null && !aboutImgPath.isEmpty())
                 || (bannerPath != null && !bannerPath.isEmpty()) || (contactImgPath != null && !contactImgPath.isEmpty())
-                || (introduceVideoUrl != null && !introduceVideoUrl.isEmpty())) {
+                || (introduceVideoUrl != null && !introduceVideoUrl.isEmpty())
+                || (facebookUrl != null && !facebookUrl.isEmpty())
+                || (instagramUrl != null && !instagramUrl.isEmpty())
+                || (youtubeUrl != null && !youtubeUrl.isEmpty())
+                || (whatsappUrl != null && !whatsappUrl.isEmpty())) {
             Optional<WebsiteSettings> optional = websiteSettingDataInter.findById(id);
             WebsiteSettings settings = optional.get();
 
@@ -87,6 +98,18 @@ public class WebsiteSettingsController {
             }
             if (introduceVideoUrl != null && !introduceVideoUrl.isEmpty()) {
                 settings.setIntroduceVideoUrl(introduceVideoUrl);
+            }
+            if (facebookUrl != null && !facebookUrl.isEmpty()) {
+                settings.setFacebookUrl(facebookUrl);
+            }
+            if (instagramUrl != null && !instagramUrl.isEmpty()) {
+                settings.setInstagramUrl(instagramUrl);
+            }
+            if (youtubeUrl != null && !youtubeUrl.isEmpty()) {
+                settings.setYoutubeUrl(youtubeUrl);
+            }
+            if (whatsappUrl != null && !whatsappUrl.isEmpty()) {
+                settings.setWhatsappUrl(whatsappUrl);
             }
 
             settings.setLastUpdateDateTime(new java.sql.Date(new Date().getTime()));
