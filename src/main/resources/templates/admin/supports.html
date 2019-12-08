@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Supports</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div th:replace="admin/header"></div>
+
+<div class="table-bordered table-responsive" th:object = "${supports}">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Full name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Subject</th>
+            <th class="text-center">Message</th>
+            <th>Insert time</th>
+            <th>Solved time</th>
+            <th>Status</th>
+            <th></th>
+            <!--<th">Autobiography</th>
+            <th style="padding-left: 170px;padding-right: 170px;">Description</th>-->
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="s : ${supports}">
+            <td th:text="${s.getFullname()}"></td>
+            <td th:text="${s.getEmail()}"></td>
+            <td th:text="${s.getDepartmentId().getName()}"></td>
+            <td th:text="${s.getSubject()}"></td>
+            <td th:text="${s.getMessage()}"></td>
+            <td th:text="${s.getInsertDateTime()}"></td>
+            <td th:text="${s.getSolvedDateTime()}"></td>
+            <td th:text="${s.getStatusId().getStatus()}"></td>
+                <td>
+
+                <button th:if="${s.getStatusId().getId().toString() == '1'}" class="btn btn-success" disabled>
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                </button>
+                <a th:unless="${s.getStatusId().getId().toString() == '1'}" th:href="${'/admin/supports/'+s.getId()}">
+                    <button  class="btn btn-warning">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    </button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
