@@ -77,6 +77,22 @@
                                         <label for="introduceVideoUrl">Introduce Video Url</label>
                                         <input type="text" name="introduceVideoUrl" class="form-control" placeholder="introduce Video Url" required="required"/>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="facebookUrl">Facebook Url</label>
+                                        <input type="text" name="facebookUrl" class="form-control" placeholder="facebook Url" required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="instagramUrl">Instagram Url</label>
+                                        <input type="text" name="instagramUrl" class="form-control" placeholder="instagram Url" required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="youtubeUrl">Youtube Url</label>
+                                        <input type="text" name="youtubeUrl" class="form-control" placeholder="youtube Url" required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="whatsappUrl">Whatsapp Url</label>
+                                        <input type="text" name="whatsappUrl" class="form-control" placeholder="whatsapp Url" required="required"/>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
 
@@ -138,9 +154,25 @@
                                         <label for="introduceVideoUrl">Introduce Video Url</label>
                                         <input type="text" name="introduceVideoUrl" class="form-control" placeholder="introduce Video Url"/>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="facebookUrl">Facebook Url</label>
+                                        <input type="text" name="facebookUrl" class="form-control" placeholder="facebook Url" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="instagramUrl">Instagram Url</label>
+                                        <input type="text" name="instagramUrl" class="form-control" placeholder="instagram Url" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="youtubeUrl">Youtube Url</label>
+                                        <input type="text" name="youtubeUrl" class="form-control" placeholder="youtube Url" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="whatsappUrl">Whatsapp Url</label>
+                                        <input type="text" name="whatsappUrl" class="form-control" placeholder="whatsapp Url" />
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
-                                    
+
                                     <input type="hidden" name="id" id="sendIdForUpdate"/>
                                     <input type="submit" class="btn btn-success" value="Update">
                                     <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
@@ -169,6 +201,10 @@
                                 <th>Banner Path</th>
                                 <th>Contact Image Path</th>
                                 <th>Introduce Video Url</th>
+                                <th>Facebook Url</th>
+                                <th>Instagram Url</th>
+                                <th>Youtube Url</th>
+                                <th>Whatsapp Url</th>
                                 <th>Insert Time</th>
                                 <th>Last Update Time</th>
                                 <th>Options</th>
@@ -185,6 +221,10 @@
                                 <td th:text="${setting.bannerPath}"></td>
                                 <td th:text="${setting.contactImgPath}"></td>
                                 <td th:text="${setting.introduceVideoUrl}"></td>
+                                <td th:text="${setting.facebookUrl}"></td>
+                                <td th:text="${setting.instagramUrl}"></td>
+                                <td th:text="${setting.youtubeUrl}"></td>
+                                <td th:text="${setting.whatsappUrl}"></td>
                                 <td th:text="${setting.insertDateTime}"></td>
                                 <td th:text="${setting.lastUpdateDateTime}"></td>
                                 <td>
