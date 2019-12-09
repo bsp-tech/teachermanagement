@@ -194,6 +194,7 @@ and open the template in the editor.
                                 <th>Price</th>
                                 <th>Videos</th>
                                 <th>Options</th>
+                                <th>Files</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -210,6 +211,14 @@ and open the template in the editor.
                                 <td>
                                     <a class="btn btn-primary" th:number="${section.id}" th:href="${'/admin/videos/'+section.id}" role="button">Videos</a>
                                 </td>
+                                <td>
+                                    <a th:href = "${'/admin/files?sid='+section.getId()}">
+                                        <button class="btn btn-success">
+                                            Show files
+                                        </button>
+                                    </a>
+                                </td>
+
                                 <td>
                                     <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
                                             th:onclick="|setIdForUpdate('${section.id}')|"
