@@ -24,7 +24,7 @@ public class AdminFilesController {
     SectionDataInter sectionDataInter;
 
     @GetMapping
-    public ModelAndView files(ModelAndView modelAndView, @RequestParam(value = "sid",required = false) Integer id){
+    public ModelAndView files(ModelAndView modelAndView, @RequestParam(name = "sid",required = false) Integer id){
 
         List<File> files = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class AdminFilesController {
     }
 
     @PostMapping("/add")
-    public ModelAndView addFiles(ModelAndView modelAndView,@ModelAttribute("file") File file,
+    public ModelAndView addFile(ModelAndView modelAndView,@ModelAttribute("file") File file,
                                  @RequestParam(name = "sectionId") Integer id){
 
         Section section = sectionDataInter.findById(id).get();
@@ -55,26 +55,44 @@ public class AdminFilesController {
         modelAndView.setViewName("redirect:/admin/files");
         return modelAndView;
     }
-/*
-    @PostMapping("/add")
-    public ModelAndView addFiles(ModelAndView modelAndView,@RequestParam(name = "name") String name,
-                                 @RequestParam(name = "url") String url,
-                                 @RequestParam(name = "sectionId") Integer sectionId){
 
-        System.out.println(name+" "+url);
+    @PostMapping("/update")
+    public ModelAndView updateFile(ModelAndView modelAndView,
+                                   @RequestParam(name = "id") Integer id,
+                                   @RequestParam(name = "name") String name,
+                                   @RequestParam(name = "url") String url,
+                                   @RequestParam(name = "sectionId") Integer sectionId){
 
-        Section section = sectionDataInter.findById(sectionId).get();
+        if(id == null || sectionId == null){
+            modelAndView.setViewName("/admin/files?success=false");
+        } else {
+            File file = fileDataInter.findById(id).get();
+            Section section = sectionDataInter.findById(sectionId).get();
 
-        File file = new File();
+            file.setName(name);
+            file.setUrl(url);
+            file.setSectionId(section);
+            file.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
 
-        file.setId(3);
-        file.setName(name);
-        file.setUrl(url);
-        file.setSectionId(section);
-        file.setInsertDateTime(new java.sql.Date(new Date().getTime()));
-        fileDataInter.save(file);
-        modelAndView.setViewName("redirect:/admin/files");
+            fileDataInter.save(file);
+
+            modelAndView.setViewName("redirect:/admin/files");
+        }
+
         return modelAndView;
     }
-*/
+
+    @PostMapping("/delete")
+    public ModelAndView deleteFile(ModelAndView modelAndView,@RequestParam(name = "id") Integer id){
+
+        if(id == null){
+            modelAndView.setViewName("/admin/files?success=false");
+        } else {
+            File file = fileDataInter.findById(id).get();
+            fileDataInter.delete(file);
+            modelAndView.setViewName("redirect:/admin/files");
+        }
+
+        return modelAndView;
+    }
 }
