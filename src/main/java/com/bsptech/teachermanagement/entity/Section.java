@@ -70,7 +70,7 @@ public class Section implements Serializable {
     @Size(max = 255)
     @Column(name = "thread_files_path")
     private String threadFilesPath;
-    @OneToMany(mappedBy = "sectionId" , fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "sectionId" , fetch = FetchType.LAZY)
     private List<Video> videoId;
     @OneToMany(mappedBy = "sectionId" , fetch = FetchType.LAZY)
     private List<File>fileList;
