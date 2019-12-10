@@ -8,18 +8,7 @@ package com.bsptech.teachermanagement.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -36,8 +25,8 @@ public class FAQ implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -49,8 +38,6 @@ public class FAQ implements Serializable {
     @Size(min = 1, max = 2000)
     @Column(name = "content")
     private String content;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
@@ -58,7 +45,7 @@ public class FAQ implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
 
-    public FAQ(@NotNull Integer id, @NotNull @Size(min = 1, max = 255) String header, @NotNull @Size(min = 1, max = 2000) String content, @NotNull Date insertDateTime, Date lastUpdateDateTime) {
+    public FAQ(Integer id, @NotNull @Size(min = 1, max = 255) String header, @NotNull @Size(min = 1, max = 2000) String content, Date insertDateTime, Date lastUpdateDateTime) {
         this.id = id;
         this.header = header;
         this.content = content;
