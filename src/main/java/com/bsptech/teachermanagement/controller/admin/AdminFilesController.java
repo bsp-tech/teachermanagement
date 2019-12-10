@@ -48,7 +48,6 @@ public class AdminFilesController {
 
         Section section = sectionDataInter.findById(id).get();
 
-        file.setId(3);
         file.setInsertDateTime(new java.sql.Date(new Date().getTime()));
         file.setSectionId(section);
         fileDataInter.save(file);
