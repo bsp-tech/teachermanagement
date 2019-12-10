@@ -58,27 +58,20 @@ public class AdminFilesController {
 
     @PostMapping("/update")
     public ModelAndView updateFile(ModelAndView modelAndView,
-                                   @RequestParam(name = "id") Integer id,
-                                   @RequestParam(name = "name") String name,
-                                   @RequestParam(name = "url") String url,
+                                   @ModelAttribute("file") File f,
                                    @RequestParam(name = "sectionId") Integer sectionId){
 
-        if(id == null || sectionId == null){
-            modelAndView.setViewName("/admin/files?success=false");
-        } else {
-            File file = fileDataInter.findById(id).get();
-            Section section = sectionDataInter.findById(sectionId).get();
+        File file = fileDataInter.findById(f.getId()).get();
+        Section section = sectionDataInter.findById(sectionId).get();
 
-            file.setName(name);
-            file.setUrl(url);
-            file.setSectionId(section);
-            file.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
+        file.setName(f.getName());
+        file.setUrl(f.getUrl());
+        file.setSectionId(section);
+        file.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
 
-            fileDataInter.save(file);
+        fileDataInter.save(file);
 
-            modelAndView.setViewName("redirect:/admin/files");
-        }
-
+        modelAndView.setViewName("redirect:/admin/files");
         return modelAndView;
     }
 
