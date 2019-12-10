@@ -23,7 +23,6 @@ public class File implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -93,7 +92,7 @@ public class File implements Serializable {
         this.sectionId = sectionId;
     }
 
-    public File(@NotNull @Size(min = 1, max = 255) String name, @Size(max = 255) String url, Date insertDateTime, Date lastUpdateTime, Section sectionId) {
+    public File(@Size(min = 1, max = 255) String name, @Size(max = 255) String url, Date insertDateTime, Date lastUpdateTime, Section sectionId) {
         this.name = name;
         this.url = url;
         this.insertDateTime = insertDateTime;
