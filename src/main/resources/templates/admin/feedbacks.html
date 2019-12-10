@@ -11,7 +11,7 @@ and open the template in the editor.
                 <meta charset="UTF-8">
                 <meta content="width=device-width, initial-scale=1.0" name="viewport">
                 <meta content="ie=edge" http-equiv="X-UA-Compatible">
-                <title>Videos</title>
+                <title>Feedbacks</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -28,17 +28,17 @@ and open the template in the editor.
                         document.getElementById("sendIdForUpdate").value = id;
                     }
                 </script>
-                
             </head>
             <body>
-
+                
+                
                 <div th:replace="admin/header"></div>
-
+                
                 <br>
-                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Video</button>
+                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Feedback</button>
                 <br>
                 <br>
-
+                
                 <div class="modal" tabindex="-1" role="dialog" id="insertModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -48,27 +48,15 @@ and open the template in the editor.
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="/admin/videos/add" method="POST">
+                            <form action="/admin/feedbacks/add" method="POST">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="about">Header</label>
-                                        <input type="text" name="header" class="form-control"placeholder="header" required="required"/>
+                                        <label for="authorName">Author Name</label>
+                                        <input type="text" name="authorName" class="form-control"placeholder="authorName" required="required"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="about">Url</label>
-                                        <input type="text" name="url" class="form-control"placeholder="url" required="required"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sectionId">Section</label>
-                                        <select class="custom-select custom-select-sm" name="sectionId" required="required">
-                                            <option><span></span></option>
-                                            <div th:each="section:${sections}">
-
-                                                <option th:value="${section.id}"><span th:text="${section.name}"></span></option>
-
-                                            </div>
-
-                                        </select>
+                                        <label for="content">Content</label>
+                                        <input type="text" name="content" class="form-control"placeholder="content" required="required"/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -90,29 +78,16 @@ and open the template in the editor.
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="/admin/videos/update" method="POST">
+                            <form action="/admin/feedbacks/update" method="POST">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="about">Header</label>
-                                        <input type="text" name="header" class="form-control"placeholder="header"/>
+                                        <label for="authorName">Author Name</label>
+                                        <input type="text" name="authorName" class="form-control"placeholder="authorName"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="about">Url</label>
-                                        <input type="text" name="url" class="form-control"placeholder="url"/>
+                                        <label for="content">Content</label>
+                                        <input type="text" name="content" class="form-control"placeholder="content"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="sectionId">Section</label>
-                                        <select class="custom-select custom-select-sm" name="sectionId">
-                                            <option><span></span></option>
-                                            <div th:each="section:${sections}">
-
-                                                <option th:value="${section.id}"><span th:text="${section.name}"></span></option>
-
-                                            </div>
-
-                                        </select>
-                                    </div>
-
                                 </div>
                                 <div class="modal-footer">
 
@@ -124,7 +99,7 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -134,10 +109,10 @@ and open the template in the editor.
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="/admin/videos/delete" method="POST">
+                            <form action="/admin/feedbacks/delete" method="POST">
 
                                 <div class="modal-body">
-                                    <p>Are you sure to delete selected video?</p> 
+                                    <p>Are you sure to delete selected feedback?</p> 
                                 </div>
                                 <div class="modal-footer">
 
@@ -150,38 +125,31 @@ and open the template in the editor.
                     </div>
                 </div>
                 
-                <div class="table-bordered table-responsive" th:object = "${videos}">
+                <div class="table-bordered table-responsive" th:object = "${feedbacks}">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Header</th>
-                                <th>Url</th>
-                                <th>Section</th>
+                                <th>Author Name</th>
+                                <th style="padding-left: 140px;padding-right: 140px;">Content</th>
                                 <th>Insert Time</th>
                                 <th>Last Update Time</th>
-                                <th>Preview</th>
                                 <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="video : ${videos}">
-                                <td th:text="${video.header}"></td>
-                                <td th:text="${video.url}"></td>
-                                <td th:text="${video.sectionId.name}"></td>
-                                <td th:text="${video.insertDateTime}"></td>
-                                <td th:text="${video.lastUpdateTime}"></td>
-                                <td>
-                                    
-                                    <a class="btn btn-primary" th:href="${video.url}" target="blank" role="button">Preview</a>
-                                </td>
+                            <tr th:each="feedback : ${feedbacks}">
+                                <td th:text="${feedback.authorName}"></td>
+                                <td th:text="${feedback.content}"></td>
+                                <td th:text="${feedback.insertDateTime}"></td>
+                                <td th:text="${feedback.lastUpdateTime}"></td>
                                 <td>
                                     <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
-                                            th:onclick="|setIdForUpdate('${video.id}')|"
+                                            th:onclick="|setIdForUpdate('${feedback.id}')|"
                                             >
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </button> 
                                     <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
-                                            th:onclick="|setIdForDelete('${video.id}')|"  
+                                            th:onclick="|setIdForDelete('${feedback.id}')|"  
                                             >
                                         <i class="fa fa-trash" aria-hidden="true"></i>
 
@@ -191,7 +159,5 @@ and open the template in the editor.
                         </tbody>
                     </table>
                 </div>
-
-
             </body>
         </html>
