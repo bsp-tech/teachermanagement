@@ -35,26 +35,23 @@ public class AdminVideoController {
     private SectionDataInter sectionDataInter;
 
     @GetMapping
-    public ModelAndView page(ModelAndView modelAndView) {
+    public ModelAndView page(@RequestParam(value = "sectionId", required = false) Integer id, ModelAndView modelAndView) {
 
-        modelAndView.addObject("sections", sectionDataInter.findAll());
-        modelAndView.addObject("videos", videoDataInter.findAll());
+        if (id != null) {
+            Section section = sectionDataInter.findById(id).get();
+
+            List<Video> videos = section.getVideoId();
+            modelAndView.addObject("videos", videos);
+        } else {
+            modelAndView.addObject("sections", sectionDataInter.findAll());
+            modelAndView.addObject("videos", videoDataInter.findAll());
+        }
+
         modelAndView.setViewName("admin/videos");
         return modelAndView;
 
     }
-    
-    @GetMapping(value = "/{id}")
-    public ModelAndView getVideosBySectionId(@PathVariable("id") Integer id,ModelAndView modelAndView) {
-        Section section = sectionDataInter.findById(id).get();
-        
-        List<Video> videos =  section.getVideoId();
-        modelAndView.addObject("videos", videos);
-        modelAndView.setViewName("admin/videos");
-        return modelAndView;
 
-    }
-    
 
     @PostMapping(value = "/add")
     public ModelAndView add(@RequestParam(name = "header") String header,
@@ -73,29 +70,28 @@ public class AdminVideoController {
     }
 
     @PostMapping(value = "/update")
-    public ModelAndView update(@RequestParam("id") Integer id,@RequestParam(name = "header", required = false) String header,
+    public ModelAndView update(@RequestParam("id") Integer id, @RequestParam(name = "header", required = false) String header,
             @RequestParam(name = "url", required = false) String url,
             @RequestParam(name = "sectionId", required = false) Section sectionId) {
 
         if ((header != null && !header.isEmpty()) || (url != null && !url.isEmpty()) || (sectionId != null)) {
             Video video = videoDataInter.findById(id).get();
-            
-            if(header != null && !header.isEmpty()){
+
+            if (header != null && !header.isEmpty()) {
                 video.setHeader(header);
             }
-            if(url != null && !url.isEmpty()){
+            if (url != null && !url.isEmpty()) {
                 video.setUrl(url);
             }
-            if(sectionId!=null){
+            if (sectionId != null) {
                 video.setSectionId(sectionId);
             }
-            
+
             video.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
             videoDataInter.save(video);
 
         }
 
-        
         return new ModelAndView("redirect:/admin/videos");
 
     }

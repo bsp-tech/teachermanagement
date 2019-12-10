@@ -209,7 +209,7 @@ and open the template in the editor.
                                 <td th:text="${section.lastUpdateTime}"></td>
                                 <td th:text="${section.price}"></td>
                                 <td>
-                                    <a class="btn btn-primary" th:number="${section.id}" th:href="${'/admin/videos/'+section.id}" role="button">Videos</a>
+                                    <a class="btn btn-primary" th:number="${section.id}" th:href="${'/admin/videos?sectionId='+section.id}" role="button">Videos</a>
                                 </td>
                                 <td>
                                     <a th:href = "${'/admin/files?sid='+section.getId()}">
