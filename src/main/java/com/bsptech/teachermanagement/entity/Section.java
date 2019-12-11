@@ -63,7 +63,7 @@ public class Section implements Serializable {
     @Column(name = "last_update_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateTime;
-    @OneToMany(mappedBy = "sectionId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "sectionId", fetch = FetchType.LAZY)
     private List<SectionFeedback> sectionFeedbackList;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "sectionId", fetch = FetchType.LAZY)
     private List<LessonSection> lessonSectionList;
@@ -72,7 +72,7 @@ public class Section implements Serializable {
     private String threadFilesPath;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "sectionId" , fetch = FetchType.LAZY)
     private List<Video> videoId;
-    @OneToMany(mappedBy = "sectionId" , fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "sectionId" , fetch = FetchType.LAZY)
     private List<File>fileList;
 
     public Section() {

@@ -58,6 +58,9 @@ public class SectionFeedback implements Serializable {
     @Size(max = 255)
     @Column(name = "author_name")
     private String authorName;
+    @Column(name = "last_update_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastUpdateTime;
     @JoinColumn(name = "section_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Section sectionId;
@@ -98,6 +101,15 @@ public class SectionFeedback implements Serializable {
         this.insertDateTime = insertDateTime;
     }
 
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
+
+    
     public String getAuthorName() {
         return authorName;
     }

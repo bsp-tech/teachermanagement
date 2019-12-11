@@ -11,13 +11,12 @@ and open the template in the editor.
                 <meta charset="UTF-8">
                 <meta content="width=device-width, initial-scale=1.0" name="viewport">
                 <meta content="ie=edge" http-equiv="X-UA-Compatible">
-                <title>Feedbacks</title>
+                <title>Section Feedbacks</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-                
                 <script>
                     function setIdForDelete(id) {
                         document.getElementById("sendIdForDelete").value = id;
@@ -30,16 +29,15 @@ and open the template in the editor.
                 </script>
             </head>
             <body>
-                
-                
+
                 <div th:replace="admin/header"></div>
                 
                 <br>
-                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Feedback</button>
+                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Section Feedback</button>
                 <br>
                 <br>
                 
-                <div class="modal" tabindex="-1" role="dialog" id="insertModal">
+                 <div class="modal" tabindex="-1" role="dialog" id="insertModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -48,7 +46,7 @@ and open the template in the editor.
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="/admin/feedbacks/add" method="POST">
+                            <form action="/admin/sectionfeedbacks/add" method="POST">
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="authorName">Author Name</label>
@@ -57,6 +55,18 @@ and open the template in the editor.
                                     <div class="form-group">
                                         <label for="content">Content</label>
                                         <input type="text" name="content" class="form-control"placeholder="content" required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sectionId">Section</label>
+                                        <select class="custom-select custom-select-sm" name="sectionId" required="required">
+                                            <option><span></span></option>
+                                            <div th:each="section:${sections}">
+
+                                                <option th:value="${section.id}"><span th:text="${section.name}"></span></option>
+
+                                            </div>
+
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -78,7 +88,7 @@ and open the template in the editor.
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="/admin/feedbacks/update" method="POST">
+                            <form action="/admin/sectionfeedbacks/update" method="POST">
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="authorName">Author Name</label>
@@ -87,6 +97,18 @@ and open the template in the editor.
                                     <div class="form-group">
                                         <label for="content">Content</label>
                                         <input type="text" name="content" class="form-control"placeholder="content"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sectionId">Section</label>
+                                        <select class="custom-select custom-select-sm" name="sectionId">
+                                            <option><span></span></option>
+                                            <div th:each="section:${sections}">
+
+                                                <option th:value="${section.id}"><span th:text="${section.name}"></span></option>
+
+                                            </div>
+
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -100,6 +122,7 @@ and open the template in the editor.
                     </div>
                 </div>
                 
+                
                 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -109,10 +132,10 @@ and open the template in the editor.
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="/admin/feedbacks/delete" method="POST">
+                            <form action="/admin/sectionfeedbacks/delete" method="POST">
 
                                 <div class="modal-body">
-                                    <p>Are you sure to delete selected feedback?</p> 
+                                    <p>Are you sure to delete selected section feedback?</p> 
                                 </div>
                                 <div class="modal-footer">
 
@@ -125,31 +148,34 @@ and open the template in the editor.
                     </div>
                 </div>
                 
-                <div class="table-bordered table-responsive" th:object = "${feedbacks}">
+                
+                <div class="table-bordered table-responsive" th:object = "${sectionfeedbacks}">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>Author Name</th>
                                 <th class="text-center">Content</th>
+                                <th>Section</th>
                                 <th>Insert Time</th>
                                 <th>Last Update Time</th>
                                 <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="feedback : ${feedbacks}">
-                                <td th:text="${feedback.authorName}"></td>
-                                <td th:text="${feedback.content}"></td>
-                                <td th:text="${feedback.insertDateTime}"></td>
-                                <td th:text="${feedback.lastUpdateTime}"></td>
+                            <tr th:each="sectionfeedback : ${sectionfeedbacks}">
+                                <td th:text="${sectionfeedback.authorName}"></td>
+                                <td th:text="${sectionfeedback.content}"></td>
+                                <td th:text="${sectionfeedback.sectionId.name}"></td>
+                                <td th:text="${sectionfeedback.insertDateTime}"></td>
+                                <td th:text="${sectionfeedback.lastUpdateTime}"></td>
                                 <td>
                                     <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
-                                            th:onclick="|setIdForUpdate('${feedback.id}')|"
+                                            th:onclick="|setIdForUpdate('${sectionfeedback.id}')|"
                                             >
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </button> 
                                     <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
-                                            th:onclick="|setIdForDelete('${feedback.id}')|"  
+                                            th:onclick="|setIdForDelete('${sectionfeedback.id}')|"  
                                             >
                                         <i class="fa fa-trash" aria-hidden="true"></i>
 
