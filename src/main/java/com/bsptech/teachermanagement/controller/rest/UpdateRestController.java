@@ -1,7 +1,9 @@
 package com.bsptech.teachermanagement.controller.rest;
 
 import com.bsptech.teachermanagement.dao.FAQDataInter;
+import com.bsptech.teachermanagement.dao.FileDataInter;
 import com.bsptech.teachermanagement.entity.FAQ;
+import com.bsptech.teachermanagement.entity.File;
 import com.bsptech.teachermanagement.entity.Post;
 import com.bsptech.teachermanagement.service.inter.PostServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class UpdateRestController {
     @Autowired
     FAQDataInter faqDataInter;
 
+    @Autowired
+    FileDataInter fileDataInter;
+
     @RequestMapping("/blog/{id}")
     public Map<String, String> getPostDetails(@PathVariable("id") Integer id) {
         Post post = postServiceInter.findById(id);
@@ -38,6 +43,16 @@ public class UpdateRestController {
         Map<String, String> data = new HashMap<>();
         data.put("header",faq.getHeader());
         data.put("content",faq.getContent());
+        return data;
+    }
+
+    @RequestMapping("/file/{id}")
+    public Map<String, Object> getFileDetails(@PathVariable("id") Integer id){
+        File file = fileDataInter.findById(id).get();
+        Map<String,Object> data = new HashMap<>();
+        data.put("name",file.getName());
+        data.put("url",file.getUrl());
+        data.put("sectionId",file.getSectionId().getId());
         return data;
     }
 }
