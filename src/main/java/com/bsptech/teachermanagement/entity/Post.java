@@ -13,19 +13,18 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
  * @author Goshgar
  */
 @Entity
 @Table(name = "post")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p")
-    , @NamedQuery(name = "Post.findById", query = "SELECT p FROM Post p WHERE p.id = :id")
-    , @NamedQuery(name = "Post.findByTitle", query = "SELECT p FROM Post p WHERE p.title = :title")
-    , @NamedQuery(name = "Post.findByApproved", query = "SELECT p FROM Post p WHERE p.approved = :approved")
-    , @NamedQuery(name = "Post.findByInsertDateTime", query = "SELECT p FROM Post p WHERE p.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "Post.findByLastUpdateTime", query = "SELECT p FROM Post p WHERE p.lastUpdateTime = :lastUpdateTime")})
+        @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p")
+        , @NamedQuery(name = "Post.findById", query = "SELECT p FROM Post p WHERE p.id = :id")
+        , @NamedQuery(name = "Post.findByTitle", query = "SELECT p FROM Post p WHERE p.title = :title")
+        , @NamedQuery(name = "Post.findByApproved", query = "SELECT p FROM Post p WHERE p.approved = :approved")
+        , @NamedQuery(name = "Post.findByInsertDateTime", query = "SELECT p FROM Post p WHERE p.insertDateTime = :insertDateTime")
+        , @NamedQuery(name = "Post.findByLastUpdateTime", query = "SELECT p FROM Post p WHERE p.lastUpdateTime = :lastUpdateTime")})
 public class Post implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,9 +60,7 @@ public class Post implements Serializable {
     @NotNull
     @Column(name = "thumbnail_path")
     private String thumbnailPath;
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private User userId;
+
 
     public Post() {
     }
@@ -72,14 +69,13 @@ public class Post implements Serializable {
         this.id = id;
     }
 
-    public Post(String title,  String content, short approved, Date insertDateTime, Date lastUpdateTime, String thumbnailPath, User userId) {
+    public Post(String title, String content, short approved, Date insertDateTime, Date lastUpdateTime, String thumbnailPath) {
         this.title = title;
         this.content = content;
         this.approved = approved;
         this.insertDateTime = insertDateTime;
         this.lastUpdateTime = lastUpdateTime;
         this.thumbnailPath = thumbnailPath;
-        this.userId = userId;
     }
 
     public Integer getId() {
@@ -139,16 +135,6 @@ public class Post implements Serializable {
         this.thumbnailPath = thumbnailPath;
     }
 
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
-    }
-
-
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -173,5 +159,5 @@ public class Post implements Serializable {
     public String toString() {
         return "com.bsptech.teachermanagement.entity.Post[ id=" + id + " ]";
     }
-    
+
 }
