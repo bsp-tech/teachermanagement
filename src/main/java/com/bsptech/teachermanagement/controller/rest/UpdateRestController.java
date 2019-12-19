@@ -1,9 +1,6 @@
 package com.bsptech.teachermanagement.controller.rest;
 
-import com.bsptech.teachermanagement.dao.FAQDataInter;
-import com.bsptech.teachermanagement.dao.FeedbackDataInter;
-import com.bsptech.teachermanagement.dao.FileDataInter;
-import com.bsptech.teachermanagement.dao.VideoDataInter;
+import com.bsptech.teachermanagement.dao.*;
 import com.bsptech.teachermanagement.entity.*;
 import com.bsptech.teachermanagement.service.inter.PostServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +28,9 @@ public class UpdateRestController {
 
     @Autowired
     FeedbackDataInter feedbackDataInter;
+
+    @Autowired
+    SectionFeedbackDataInter sectionFeedbackDataInter;
 
     @RequestMapping("/blog/{id}")
     public Map<String, String> getPostDetails(@PathVariable("id") Integer id) {
@@ -78,6 +78,16 @@ public class UpdateRestController {
         Map<String , String> data = new HashMap<>();
         data.put("authorName", feedback.getAuthorName());
         data.put("content",feedback.getContent());
+        return data;
+    }
+
+    @RequestMapping("/sectionfeedback/{id}")
+    public Map<String, Object> getSectionFeedbackDetails(@PathVariable("id") Integer id){
+        SectionFeedback sectionFeedback = sectionFeedbackDataInter.findById(id).get();
+        Map<String, Object> data = new HashMap<>();
+        data.put("authorName",sectionFeedback.getAuthorName());
+        data.put("content",sectionFeedback.getContent());
+        data.put("sectionId",sectionFeedback.getSectionId().getId());
         return data;
     }
 }
