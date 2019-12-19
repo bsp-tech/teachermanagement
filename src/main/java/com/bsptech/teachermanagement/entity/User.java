@@ -85,8 +85,6 @@ public class User implements Serializable {
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.LAZY)
-    private List<Post> postList;
 
     public User() {
     }
@@ -188,14 +186,6 @@ public class User implements Serializable {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
-    @XmlTransient
-    public List<Post> getPostList() {
-        return postList;
-    }
-
-    public void setPostList(List<Post> postList) {
-        this.postList = postList;
-    }
 
     @Override
     public int hashCode() {
