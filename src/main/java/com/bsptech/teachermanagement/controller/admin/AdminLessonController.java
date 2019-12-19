@@ -81,29 +81,17 @@ public class AdminLessonController {
     }
 
     @PostMapping(value = "/update")
-    public ModelAndView update(@RequestParam(name = "id") Integer id,
-            @RequestParam(name = "name", required = false) String name,
-            @RequestParam(name = "about", required = false) String about,
-            @RequestParam(name = "thumbnailPath", required = false) String thumbnailPath) {
+    public ModelAndView update(@ModelAttribute("updateLesson") Lesson l, @RequestParam(name = "id") Integer id
+    ) {
 
-        if ((name != null && !name.isEmpty() || (about != null && !about.isEmpty()) || (thumbnailPath != null && !thumbnailPath.isEmpty()))) {
-            Optional<Lesson> result = lessonDataInter.findById(id);
-            Lesson lesson = result.get();
+        Lesson lesson = lessonDataInter.findById(id).get();
+        lesson.setName(l.getName());
+        lesson.setAbout(l.getAbout());
+        lesson.setThumbnailPath(l.getThumbnailPath());
+        
+        lesson.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
 
-            if (name != null && !name.isEmpty()) {
-                lesson.setName(name);
-            }
-            if (about != null && !about.isEmpty()) {
-                lesson.setAbout(about);
-            }
-            if (thumbnailPath != null && !thumbnailPath.isEmpty()) {
-                lesson.setThumbnailPath(thumbnailPath);
-            }
-
-            lesson.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
-
-            lessonDataInter.save(lesson);
-        }
+        lessonDataInter.save(lesson);
 
         ModelAndView modelAndView = new ModelAndView("redirect:/admin/lessons");
         return modelAndView;
@@ -116,17 +104,17 @@ public class AdminLessonController {
         ModelAndView modelAndView = new ModelAndView("redirect:/admin/lessons");
         return modelAndView;
     }
-    
+
     @PostMapping(value = "/addLessonSection")
     public ModelAndView addLessonSection(@ModelAttribute("lessonSection") LessonSection lessonSection) {
-        
+
         lessonSectionDataInter.save(lessonSection);
         return new ModelAndView("redirect:/admin/lessons");
     }
-    
+
     @PostMapping(value = "/deleteLessonSection")
     public ModelAndView deleteLessonSection(@RequestParam("id") Integer id) {
-        
+
         lessonSectionDataInter.deleteById(id);
         return new ModelAndView("redirect:/admin/lessons");
     }

@@ -17,7 +17,7 @@ and open the template in the editor.
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-                
+
                 <script>
                     function setIdForDelete(id) {
                         document.getElementById("sendIdForDelete").value = id;
@@ -30,14 +30,14 @@ and open the template in the editor.
                 </script>
             </head>
             <body>
-                
-                
+
+
                 <div th:replace="admin/header"></div>
-                
-                <br>
-                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Feedback</button>
-                <br>
-                <br>
+
+
+                <div>
+                    <button type="button" style="margin: 10px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Feedback</button>
+                </div>
                 
                 <div class="modal" tabindex="-1" role="dialog" id="insertModal">
                     <div class="modal-dialog" role="document">
@@ -68,7 +68,7 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal" tabindex="-1" role="dialog" id="updateModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -99,7 +99,7 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -124,7 +124,7 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="table-bordered table-responsive" th:object = "${feedbacks}">
                     <table class="table">
                         <thead>
