@@ -43,13 +43,9 @@ public class AdminFilesController {
     }
 
     @PostMapping("/add")
-    public ModelAndView addFile(ModelAndView modelAndView,@ModelAttribute("file") File file,
-                                 @RequestParam(name = "sectionId") Integer id){
-
-        Section section = sectionDataInter.findById(id).get();
+    public ModelAndView addFile(ModelAndView modelAndView,@ModelAttribute("file") File file){
 
         file.setInsertDateTime(new java.sql.Date(new Date().getTime()));
-        file.setSectionId(section);
         fileDataInter.save(file);
         modelAndView.setViewName("redirect:/admin/files");
         return modelAndView;
@@ -57,15 +53,13 @@ public class AdminFilesController {
 
     @PostMapping("/update")
     public ModelAndView updateFile(ModelAndView modelAndView,
-                                   @ModelAttribute("file") File f,
-                                   @RequestParam(name = "sectionId") Integer sectionId){
+                                   @ModelAttribute("file") File f){
 
         File file = fileDataInter.findById(f.getId()).get();
-        Section section = sectionDataInter.findById(sectionId).get();
 
         file.setName(f.getName());
         file.setUrl(f.getUrl());
-        file.setSectionId(section);
+        file.setSectionId(f.getSectionId());
         file.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
 
         fileDataInter.save(file);

@@ -51,15 +51,9 @@ public class AdminVideoController {
 
 
     @PostMapping(value = "/add")
-    public ModelAndView add(@RequestParam(name = "header") String header,
-            @RequestParam(name = "url") String url, @RequestParam(name = "sectionId") Section sectionId) {
+    public ModelAndView add(@ModelAttribute("video") Video video) {
 
-        Video video = new Video();
-        video.setHeader(header);
-        video.setUrl(url);
         video.setInsertDateTime(new java.sql.Date(new Date().getTime()));
-        video.setSectionId(sectionId);
-
         videoDataInter.save(video);
 
         return new ModelAndView("redirect:/admin/videos");
@@ -68,15 +62,13 @@ public class AdminVideoController {
 
     @PostMapping(value = "/update")
     public ModelAndView update(ModelAndView modelAndView,
-                               @ModelAttribute("video") Video v,
-                               @RequestParam(name = "sectionId") Integer sectionId) {
+                               @ModelAttribute("video") Video v) {
 
         Video video = videoDataInter.findById(v.getId()).get();
-        Section section = sectionDataInter.findById(sectionId).get();
 
         video.setHeader(v.getHeader());
         video.setUrl(v.getUrl());
-        video.setSectionId(section);
+        video.setSectionId(v.getSectionId());
         video.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
 
         videoDataInter.save(video);

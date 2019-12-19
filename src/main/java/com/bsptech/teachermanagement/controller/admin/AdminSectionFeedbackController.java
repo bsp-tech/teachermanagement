@@ -48,12 +48,7 @@ public class AdminSectionFeedbackController {
     }
 
     @PostMapping("/add")
-    public ModelAndView add(@ModelAttribute("sectionFeedback") SectionFeedback sf) {
-
-        SectionFeedback sectionFeedback = new SectionFeedback();
-        sectionFeedback.setAuthorName(sf.getAuthorName());
-        sectionFeedback.setContent(sf.getContent());
-        sectionFeedback.setSectionId(sf.getSectionId());
+    public ModelAndView add(@ModelAttribute("sectionFeedback") SectionFeedback sectionFeedback) {
         sectionFeedback.setInsertDateTime(new java.sql.Date(new Date().getTime()));
 
         sectionFeedbackDataInter.save(sectionFeedback);
