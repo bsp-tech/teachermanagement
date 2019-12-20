@@ -13,10 +13,7 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -51,13 +48,7 @@ public class AdminSectionFeedbackController {
     }
 
     @PostMapping("/add")
-    public ModelAndView add(@RequestParam(value = "authorName") String authorName,
-            @RequestParam(value = "content") String content, @RequestParam(value = "sectionId") Section id) {
-
-        SectionFeedback sectionFeedback = new SectionFeedback();
-        sectionFeedback.setAuthorName(authorName);
-        sectionFeedback.setContent(content);
-        sectionFeedback.setSectionId(id);
+    public ModelAndView add(@ModelAttribute("sectionFeedback") SectionFeedback sectionFeedback) {
         sectionFeedback.setInsertDateTime(new java.sql.Date(new Date().getTime()));
 
         sectionFeedbackDataInter.save(sectionFeedback);
@@ -66,29 +57,14 @@ public class AdminSectionFeedbackController {
     }
 
     @PostMapping("/update")
-    public ModelAndView update(@RequestParam(value = "id") Integer id, @RequestParam(value = "authorName", required = false) String authorName,
-            @RequestParam(value = "content", required = false) String content, @RequestParam(value = "sectionId", required = false) Section sectionId) {
+    public ModelAndView update(@ModelAttribute("sectionfeedback") SectionFeedback sf) {
+        SectionFeedback sectionFeedback = sectionFeedbackDataInter.findById(sf.getId()).get();
+        sectionFeedback.setAuthorName(sf.getAuthorName());
+        sectionFeedback.setContent(sf.getContent());
+        sectionFeedback.setSectionId(sf.getSectionId());
 
-        if ((authorName != null && !authorName.isEmpty()) || (content != null && !content.isEmpty())
-                || (sectionId != null)) {
-
-            SectionFeedback sectionFeedback = sectionFeedbackDataInter.findById(id).get();
-
-            if (authorName != null && !authorName.isEmpty()) {
-                sectionFeedback.setAuthorName(authorName);
-            }
-            if (content != null && !content.isEmpty()) {
-                sectionFeedback.setContent(content);
-
-            }
-            if (sectionId != null) {
-                sectionFeedback.setSectionId(sectionId);
-            }
-
-            sectionFeedback.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
-            sectionFeedbackDataInter.save(sectionFeedback);
-
-        }
+        sectionFeedback.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
+        sectionFeedbackDataInter.save(sectionFeedback);
         
         return new ModelAndView("redirect:/admin/sectionfeedbacks");
     }

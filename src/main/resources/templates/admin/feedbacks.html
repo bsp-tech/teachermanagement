@@ -20,12 +20,20 @@ and open the template in the editor.
 
                 <script>
                     function setIdForDelete(id) {
-                        document.getElementById("sendIdForDelete").value = id;
+                        document.getElementById("feedbackIdForDelete").value = id;
                     }
                 </script>
                 <script>
                     function setIdForUpdate(id) {
-                        document.getElementById("sendIdForUpdate").value = id;
+                        document.getElementById("feedbackIdForUpdate").value = id;
+                        $.ajax({
+                            url: "/getData/feedback/" + id,
+                            type: 'GET',
+                            success: function (res) {
+                                $("#updateAuthorName").val(res.authorName)
+                                $("#updateContent").val(res.content);
+                            }
+                        });
                     }
                 </script>
             </head>
@@ -52,11 +60,11 @@ and open the template in the editor.
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="authorName">Author Name</label>
-                                        <input type="text" name="authorName" class="form-control"placeholder="authorName" required="required"/>
+                                        <input type="text" name="authorName" class="form-control" placeholder="Author name" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="content">Content</label>
-                                        <input type="text" name="content" class="form-control"placeholder="content" required="required"/>
+                                        <input type="text" name="content" class="form-control" placeholder="Content" required="required"/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -78,20 +86,20 @@ and open the template in the editor.
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="/admin/feedbacks/update" method="POST">
+                            <form action="/admin/feedbacks/update" method="POST" modelAttribute = "feedback">
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="authorName">Author Name</label>
-                                        <input type="text" name="authorName" class="form-control"placeholder="authorName"/>
+                                        <input type="text" name="authorName" class="form-control" placeholder="authorName" required id="updateAuthorName"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="content">Content</label>
-                                        <input type="text" name="content" class="form-control"placeholder="content"/>
+                                        <input type="text" name="content" class="form-control" placeholder="content" required id = "updateContent"/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
 
-                                    <input type="hidden" name="id" id="sendIdForUpdate">
+                                    <input type="hidden" name="id" id="feedbackIdForUpdate">
                                     <input type="submit" class="btn btn-success" value="Update">
                                     <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
                                 </div>
@@ -116,7 +124,7 @@ and open the template in the editor.
                                 </div>
                                 <div class="modal-footer">
 
-                                    <input type="hidden" name="id" id="sendIdForDelete"/>
+                                    <input type="hidden" name="id" id="feedbackIdForDelete"/>
                                     <input type="submit" class="btn btn-success" value="Delete">
                                     <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
                                 </div>

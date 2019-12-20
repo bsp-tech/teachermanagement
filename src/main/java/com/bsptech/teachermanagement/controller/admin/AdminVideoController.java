@@ -7,17 +7,14 @@ package com.bsptech.teachermanagement.controller.admin;
 
 import com.bsptech.teachermanagement.dao.SectionDataInter;
 import com.bsptech.teachermanagement.dao.VideoDataInter;
+import com.bsptech.teachermanagement.entity.File;
 import com.bsptech.teachermanagement.entity.Section;
 import com.bsptech.teachermanagement.entity.Video;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -54,15 +51,9 @@ public class AdminVideoController {
 
 
     @PostMapping(value = "/add")
-    public ModelAndView add(@RequestParam(name = "header") String header,
-            @RequestParam(name = "url") String url, @RequestParam(name = "sectionId") Section sectionId) {
+    public ModelAndView add(@ModelAttribute("video") Video video) {
 
-        Video video = new Video();
-        video.setHeader(header);
-        video.setUrl(url);
         video.setInsertDateTime(new java.sql.Date(new Date().getTime()));
-        video.setSectionId(sectionId);
-
         videoDataInter.save(video);
 
         return new ModelAndView("redirect:/admin/videos");
@@ -70,27 +61,17 @@ public class AdminVideoController {
     }
 
     @PostMapping(value = "/update")
-    public ModelAndView update(@RequestParam("id") Integer id, @RequestParam(name = "header", required = false) String header,
-            @RequestParam(name = "url", required = false) String url,
-            @RequestParam(name = "sectionId", required = false) Section sectionId) {
+    public ModelAndView update(ModelAndView modelAndView,
+                               @ModelAttribute("video") Video v) {
 
-        if ((header != null && !header.isEmpty()) || (url != null && !url.isEmpty()) || (sectionId != null)) {
-            Video video = videoDataInter.findById(id).get();
+        Video video = videoDataInter.findById(v.getId()).get();
 
-            if (header != null && !header.isEmpty()) {
-                video.setHeader(header);
-            }
-            if (url != null && !url.isEmpty()) {
-                video.setUrl(url);
-            }
-            if (sectionId != null) {
-                video.setSectionId(sectionId);
-            }
+        video.setHeader(v.getHeader());
+        video.setUrl(v.getUrl());
+        video.setSectionId(v.getSectionId());
+        video.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
 
-            video.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
-            videoDataInter.save(video);
-
-        }
+        videoDataInter.save(video);
 
         return new ModelAndView("redirect:/admin/videos");
 

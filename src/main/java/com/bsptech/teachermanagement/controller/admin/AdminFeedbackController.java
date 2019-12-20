@@ -8,6 +8,8 @@ package com.bsptech.teachermanagement.controller.admin;
 import com.bsptech.teachermanagement.dao.FeedbackDataInter;
 import com.bsptech.teachermanagement.entity.Feedback;
 import java.util.Date;
+
+import com.bsptech.teachermanagement.entity.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,25 +50,14 @@ public class AdminFeedbackController {
     }
 
     @PostMapping(value = "/update")
-    public ModelAndView update(@RequestParam(value = "id") Integer id,
-            @RequestParam(value = "authorName", required = false) String authorName,
-            @RequestParam(value = "content", required = false) String content, ModelAndView modelAndView) {
+    public ModelAndView update(@ModelAttribute("feedback") Feedback f) {
+        Feedback feedback = feedbackDataInter.findById(f.getId()).get();
+        feedback.setAuthorName(f.getAuthorName());
+        feedback.setContent(f.getContent());
+        feedback.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
 
-        if ((authorName != null && !authorName.isEmpty()) || (content != null && !content.isEmpty())) {
+        feedbackDataInter.save(feedback);
 
-            Feedback feedback = feedbackDataInter.findById(id).get();
-
-            if (authorName != null && !authorName.isEmpty()) {
-                feedback.setAuthorName(authorName);
-            }
-            if (content != null && !content.isEmpty()) {
-                feedback.setContent(content);
-            }
-
-            feedback.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
-            feedbackDataInter.save(feedback);
-
-        }
         return new ModelAndView("redirect:/admin/feedbacks");
 
     }

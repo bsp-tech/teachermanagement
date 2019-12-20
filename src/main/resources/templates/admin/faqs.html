@@ -11,12 +11,20 @@
 
     <script>
         function setIdForDelete(id) {
-            document.getElementById("sendIdForDelete").value = id;
+            document.getElementById("faqidForDelete").value = id;
         }
     </script>
     <script>
         function setIdForUpdate(id) {
-            document.getElementById("sendIdForUpdate").value = id;
+            document.getElementById("faqIdForUpdate").value = id;
+            $.ajax({
+                url: "/getData/faq/" + id,
+                type: 'GET',
+                success: function (res) {
+                    $("#updateHeader").val(res.header)
+                    $("#updateContent").val(res.content)
+                }
+            });
         }
     </script>
 </head>
@@ -112,24 +120,24 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/admin/faqs/update" method="POST">
+            <form action="/admin/faqs/update" method="POST" modelAttribute="faq">
 
                 <div class="modal-body">
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Header</label>
-                            <input type="text" name="header" class="form-control" placeholder="Header" required/>
+                            <input type="text" name="header" class="form-control" placeholder="Header" id="updateHeader" required/>
                         </div>
                         <div class="form-group">
                             <label >Content</label>
-                            <input type="text" name="content" class="form-control" placeholder="Content" required/>
+                            <input type="text" name="content" class="form-control" placeholder="Content" id="updateContent" required/>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
 
-                    <input type="hidden" name="id" id="sendIdForUpdate"/>
+                    <input type="hidden" name="id" id="faqIdForUpdate"/>
                     <input type="submit" class="btn btn-success" value="Update">
                     <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
                 </div>
@@ -155,7 +163,7 @@
                 </div>
                 <div class="modal-footer">
 
-                    <input type="hidden" name="id" id="sendIdForDelete"/>
+                    <input type="hidden" name="id" id="faqidForDelete"/>
                     <input type="submit" class="btn btn-success" value="Delete">
                     <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
                 </div>

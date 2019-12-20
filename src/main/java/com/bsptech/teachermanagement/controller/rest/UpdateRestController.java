@@ -1,5 +1,6 @@
 package com.bsptech.teachermanagement.controller.rest;
-
+import com.bsptech.teachermanagement.dao.*;
+import com.bsptech.teachermanagement.entity.*;
 import com.bsptech.teachermanagement.dao.ClassDataInter;
 import com.bsptech.teachermanagement.dao.DepartmentDataInter;
 import com.bsptech.teachermanagement.dao.LessonDataInter;
@@ -11,6 +12,7 @@ import com.bsptech.teachermanagement.entity.Class;
 import com.bsptech.teachermanagement.entity.Department;
 import com.bsptech.teachermanagement.entity.Section;
 import com.bsptech.teachermanagement.entity.WebsiteSettings;
+
 import com.bsptech.teachermanagement.service.inter.PostServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,17 +28,21 @@ public class UpdateRestController {
 
     @Autowired
     PostServiceInter postServiceInter;
+    @Autowired
+    FAQDataInter faqDataInter;
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    @Autowired
+    FileDataInter fileDataInter;
+
+    @Autowired
+    VideoDataInter videoDataInter;
+
+    @Autowired
+    FeedbackDataInter feedbackDataInter;
+
+    @Autowired
+    SectionFeedbackDataInter sectionFeedbackDataInter;
+ 
     @Autowired
     WebsiteSettingDataInter websiteSettingDataInter;
 
@@ -51,8 +57,7 @@ public class UpdateRestController {
     
     @Autowired
     SectionDataInter sectionDataInter;
-    
-    
+ 
     @RequestMapping("/blog/{id}")
     public Map<String, String> getPostDetails(@PathVariable("id") Integer id) {
         Post post = postServiceInter.findById(id);
@@ -64,45 +69,54 @@ public class UpdateRestController {
         return data;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    @RequestMapping("/faq/{id}")
+    public Map<String, String> getFaqDetails(@PathVariable("id") Integer id){
+        FAQ faq = faqDataInter.findById(id).get();
+        Map<String, String> data = new HashMap<>();
+        data.put("header",faq.getHeader());
+        data.put("content",faq.getContent());
+        return data;
+    }
+
+    @RequestMapping("/file/{id}")
+    public Map<String, Object> getFileDetails(@PathVariable("id") Integer id){
+        File file = fileDataInter.findById(id).get();
+        Map<String,Object> data = new HashMap<>();
+        data.put("name",file.getName());
+        data.put("url",file.getUrl());
+        data.put("sectionId",file.getSectionId().getId());
+        return data;
+    }
+
+    @RequestMapping("/video/{id}")
+    public Map<String, Object> getVideoDetails(@PathVariable("id") Integer id){
+        Video video = videoDataInter.findById(id).get();
+        Map<String, Object> data = new HashMap<>();
+        data.put("header",video.getHeader());
+        data.put("url",video.getUrl());
+        data.put("sectionId",video.getSectionId().getId());
+        return data;
+    }
+
+    @RequestMapping("/feedback/{id}")
+    public Map<String, String> getFeedbackDetails(@PathVariable("id") Integer id){
+        Feedback feedback = feedbackDataInter.findById(id).get();
+        Map<String , String> data = new HashMap<>();
+        data.put("authorName", feedback.getAuthorName());
+        data.put("content",feedback.getContent());
+        return data;
+    }
+
+    @RequestMapping("/sectionfeedback/{id}")
+    public Map<String, Object> getSectionFeedbackDetails(@PathVariable("id") Integer id){
+        SectionFeedback sectionFeedback = sectionFeedbackDataInter.findById(id).get();
+        Map<String, Object> data = new HashMap<>();
+        data.put("authorName",sectionFeedback.getAuthorName());
+        data.put("content",sectionFeedback.getContent());
+        data.put("sectionId",sectionFeedback.getSectionId().getId());
+        return data;
+    }
+
     @RequestMapping("/settings/{id}")
     public Map<String, String> getWebSettingsDetails(@PathVariable("id") Integer id) {
         WebsiteSettings settings = websiteSettingDataInter.findById(id).get();
@@ -165,5 +179,4 @@ public class UpdateRestController {
         
         return data;
     }
-    
 }

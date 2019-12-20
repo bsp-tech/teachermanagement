@@ -20,12 +20,22 @@ and open the template in the editor.
 
                 <script>
                     function setIdForDelete(id) {
-                        document.getElementById("sendIdForDelete").value = id;
+                        document.getElementById("videoIdForDelete").value = id;
                     }
                 </script>
                 <script>
                     function setIdForUpdate(id) {
-                        document.getElementById("sendIdForUpdate").value = id;
+                        document.getElementById("videoIdForUpdate").value = id;
+                        $.ajax({
+                            url: "/getData/video/" + id,
+                            type: 'GET',
+                            success: function (res) {
+                                $("#updateHeader").val(res.header)
+                                $("#updateUrl").val(res.url)
+                                var sel = document.getElementById("select")
+                                $(select).val(res.sectionId)
+                            }
+                        });
                     }
                 </script>
 
@@ -52,22 +62,16 @@ and open the template in the editor.
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="about">Header</label>
-                                        <input type="text" name="header" class="form-control"placeholder="header" required="required"/>
+                                        <input type="text" name="header" class="form-control"placeholder="Header" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="about">Url</label>
-                                        <input type="text" name="url" class="form-control"placeholder="url" required="required"/>
+                                        <input type="text" name="url" class="form-control"placeholder="Url" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="sectionId">Section</label>
-                                        <select class="custom-select custom-select-sm" name="sectionId" required="required">
-                                            <option><span></span></option>
-                                            <div th:each="section:${sections}">
-
-                                                <option th:value="${section.id}"><span th:text="${section.name}"></span></option>
-
-                                            </div>
-
+                                        <select class="custom-select custom-select-sm" name = "sectionId" >
+                                            <option th:each="s : ${sections}" th:text="${s.getName()}" th:value="${s.getId()}"></option>
                                         </select>
                                     </div>
                                 </div>
@@ -90,33 +94,27 @@ and open the template in the editor.
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="/admin/videos/update" method="POST">
+                            <form action="/admin/videos/update" method="POST" modelAttribute="video">
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="about">Header</label>
-                                        <input type="text" name="header" class="form-control"placeholder="header"/>
+                                        <input type="text" name="header" class="form-control" placeholder="Header" id="updateHeader" required/>
                                     </div>
                                     <div class="form-group">
                                         <label for="about">Url</label>
-                                        <input type="text" name="url" class="form-control"placeholder="url"/>
+                                        <input type="text" name="url" class="form-control" placeholder="Url" id="updateUrl" required/>
                                     </div>
                                     <div class="form-group">
                                         <label for="sectionId">Section</label>
-                                        <select class="custom-select custom-select-sm" name="sectionId">
-                                            <option><span></span></option>
-                                            <div th:each="section:${sections}">
-
-                                                <option th:value="${section.id}"><span th:text="${section.name}"></span></option>
-
-                                            </div>
-
+                                        <select class="custom-select custom-select-sm" name = "sectionId" id = "select">
+                                            <option th:each="s : ${sections}" th:text="${s.getName()}" th:value="${s.getId()}"></option>
                                         </select>
                                     </div>
 
                                 </div>
                                 <div class="modal-footer">
 
-                                    <input type="hidden" name="id" id="sendIdForUpdate">
+                                    <input type="hidden" name="id" id="videoIdForUpdate">
                                     <input type="submit" class="btn btn-success" value="Update">
                                     <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
                                 </div>
@@ -141,7 +139,7 @@ and open the template in the editor.
                                 </div>
                                 <div class="modal-footer">
 
-                                    <input type="hidden" name="id" id="sendIdForDelete"/>
+                                    <input type="hidden" name="id" id="videoIdForDelete"/>
                                     <input type="submit" class="btn btn-success" value="Delete">
                                     <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
                                 </div>
