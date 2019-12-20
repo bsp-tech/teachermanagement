@@ -193,8 +193,9 @@ and open the template in the editor.
                                 <th>Last Update Time</th>
                                 <th>Price</th>
                                 <th>Videos</th>
-                                <th>Options</th>
                                 <th>Files</th>
+                                <th>Section Feedbacks</th>
+                                <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -209,7 +210,7 @@ and open the template in the editor.
                                 <td th:text="${section.lastUpdateTime}"></td>
                                 <td th:text="${section.price}"></td>
                                 <td>
-                                    <a class="btn btn-primary" th:number="${section.id}" th:href="${'/admin/videos/'+section.id}" role="button">Videos</a>
+                                    <a class="btn btn-primary" th:href="${'/admin/videos?sectionId='+section.id}" role="button">Videos</a>
                                 </td>
                                 <td>
                                     <a th:href = "${'/admin/files?sid='+section.getId()}">
@@ -218,7 +219,11 @@ and open the template in the editor.
                                         </button>
                                     </a>
                                 </td>
-
+                                
+                                <td>
+                                    <a class="btn btn-primary" th:href="${'/admin/sectionfeedbacks?sectionId='+section.id}" role="button">Feedbacks</a>
+                                </td>
+                                
                                 <td>
                                     <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
                                             th:onclick="|setIdForUpdate('${section.id}')|"
