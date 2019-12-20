@@ -62,17 +62,13 @@ public class AdminClassController {
     }
     
     @PostMapping(value = "/update")
-    public ModelAndView update(@RequestParam(name = "id") Integer id,@RequestParam(name = "name",required = false) String name) {
+    public ModelAndView update(@RequestParam(name = "id") Integer id,@ModelAttribute("updateClass") Class c) {
 
-        if(name!=null && !name.isEmpty()){
-            Optional<Class> result = classDataInter.findById(id);
-            Class clss = result.get();
+            Class classs = classDataInter.findById(id).get();
+            classs.setName(c.getName());
+            classs.setLastUpdateDateTime(new java.sql.Date(new Date().getTime()));
             
-            clss.setName(name);
-            clss.setLastUpdateDateTime(new java.sql.Date(new Date().getTime()));
-            
-            classDataInter.save(clss);
-        }
+            classDataInter.save(classs);
         
         return new ModelAndView("redirect:/admin/classes");
     }

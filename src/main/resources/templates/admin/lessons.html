@@ -27,7 +27,18 @@ and open the template in the editor.
 
                 <script>
                     function setIdForUpdate(id) {
-                        document.getElementById("sendIdForUpdate").value = id;
+                        document.getElementById("lessonsIdForUpdate").value = id;
+                        var xhttp = new XMLHttpRequest();
+                        $.ajax({
+                            url: "/getData/lesson/" + id,
+                            type: 'GET',
+                            success: function (res) {
+                                $("#updateName").val(res.name)
+                                $("#updateAbout").val(res.about)
+                                $("#updateThumbnailPath").val(res.thumbnailPath)
+
+                            }
+                        });
                     }
                 </script>
                 <script>
@@ -102,21 +113,21 @@ and open the template in the editor.
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="name">Name</label>
-                                        <input type="text" name="name" class="form-control"placeholder="Name"/>
+                                        <input type="text" name="name" class="form-control" id="updateName" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="about">About</label>
-                                        <input type="text" name="about" class="form-control"placeholder="About"/>
+                                        <input type="text" name="about" class="form-control" id="updateAbout" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="thumbnailPath">ThumbnailPath</label>
-                                        <input type="text" name="thumbnailPath" class="form-control"placeholder="ThumbnailPath"/>
+                                        <input type="text" name="thumbnailPath" class="form-control" id="updateThumbnailPath" required="required"/>
                                     </div>
 
                                 </div>
                                 <div class="modal-footer">
 
-                                    <input type="hidden" name="id" id="sendIdForUpdate">
+                                    <input type="hidden" name="id" id="lessonsIdForUpdate">
                                     <input type="submit" class="btn btn-success" value="Update">
                                     <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
                                 </div>
@@ -235,14 +246,12 @@ and open the template in the editor.
                 </div>
 
 
-                <br>
-                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Lesson</button>
-                <br>
-                <br>
-                
-                <button type="button" style="margin-left: 15px;" class="btn btn-info" data-toggle="modal" data-target="#showSections">Show sections</button> 
-                <br>
-                <br>
+
+                <div>
+                    <button type="button" style="margin: 10px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Lesson</button>
+                    <button type="button" style="margin: 10px;" class="btn btn-info" data-toggle="modal" data-target="#showSections">Show sections</button> 
+
+                </div>
 
                 <div>
                     <form class="form-inline" action="/admin/lessons/search" method="GET">
@@ -284,7 +293,7 @@ and open the template in the editor.
                                 <td th:text="${lesson.thumbnailPath}"></td>
                                 <td th:text="${lesson.insertDateTime}"></td>
                                 <td th:text="${lesson.lastUpdateTime}"></td>
-                                
+
                                 <td>
                                     <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#addLessonSection"
                                             th:onclick="|setLessonIdForAddLessonSection('${lesson.id}')|">Add section</button> 

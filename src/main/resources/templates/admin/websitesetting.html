@@ -15,7 +15,28 @@
 
                 <script>
                     function setIdForUpdate(id) {
-                        document.getElementById("sendIdForUpdate").value = id;
+                        document.getElementById("websettingsIdForUpdate").value = id;
+                        var xhttp = new XMLHttpRequest();
+                        $.ajax({
+                            url: "/getData/settings/" + id,
+                            type: 'GET',
+                            success: function (res) {
+                                $("#updateAuthorName").val(res.author_name)
+                                $("#updateAutobiography").val(res.autobiography)
+                                $("#updateDescription").val(res.description)
+                                $("#updatephone").val(res.phone)
+                                $("#updateEmail").val(res.email)
+                                $("#updateAboutimagepath").val(res.aboutImgPath)
+                                $("#updateBannerpath").val(res.bannerPath)
+                                $("#updateContactimagepath").val(res.contactImgPath)
+                                $("#updateintroducevideourl").val(res.introduceVideoUrl)
+                                $("#updateFbUrl").val(res.facebookUrl)
+                                $("#updateInstagramUrl").val(res.instagramUrl)
+                                $("#updateYoutubeUrl").val(res.youtubeUrl)
+                                $("#updateWhatsAppUrl").val(res.whatsappUrl)
+
+                            }
+                        });
                     }
                 </script>
 
@@ -119,61 +140,61 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="author_name">Author Name</label>
-                                        <input type="text" name="author_name" class="form-control" placeholder="author_name"/>
+                                        <input type="text" name="author_name" class="form-control" id="updateAuthorName" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="autobiography">Autobiography</label>
-                                        <input type="text" name="autobiography" class="form-control" placeholder="autobiography"/>
+                                        <input type="text" name="autobiography" class="form-control" id="updateAutobiography" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Description</label>
-                                        <input type="text" name="description" class="form-control" placeholder="description"/>
+                                        <input type="text" name="description" class="form-control" id="updateDescription" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">Phone</label>
-                                        <input type="number" name="phone" class="form-control" placeholder="phone"/>
+                                        <input type="number" name="phone" class="form-control" id="updatephone" required="required"/>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="text" name="email" class="form-control" placeholder="email"/>
+                                        <input type="text" name="email" class="form-control" id="updateEmail" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="aboutImgPath">About Image Path</label>
-                                        <input type="text" name="aboutImgPath" class="form-control" placeholder="about Image Path"/>
+                                        <input type="text" name="aboutImgPath" class="form-control" id="updateAboutimagepath" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="bannerPath">Banner Path</label>
-                                        <input type="text" name="bannerPath" class="form-control" placeholder="banner Path"/>
+                                        <input type="text" name="bannerPath" class="form-control" id="updateBannerpath" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="contactImgPath">Contact Image Path</label>
-                                        <input type="text" name="contactImgPath" class="form-control" placeholder="contact Image Path"/>
+                                        <input type="text" name="contactImgPath" class="form-control" id="updateContactimagepath" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="introduceVideoUrl">Introduce Video Url</label>
-                                        <input type="text" name="introduceVideoUrl" class="form-control" placeholder="introduce Video Url"/>
+                                        <input type="text" name="introduceVideoUrl" class="form-control" id="updateintroducevideourl" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="facebookUrl">Facebook Url</label>
-                                        <input type="text" name="facebookUrl" class="form-control" placeholder="facebook Url" />
+                                        <input type="text" name="facebookUrl" class="form-control" id="updateFbUrl" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="instagramUrl">Instagram Url</label>
-                                        <input type="text" name="instagramUrl" class="form-control" placeholder="instagram Url" />
+                                        <input type="text" name="instagramUrl" class="form-control" id="updateInstagramUrl" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="youtubeUrl">Youtube Url</label>
-                                        <input type="text" name="youtubeUrl" class="form-control" placeholder="youtube Url" />
+                                        <input type="text" name="youtubeUrl" class="form-control" id="updateYoutubeUrl" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="whatsappUrl">Whatsapp Url</label>
-                                        <input type="text" name="whatsappUrl" class="form-control" placeholder="whatsapp Url" />
+                                        <input type="text" name="whatsappUrl" class="form-control" id="updateWhatsAppUrl" required="required" />
                                     </div>
                                 </div>
                                 <div class="modal-footer">
 
-                                    <input type="hidden" name="id" id="sendIdForUpdate"/>
+                                    <input type="hidden" name="id" id="websettingsIdForUpdate"/>
                                     <input type="submit" class="btn btn-success" value="Update">
                                     <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
                                 </div>
@@ -183,11 +204,11 @@
                 </div>
 
 
-                <br>
-                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button>
-                <br>
-                <br>
 
+                <div>
+                    <button type="button" style="margin: 10px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button>
+                </div>
+                
                 <div class="table-bordered table-responsive" th:object = "${settings}">
                     <table class="table">
                         <thead>

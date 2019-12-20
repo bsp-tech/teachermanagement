@@ -31,13 +31,13 @@ and open the template in the editor.
             <body>
 
                 <div th:replace="admin/header"></div>
-                
-                <br>
-                <button type="button" style="margin-left: 15px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Section Feedback</button>
-                <br>
-                <br>
-                
-                 <div class="modal" tabindex="-1" role="dialog" id="insertModal">
+
+
+                <div>
+                    <button type="button" style="margin: 10px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Section Feedback</button>
+                </div>
+
+                <div class="modal" tabindex="-1" role="dialog" id="insertModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -78,7 +78,7 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal" tabindex="-1" role="dialog" id="updateModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -121,8 +121,8 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -147,8 +147,8 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="table-bordered table-responsive" th:object = "${sectionfeedbacks}">
                     <table class="table">
                         <thead>

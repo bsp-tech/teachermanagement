@@ -65,45 +65,19 @@ public class AdminSectionController {
     }
 
     @PostMapping(value = "/update")
-    public ModelAndView update(@RequestParam(name = "id") Integer id,
-            @RequestParam(name = "name", required = false) String name,
-            @RequestParam(name = "about", required = false) String about,
-            @RequestParam(name = "playlistUrl", required = false) String playlistUrl,
-            @RequestParam(name = "threadFilesPath", required = false) String threadFilesPath,
-            @RequestParam(name = "thumbnailPath", required = false) String thumbnailPath,
-            @RequestParam(name = "price", required = false) BigDecimal price
+    public ModelAndView update(@ModelAttribute("updateSection") Section s, @RequestParam(name = "id") Integer id
     ) {
 
-        if ((name != null && !name.isEmpty()) || (about != null && !about.isEmpty())
-                || (playlistUrl != null && !playlistUrl.isEmpty()) || (threadFilesPath != null && !threadFilesPath.isEmpty())
-                || (thumbnailPath != null && !thumbnailPath.isEmpty()) || (price != null && !price.equals(BigDecimal.ZERO))) {
+        Section section = sectionDataInter.findById(id).get();
+        section.setName(s.getName());
+        section.setAbout(s.getAbout());
+        section.setPlaylistUrl(s.getPlaylistUrl());
+        section.setThreadFilesPath(s.getThreadFilesPath());
+        section.setThumbnailPath(s.getThumbnailPath());
+        section.setPrice(s.getPrice());
 
-            Optional<Section> result = sectionDataInter.findById(id);
-            Section section = result.get();
-
-            if (name != null && !name.isEmpty()) {
-                section.setName(name);
-            }
-            if (about != null && !about.isEmpty()) {
-                section.setAbout(about);
-            }
-            if (playlistUrl != null && !playlistUrl.isEmpty()) {
-                section.setPlaylistUrl(playlistUrl);
-            }
-            if (threadFilesPath != null && !threadFilesPath.isEmpty()) {
-                section.setThreadFilesPath(threadFilesPath);
-            }
-            if (thumbnailPath != null && !thumbnailPath.isEmpty()) {
-                section.setThumbnailPath(thumbnailPath);
-            }
-            if (price != null && !price.equals(BigDecimal.ZERO)) {
-                section.setPrice(price);
-            }
-
-            section.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
-            sectionDataInter.save(section);
-
-        }
+        section.setLastUpdateTime(new java.sql.Date(new Date().getTime()));
+        sectionDataInter.save(section);
 
         return new ModelAndView("redirect:/admin/sections");
     }
