@@ -60,17 +60,20 @@ public class AdminBlogController {
     }
 
     @PostMapping("/update")
-    public ModelAndView updatePost(@ModelAttribute("post") Post post, @RequestParam("id") Integer id) {
-        post.setId(id);
+    public ModelAndView updatePost(@RequestParam("title") String title, @RequestParam("thumbnailPath") String thumbnailPath, @RequestParam("content") String content, @RequestParam("id") Integer id) {
+        Post post = postdataInter.findById(id).get();
+        post.setTitle(title);
         post.setLastUpdateTime(new Date());
+        post.setContent(content);
+        post.setThumbnailPath(thumbnailPath);
         postdataInter.save(post);
         return new ModelAndView("redirect:/admin/blogs");
     }
 
-    @RequestMapping("delete/{id}")
-    public ModelAndView delete(ModelAndView modelAndView, @PathVariable("id") Integer id) {
-        postdataInter.deleteById(id);
-        modelAndView.setViewName("redirect:/admin/blogs");
-        return modelAndView;
+    @RequestMapping("/delete")
+    public ModelAndView delete(@RequestParam("postId") Integer postId) {
+        System.out.println(postId);
+        postdataInter.deleteById(postId);
+        return new ModelAndView("redirect:/admin/blogs");
     }
 }

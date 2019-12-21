@@ -13,17 +13,25 @@ and open the template in the editor.
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script type="application/javascript" th:src="@{/js/jquery.cleditor.js}"></script>
+    <link rel="stylesheet" th:href="@{/js/jquery.cleditor.css}">
 </head>
 <body>
 <!--Setting Ids-->
 <script>
     function setIdForDelete(id) {
-        $('#postId').attr('id', id);
+        $('#postId').attr('value', id);
+    }
+
+    function richTextEditorInitialize() {
+        var ex = $('#editor').cleditor()
+        console.log(ex)
     }
 
     function setIdForUpdate(id) {
-        $('#postIdForUpdate').attr('id', id)
+        $('#postIdForUpdate').attr('value', id)
         var xhttp = new XMLHttpRequest();
         // AJAX iDYE GORE GET REQUEST GONDERIR DATANI MAP OBJECTI KIMI RENDER EDIREM  SONRA BURADA KEY VALUE PRINSIPI ILE DATANI GOTURUB LAZIMI YERLERE DOLDURURAM
         $.ajax({
@@ -33,23 +41,13 @@ and open the template in the editor.
                 $("#updateTitle").val(res.title)
                 $("#thumbnailPathUpdate").val(res.thumbnailPath)
                 // BU CKEDITOR UCUN IDI
-                CKEDITOR.instances.editorUpdate.setData(res.content, function () {
-                    this.checkDirty();  // true
-                });
+                var RTE1 = $("#editorUpdate").cleditor(
+                )[0];
+                RTE1.$area.val(res.content);
+                RTE1.updateFrame();
             }
         });
 
-
-        // xhttp.onreadystatechange = function () {
-        //     if (this.readyState === 4 && this.status === 200) {
-        //         var data = JSON.parse(xhttp.responseText);
-        //         console.log(data.title);
-        //     }
-        //     ;
-        //     xhttp.open("GET", "/getData/blog/" + id, true);
-        //     xhttp.send();
-        //
-        // }
     }
 </script>
 
@@ -57,8 +55,8 @@ and open the template in the editor.
 
 
 <div>
-    <button style="margin: 10px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">
-        Add blogs
+    <button style="margin: 10px;" class="btn btn-success" id="addPost" onclick="richTextEditorInitialize()" data-toggle="modal" data-target="#insertModal">
+        Add Post
     </button>
 </div>
 
@@ -142,15 +140,14 @@ and open the template in the editor.
                 </button>
             </div>
             <form action="/admin/blogs/delete" method="POST">
-
+                <input type="hidden" name="postId" id="postId" value=""/>
                 <div class="modal-body">
                     <p>Are you sure to delete selected post?</p>
                 </div>
                 <div class="modal-footer">
 
-                    <input type="hidden" name="id" id="postId"/>
                     <input type="submit" class="btn btn-success" value="Delete">
-                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel">
                 </div>
             </form>
         </div>
@@ -195,12 +192,5 @@ and open the template in the editor.
         </tbody>
     </table>
 </div>
-<script>
-    $(document).ready(function () {
-        CKEDITOR.replace('editor')
-        CKEDITOR.replace('editorUpdate')
-        CKEDITOR.config
-    })
-</script>
 </body>
 </html>
