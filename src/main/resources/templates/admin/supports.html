@@ -8,6 +8,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        function setIdForView(id) {
+            document.getElementById("supportId").value = id;
+            $.ajax({
+                url: "/getData/support/" + id,
+                type: 'GET',
+                success: function (res) {
+                    var element = document.getElementById("solved");
+                    $("#fullNameId").text(res.fullName);
+                    $("#emailId").text(res.email);
+                    $("#departmentId").text(res.department);
+                    $("#subjectId").text(res.subject);
+                    $("#messageId").text(res.message);
+                    $("#insertTimeId").text(res.insertTime);
+                    $("#solvedTimeId").text(res.solvedTime);
+                    $("#dynamicLink").attr("href","/admin/supports/"+id);
+
+                    if(res.status === 1) element.style.visibility="hidden";
+                    else element.style.visibility="visible";
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 
@@ -24,10 +48,7 @@
             <th class="text-center">Message</th>
             <th>Insert time</th>
             <th>Solved time</th>
-            <th>Status</th>
-            <th></th>
-            <!--<th">Autobiography</th>
-            <th style="padding-left: 170px;padding-right: 170px;">Description</th>-->
+            <th>Operations</th>
         </tr>
         </thead>
         <tbody>
@@ -36,24 +57,81 @@
             <td th:text="${s.getEmail()}"></td>
             <td th:text="${s.getDepartmentId().getName()}"></td>
             <td th:text="${s.getSubject()}"></td>
-            <td th:text="${s.getMessage()}"></td>
+            <td>
+                <span th:if="${s.getMessage().length()>50}" th:text="${s.getMessage().substring(0,50)}+'...'">
+                </span>
+                <span th:unless="${s.getMessage().length()>50}" th:text="${s.getMessage()}">
+                </span>
+            </td>
             <td th:text="${s.getInsertDateTime()}"></td>
             <td th:text="${s.getSolvedDateTime()}"></td>
-            <td th:text="${s.getStatusId().getStatus()}"></td>
                 <td>
 
-                <button th:if="${s.getStatusId().getId().toString() == '1'}" class="btn btn-success" disabled>
-                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                <button th:if="${s.getStatusId().getId().toString() == '1'}"
+                        class="btn btn-success"
+                        data-toggle="modal" data-target="#viewModal"
+                        th:onclick="|setIdForView('${s.id}')|">
+                    Solved
                 </button>
-                <a th:unless="${s.getStatusId().getId().toString() == '1'}" th:href="${'/admin/supports/'+s.getId()}">
-                    <button  class="btn btn-warning">
-                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                    </button>
-                </a>
+                <button th:unless="${s.getStatusId().getId().toString() == '1'}"
+                        class="btn btn-warning"
+                        data-toggle="modal" data-target="#viewModal"
+                        th:onclick="|setIdForView('${s.id}')|">
+                    Unsolved
+                </button>
             </td>
         </tr>
         </tbody>
     </table>
+    <div class="modal" tabindex="-1" role="dialog" id = "viewModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Support</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="font-italic">Full name :</label>
+                        <span id = "fullNameId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-italic">Email :</label>
+                        <span id = "emailId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-italic">Department : </label>
+                        <span id="departmentId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-italic">Subject : </label>
+                        <span id="subjectId"></span>
+                    </div>
+                    <div class="form-group">
+                        <p class="font-italic">Message : </p>
+                        <span id="messageId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-italic">Insert time : </label>
+                        <span id = "insertTimeId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-italic">Solved time : </label>
+                        <span id="solvedTimeId"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id" id="supportId"/>
+                    <a id="dynamicLink" href="/admin/supports">
+                        <button id="solved" type="button" class="btn btn-success" >Mark as solved</button>
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
