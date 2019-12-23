@@ -57,6 +57,9 @@ public class UpdateRestController {
     
     @Autowired
     SectionDataInter sectionDataInter;
+
+    @Autowired
+    SupportDataInter supportDataInter;
  
     @RequestMapping("/blog/{id}")
     public Map<String, String> getPostDetails(@PathVariable("id") Integer id) {
@@ -177,6 +180,27 @@ public class UpdateRestController {
         data.put("thumbnailPath", section.getThumbnailPath());
         data.put("price", String.valueOf(section.getPrice()));
         
+        return data;
+    }
+
+    @RequestMapping("/support/{id}")
+    public Map<String, Object> getSupportDetails(@PathVariable("id") Integer id){
+        Support support = supportDataInter.findById(id).get();
+        Map<String, Object> data = new HashMap<>();
+        data.put("fullName",support.getFullname());
+        data.put("email",support.getEmail());
+        data.put("department",support.getDepartmentId().getName());
+        data.put("subject",support.getSubject());
+        data.put("message",support.getMessage());
+        data.put("insertTime",support.getInsertDateTime().toString());
+
+        String sdate ="Unsolved";
+        try{
+            sdate = support.getSolvedDateTime().toString();
+        } catch(NullPointerException ignored){}
+
+        data.put("solvedTime",sdate);
+        data.put("status",support.getStatusId().getId());
         return data;
     }
 }
