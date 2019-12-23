@@ -4,258 +4,278 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
-    <html xmlns:th="http://www.thymeleaf.org">
-        <html>
-            <head>
-                <meta charset="UTF-8">
-                <meta content="width=device-width, initial-scale=1.0" name="viewport">
-                <meta content="ie=edge" http-equiv="X-UA-Compatible">
-                <title>Sections</title>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="ie=edge" http-equiv="X-UA-Compatible">
+        <title>Sections</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-                <script>
-                    function setIdForDelete(id) {
-                        document.getElementById("sendIdForDelete").value = id;
+        <script>
+            function setIdForDelete(id) {
+                document.getElementById("sendIdForDelete").value = id;
+            }
+        </script>
+        <script>
+            function setIdForUpdate(id) {
+                document.getElementById("sectionIdForUpdate").value = id;
+                var xhttp = new XMLHttpRequest();
+                $.ajax({
+                    url: "/getData/section/" + id,
+                    type: 'GET',
+                    success: function (res) {
+                        $("#updateName").val(res.name)
+                        $("#updateAbout").val(res.about)
+                        $("#updatePlaylistUrl").val(res.playlistUrl)
+                        $("#updateThreadFilesPath").val(res.threadFilesPath)
+                        $("#updateThumbnailPath").val(res.thumbnailPath)
+                        $("#updatePrice").val(res.price)
+
                     }
-                </script>
-                <script>
-                    function setIdForUpdate(id) {
-                        document.getElementById("sectionIdForUpdate").value = id;
-                        var xhttp = new XMLHttpRequest();
-                        $.ajax({
-                            url: "/getData/section/" + id,
-                            type: 'GET',
-                            success: function (res) {
-                                $("#updateName").val(res.name)
-                                $("#updateAbout").val(res.about)
-                                $("#updatePlaylistUrl").val(res.playlistUrl)
-                                $("#updateThreadFilesPath").val(res.threadFilesPath)
-                                $("#updateThumbnailPath").val(res.thumbnailPath)
-                                $("#updatePrice").val(res.price)
+                });
+            }
 
-                            }
-                        });
-                    }
-                </script>
+            function countCharAboutInsertModal(val) {
+                var len = val.value.length;
+                if (len > 500) {
+                    val.value = val.value.substring(0, 500);
+                } else {
+                    $('#charNumInAboutAdd').text(500 - len + '  characters left');
 
-            </head>
-            <body>
+                }
+            }
 
-                <div th:replace="admin/header"></div>
+            function countCharAboutUpdateModal(val) {
+                var len = val.value.length;
+                if (len > 500) {
+                    val.value = val.value.substring(0, 500);
+                } else {
+                    $('#charNumInAboutUpdate').text(500 - len + '  characters left');
 
-                <div>
-                    <button type="button" style="margin: 10px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Section</button>
+                }
+            }
+        </script>
+
+    </head>
+    <body>
+
+        <div th:replace="admin/header"></div>
+
+        <div>
+            <button type="button" style="margin: 10px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Section</button>
+        </div>
+
+        <div>
+            <form class="form-inline" action="/admin/sections/search" method="GET">
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" class="form-control" name="playlistUrl" placeholder="Playlist URL">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="threadFilesPath" placeholder="Thread Files Path">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="thumbnailPath" placeholder="Thumbnail Path">
+                    </div>
+                    <input type="submit" class="btn btn-success" value="Search">
                 </div>
+            </form>
+        </div>
+        <br>
 
-                <div>
-                    <form class="form-inline" action="/admin/sections/search" method="GET">
-                        <div class="form-row">
-                            <div class="col">
-                                <input type="text" class="form-control" name="playlistUrl" placeholder="Playlist URL">
+        <div class="modal" tabindex="-1" role="dialog" id="insertModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="/admin/sections/add" method="POST"
+                          modelAttribute="section">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" class="form-control"placeholder="Name" required="required"/>
                             </div>
-                            <div class="col">
-                                <input type="text" class="form-control" name="threadFilesPath" placeholder="Thread Files Path">
+                            <div class="form-group">
+                                <label for="about">About</label>
+                                <textarea style="width: 100%" name="about" placeholder="About" required="required" onkeyup="countCharAboutInsertModal(this)"></textarea>
+                                <div style="color: red" id="charNumInAboutAdd"></div>
                             </div>
-                            <div class="col">
-                                <input type="text" class="form-control" name="thumbnailPath" placeholder="Thumbnail Path">
+                            <div class="form-group">
+                                <label for="playlistUrl">Playlist URL</label>
+                                <input type="text" name="playlistUrl" class="form-control"placeholder="Playlist URL" required="required"/>
                             </div>
-                            <input type="submit" class="btn btn-success" value="Search">
+                            <div class="form-group">
+                                <label for="threadFilesPath">Thread Files Path</label>
+                                <input type="text" name="threadFilesPath" class="form-control"placeholder="Thread Files Path" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="thumbnailPath">ThumbnailPath</label>
+                                <input type="text" name="thumbnailPath" class="form-control"placeholder="ThumbnailPath" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Price</label>
+                                <input type="text" name="price" class="form-control"placeholder="Price" required="required"/>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+
+                            <input type="submit" class="btn btn-success" value="Add">
+                            <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
                         </div>
                     </form>
                 </div>
-                <br>
+            </div>
+        </div>
 
-                <div class="modal" tabindex="-1" role="dialog" id="insertModal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Add</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="/admin/sections/add" method="POST"
-                                  modelAttribute="section">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" name="name" class="form-control"placeholder="Name" required="required"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="about">About</label>
-                                        <input type="text" name="about" class="form-control"placeholder="About" required="required"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="playlistUrl">Playlist URL</label>
-                                        <input type="text" name="playlistUrl" class="form-control"placeholder="Playlist URL" required="required"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="threadFilesPath">Thread Files Path</label>
-                                        <input type="text" name="threadFilesPath" class="form-control"placeholder="Thread Files Path" required="required"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="thumbnailPath">ThumbnailPath</label>
-                                        <input type="text" name="thumbnailPath" class="form-control"placeholder="ThumbnailPath" required="required"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="price">Price</label>
-                                        <input type="text" name="price" class="form-control"placeholder="Price" required="required"/>
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer">
-
-                                    <input type="submit" class="btn btn-success" value="Add">
-                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
-                                </div>
-                            </form>
-                        </div>
+        <div class="modal" tabindex="-1" role="dialog" id="updateModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </div>
+                    <form action="/admin/sections/update" method="POST">
 
-                <div class="modal" tabindex="-1" role="dialog" id="updateModal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Update</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" class="form-control" id="updateName" required="required"/>
                             </div>
-                            <form action="/admin/sections/update" method="POST">
-
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" name="name" class="form-control" id="updateName" required="required"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="about">About</label>
-                                        <input type="text" name="about" class="form-control" id="updateAbout" required="required" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="playlistUrl">Playlist URL</label>
-                                        <input type="text" name="playlistUrl" class="form-control" id="updatePlaylistUrl" required="required"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="threadFilesPath">Thread Files Path</label>
-                                        <input type="text" name="threadFilesPath" class="form-control" id="updateThreadFilesPath" required="required"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="thumbnailPath">ThumbnailPath</label>
-                                        <input type="text" name="thumbnailPath" class="form-control" id="updateThumbnailPath" required="required"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="price">Price</label>
-                                        <input type="text" name="price" class="form-control" id="updatePrice" required="required"/>
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer">
-
-                                    <input type="hidden" name="id" id="sectionIdForUpdate"/>
-                                    <input type="submit" class="btn btn-success" value="Update">
-                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Delete</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                            <div class="form-group">
+                                <label for="about">About</label>
+                                <textarea style="width: 100%" name="about" placeholder="About" id="updateAbout" required="required" onkeyup="countCharAboutUpdateModal(this)"></textarea>
+                                <div style="color: red" id="charNumInAboutUpdate"></div>
                             </div>
-                            <form action="/admin/sections/delete" method="POST">
+                            <div class="form-group">
+                                <label for="playlistUrl">Playlist URL</label>
+                                <input type="text" name="playlistUrl" class="form-control" id="updatePlaylistUrl" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="threadFilesPath">Thread Files Path</label>
+                                <input type="text" name="threadFilesPath" class="form-control" id="updateThreadFilesPath" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="thumbnailPath">ThumbnailPath</label>
+                                <input type="text" name="thumbnailPath" class="form-control" id="updateThumbnailPath" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Price</label>
+                                <input type="text" name="price" class="form-control" id="updatePrice" required="required"/>
+                            </div>
 
-                                <div class="modal-body">
-                                    <p>Are you sure to delete selected section?</p> 
-                                </div>
-                                <div class="modal-footer">
-
-                                    <input type="hidden" name="id" id="sendIdForDelete"/>
-                                    <input type="submit" class="btn btn-success" value="Delete">
-                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
-                                </div>
-                            </form>
                         </div>
+                        <div class="modal-footer">
+
+                            <input type="hidden" name="id" id="sectionIdForUpdate"/>
+                            <input type="submit" class="btn btn-success" value="Update">
+                            <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
+                    <form action="/admin/sections/delete" method="POST">
+
+                        <div class="modal-body">
+                            <p>Are you sure to delete selected section?</p> 
+                        </div>
+                        <div class="modal-footer">
+
+                            <input type="hidden" name="id" id="sendIdForDelete"/>
+                            <input type="submit" class="btn btn-success" value="Delete">
+                            <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                        </div>
+                    </form>
                 </div>
+            </div>
+        </div>
 
-                <div class="table-bordered table-responsive" th:object = "${sections}">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th style="padding-left: 100px;padding-right: 100px;">About</th>
-                                <th>Playlist URL</th>
-                                <th>Thread Files Path</th>
-                                <th>Thumbnail Path</th>
-                                <th>Insert Time</th>
-                                <th>Last Update Time</th>
-                                <th>Price</th>
-                                <th>Videos</th>
-                                <th>Files</th>
-                                <th>Section Feedbacks</th>
-                                <th>Options</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="section : ${sections}">
+        <div class="table-bordered table-responsive" th:object = "${sections}">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th style="padding-left: 100px;padding-right: 100px;">About</th>
+                        <th>Playlist URL</th>
+                        <th>Thread Files Path</th>
+                        <th>Thumbnail Path</th>
+                        <th>Insert Time</th>
+                        <th>Last Update Time</th>
+                        <th>Price</th>
+                        <th>Videos</th>
+                        <th>Files</th>
+                        <th>Section Feedbacks</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="section : ${sections}">
 
-                                <td th:text="${section.name}"></td>
-                                <td th:text="${section.about}"></td>
-                                <td th:text="${section.playlistUrl}"></td>
-                                <td th:text="${section.threadFilesPath}"></td>
-                                <td th:text="${section.thumbnailPath}"></td>
-                                <td th:text="${section.insertDateTime}"></td>
-                                <td th:text="${section.lastUpdateTime}"></td>
-                                <td th:text="${section.price}"></td>
-                                <td>
-                                    <a class="btn btn-primary" th:href="${'/admin/videos?sectionId='+section.id}" role="button">Videos</a>
-                                </td>
-                                <td>
-                                    <a th:href = "${'/admin/files?sid='+section.getId()}">
-                                        <button class="btn btn-success">
-                                            Show files
-                                        </button>
-                                    </a>
-                                </td>
+                        <td th:text="${section.name}"></td>
+                        <td th:text="${section.about}"></td>
+                        <td th:text="${section.playlistUrl}"></td>
+                        <td th:text="${section.threadFilesPath}"></td>
+                        <td th:text="${section.thumbnailPath}"></td>
+                        <td th:text="${section.insertDateTime}"></td>
+                        <td th:text="${section.lastUpdateTime}"></td>
+                        <td th:text="${section.price}"></td>
+                        <td>
+                            <a class="btn btn-primary" th:href="${'/admin/videos?sectionId='+section.id}" role="button">Videos</a>
+                        </td>
+                        <td>
+                            <a th:href = "${'/admin/files?sid='+section.getId()}">
+                                <button class="btn btn-primary">
+                                    Files
+                                </button>
+                            </a>
+                        </td>
 
-                                <td>
-                                    <a class="btn btn-primary" th:href="${'/admin/sectionfeedbacks?sectionId='+section.id}" role="button">Feedbacks</a>
-                                </td>
+                        <td>
+                            <a class="btn btn-primary" th:href="${'/admin/sectionfeedbacks?sectionId='+section.id}" role="button">Feedbacks</a>
+                        </td>
 
-                                <td>
-                                    <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
-                                            th:onclick="|setIdForUpdate('${section.id}')|"
-                                            >
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    </button> 
-                                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
-                                            th:onclick="|setIdForDelete('${section.id}')|"  
-                                            >
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <td>
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
+                                    th:onclick="|setIdForUpdate('${section.id}')|"
+                                    >
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button> 
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                                    th:onclick="|setIdForDelete('${section.id}')|"  
+                                    >
+                                <i class="fa fa-trash" aria-hidden="true"></i>
 
-                                    </button> 
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                            </button> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
 
 
-            </body>
-        </html>
+    </body>
+</html>

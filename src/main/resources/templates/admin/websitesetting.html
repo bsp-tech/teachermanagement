@@ -38,6 +38,46 @@
                             }
                         });
                     }
+
+                    function countCharDescriptionInsertModal(val) {
+                        var len = val.value.length;
+                        if (len > 500) {
+                            val.value = val.value.substring(0, 500);
+                        } else {
+                            $('#charNumInDescriptionAdd').text(500 - len + '  characters left');
+                        }
+                    }
+                    ;
+
+                    function countCharAutobiographyInsertModal(val) {
+                        var len = val.value.length;
+                        if (len > 500) {
+                            val.value = val.value.substring(0, 500);
+                        } else {
+                            $('#charNumInAutobiographyAdd').text(500 - len + '  characters left');
+
+                        }
+                    }
+                    ;
+                    function countCharDescriptionUpdateModal(val) {
+                        var len = val.value.length;
+                        if (len > 500) {
+                            val.value = val.value.substring(0, 500);
+                        } else {
+                            $('#charNumInDescriptionUpdate').text(500 - len + '  characters left');
+                        }
+                    }
+                    ;
+                    function countCharAutobiographyUpdateModal(val) {
+                        var len = val.value.length;
+                        if (len > 500) {
+                            val.value = val.value.substring(0, 500);
+                        } else {
+                            $('#charNumInAutobiographyUpdate').text(500 - len + '  characters left');
+
+                        }
+                    }
+                    ;
                 </script>
 
             </head>
@@ -67,11 +107,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="autobiography">Autobiography</label>
-                                        <input type="text" name="autobiography" class="form-control" placeholder="autobiography" required="required"/>
+                                        <textarea  style="width: 100%" name="autobiography" placeholder="autobiography" required="required" onkeyup="countCharAutobiographyInsertModal(this)"></textarea>
+                                        <div style="color: red" id="charNumInAutobiographyAdd"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Description</label>
-                                        <input type="text" name="description" class="form-control" placeholder="description" required="required"/>
+                                        <textarea  style="width: 100%" name="description" placeholder="description" required="required" onkeyup="countCharDescriptionInsertModal(this)"></textarea>
+                                        <div style="color: red" id="charNumInDescriptionAdd"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">Phone</label>
@@ -100,19 +142,19 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="facebookUrl">Facebook Url</label>
-                                        <input type="text" name="facebookUrl" class="form-control" placeholder="facebook Url" required="required"/>
+                                        <input type="text" name="facebookUrl" class="form-control" placeholder="https://facebook_url.com" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="instagramUrl">Instagram Url</label>
-                                        <input type="text" name="instagramUrl" class="form-control" placeholder="instagram Url" required="required"/>
+                                        <input type="text" name="instagramUrl" class="form-control" placeholder="https://instagram_url.com" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="youtubeUrl">Youtube Url</label>
-                                        <input type="text" name="youtubeUrl" class="form-control" placeholder="youtube Url" required="required"/>
+                                        <input type="text" name="youtubeUrl" class="form-control" placeholder="https://youtube_url.com" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="whatsappUrl">Whatsapp Url</label>
-                                        <input type="text" name="whatsappUrl" class="form-control" placeholder="whatsapp Url" required="required"/>
+                                        <input type="text" name="whatsappUrl" class="form-control" placeholder="https://whatsapp_url.com" required="required"/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -144,11 +186,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="autobiography">Autobiography</label>
-                                        <input type="text" name="autobiography" class="form-control" id="updateAutobiography" required="required"/>
+                                        <textarea style="width: 100%" name="autobiography" id="updateAutobiography"  placeholder="description" required="required" onkeyup="countCharAutobiographyUpdateModal(this)"></textarea>
+                                        <div style="color: red" id="charNumInAutobiographyUpdate"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Description</label>
-                                        <input type="text" name="description" class="form-control" id="updateDescription" required="required"/>
+                                        <textarea style="width: 100%" name="description" id="updateDescription"  placeholder="description" required="required" onkeyup="countCharDescriptionUpdateModal(this)"></textarea>
+                                        <div style="color: red" id="charNumInDescriptionUpdate"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">Phone</label>
@@ -177,19 +221,19 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="facebookUrl">Facebook Url</label>
-                                        <input type="text" name="facebookUrl" class="form-control" id="updateFbUrl" required="required"/>
+                                        <input type="text" name="facebookUrl" class="form-control" id="updateFbUrl" placeholder="https://facebook_url.com" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="instagramUrl">Instagram Url</label>
-                                        <input type="text" name="instagramUrl" class="form-control" id="updateInstagramUrl" required="required"/>
+                                        <input type="text" name="instagramUrl" class="form-control" id="updateInstagramUrl" placeholder="https://instagram_url.com" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="youtubeUrl">Youtube Url</label>
-                                        <input type="text" name="youtubeUrl" class="form-control" id="updateYoutubeUrl" required="required"/>
+                                        <input type="text" name="youtubeUrl" class="form-control" id="updateYoutubeUrl" placeholder="https://youtube_url.com" required="required"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="whatsappUrl">Whatsapp Url</label>
-                                        <input type="text" name="whatsappUrl" class="form-control" id="updateWhatsAppUrl" required="required" />
+                                        <input type="text" name="whatsappUrl" class="form-control" id="updateWhatsAppUrl" placeholder="https://whatsapp_url.com" required="required" />
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -208,7 +252,7 @@
                 <div>
                     <button type="button" style="margin: 10px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button>
                 </div>
-                
+
                 <div class="table-bordered table-responsive" th:object = "${settings}">
                     <table class="table">
                         <thead>
