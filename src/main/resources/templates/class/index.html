@@ -35,21 +35,28 @@
                 <div class="col-md-12">
                     <h2 class="text-success text-center border-bottom border-success pb-3 mb-3" th:text="${c.name}"></h2>
                     <div class="row" >
-                        <div class="col-md-3 col-sm-6 col-12 pb-3" th:each="l : ${c.classLessonList}">
-                            <div class="card">
-                                <img class="card-img-top img-fluid"
-                                     th:src="${l.lessonId.thumbnailPath}">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center text-dark font-weight-light"
-                                    th:text="${l.lessonId.name}">
-                                    </h5>
-                                    <a class="btn btn-success btn-block font-weight-light" th:href="${'/lessons/sections/'+l.lessonId.id}"
-                                    th:text="${l.lessonId.name} +' '+ mövzuları">
-                                        <i class="fa fa-angle-double-right fa-xs"></i>
-                                    </a>
-                                </div>
+                       <th:block th:if="${c.classLessonList != null}">
+                           <div class="col-md-3 col-sm-6 col-12 pb-3" th:each="l : ${c.classLessonList}">
+                               <div class="card">
+                                   <img class="card-img-top img-fluid"
+                                        th:src="${l.lessonId.thumbnailPath}">
+                                   <div class="card-body">
+                                       <h5 class="card-title text-center text-dark font-weight-light"
+                                           th:text="${l.lessonId.name}">
+                                       </h5>
+                                       <a class="btn btn-success btn-block font-weight-light" th:href="${'/lessons/sections/'+l.lessonId.id}"
+                                          th:text="${l.lessonId.name} +' '+ mövzuları">
+                                           <i class="fa fa-angle-double-right fa-xs"></i>
+                                       </a>
+                                   </div>
+                               </div>
+                           </div>
+                       </th:block>
+                        <th:block th:if="${c.classLessonList.size()==0}">
+                            <div class="col-md-3 col-sm-6 col-12 pb-3">
+                                <p> This class's haven't any lesson</p>
                             </div>
-                        </div>
+                        </th:block>
                     </div>
                 </div>
             </div>

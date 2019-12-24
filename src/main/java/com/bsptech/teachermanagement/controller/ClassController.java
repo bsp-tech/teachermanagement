@@ -35,7 +35,7 @@ public class ClassController {
     @GetMapping
     public ModelAndView index(ModelAndView modelAndView) {
         Integer id = 1;
-        List<Class> list = classInter.findAll();
+        List<Class> list = classInter.findAllOrderByName();
         List<Lesson> lessons=lessonServiceInter.findAll();
         WebsiteSettings settings = websiteSettingsInter.findById(id);
 

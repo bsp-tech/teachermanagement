@@ -7,4 +7,5 @@ import java.util.List;
 public interface ClassServiceInter {
 
     List<Class> findAll();
+    List<Class> findAllOrderByName();
 }

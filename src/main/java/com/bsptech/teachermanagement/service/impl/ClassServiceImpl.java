@@ -18,4 +18,9 @@ public class ClassServiceImpl implements ClassServiceInter {
     public List<Class> findAll() {
         return (List<Class>) classDataInter.findAll();
     }
+
+    @Override
+    public List<Class> findAllOrderByName() {
+        return classDataInter.findAllByOrderByNameAsc();
+    }
 }
