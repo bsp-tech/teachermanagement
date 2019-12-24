@@ -17,7 +17,7 @@
             <h2 class="text-success mt-3 mb-2">Əlaqə</h2>
             <ol class="breadcrumb mb-0 bg-white justify-content-center">
                 <li class="breadcrumb-item" aria-current="page"><a
-                        class="font-weight-bold text-dark text-decoration-none" th:href="@{/}">Anasayfa</a></li>
+                        class="font-weight-bold text-dark text-decoration-none" th:href="@{/}">Ana Səhifə</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a
                         class="font-weight-bold text-success text-decoration-none" th:href="${'/contact'}">Əlaqə</a></li>
             </ol>
@@ -39,10 +39,10 @@
                         <form action="/addContact" method="post">
 
                             <div class="w-100">
-                                <h1 class="text-gray px-3 fa-2x font-weight-300 text-gray">Mesaj gönderin</h1>
+                                <h1 class="text-gray px-3 fa-2x font-weight-300 text-gray">Mesaj göndərin</h1>
 
                                 <div class="form-group">
-                                    <label for="comboDepartmentId">Departman :*</label>
+                                    <label for="comboDepartmentId">Departament :*</label>
                                     <select class="custom-select custom-select-sm" name="comboDepartment"
                                             id="comboDepartmentId">
                                         <div th:each="d:${departments}">

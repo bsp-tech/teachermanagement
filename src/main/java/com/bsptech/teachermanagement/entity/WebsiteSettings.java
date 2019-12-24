@@ -52,7 +52,7 @@ public class WebsiteSettings implements Serializable {
     private String bannerPath;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 500)
+    @Size(min = 1, max = 2000)
     @Column(name = "description")
     private String description;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -69,7 +69,7 @@ public class WebsiteSettings implements Serializable {
     private String phone;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 500)
+    @Size(min = 1, max = 2000)
     @Column(name = "autobiography")
     private String autobiography;
     @Size(max = 255)
@@ -100,6 +100,16 @@ public class WebsiteSettings implements Serializable {
     private String youtubeUrl;
     @Size(min = 10, max = 2000)
     private String whatsappUrl;
+    @Basic(optional = false)
+    private String speciality;
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
 
     public WebsiteSettings() {
     }

@@ -6,8 +6,9 @@
 
             <div class="col-lg-4">
                 <h3>Teacher Management</h3>
-                <p>Unvan:</p>
-                <p>teacher@gmail.com</p>
+                <p>Əlaqə:</p>
+                <p th:text="${settings.email}">teacher@gmail.com</p>
+                <p th:text="${settings?.phone}">+99412345678</p>
                 <div class="d-flex flex-row ">
 
                     <div class=" d-flex justify-content-center align-items-center border rounded-circle"
