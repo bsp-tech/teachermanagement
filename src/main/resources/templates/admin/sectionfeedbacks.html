@@ -4,185 +4,206 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
-    <html xmlns:th="http://www.thymeleaf.org">
-        <html>
-            <head>
-                <meta charset="UTF-8">
-                <meta content="width=device-width, initial-scale=1.0" name="viewport">
-                <meta content="ie=edge" http-equiv="X-UA-Compatible">
-                <title>Section Feedbacks</title>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-                <script>
-                    function setIdForDelete(id) {
-                        document.getElementById("sfeedbackIdForDelete").value = id;
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="ie=edge" http-equiv="X-UA-Compatible">
+        <title>Section Feedbacks</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script>
+            function setIdForDelete(id) {
+                document.getElementById("sfeedbackIdForDelete").value = id;
+            }
+        </script>
+        <script>
+            function setIdForUpdate(id) {
+                document.getElementById("sfeedbackIdForUpdate").value = id;
+                $.ajax({
+                    url: "/getData/sectionfeedback/" + id,
+                    type: 'GET',
+                    success: function (res) {
+                        $("#updateAuthorName").val(res.authorName)
+                        $("#updateContent").val(res.content)
+
+                        var sel = document.getElementById("select")
+                        $(select).val(res.sectionId)
                     }
-                </script>
-                <script>
-                    function setIdForUpdate(id) {
-                        document.getElementById("sfeedbackIdForUpdate").value = id;
-                        $.ajax({
-                            url: "/getData/sectionfeedback/" + id,
-                            type: 'GET',
-                            success: function (res) {
-                                $("#updateAuthorName").val(res.authorName)
-                                $("#updateContent").val(res.content)
-
-                                var sel = document.getElementById("select")
-                                $(select).val(res.sectionId)
-                            }
-                        });
-                    }
-                </script>
-            </head>
-            <body>
-
-                <div th:replace="admin/header"></div>
+                });
+            }
 
 
-                <div>
-                    <button type="button" style="margin: 10px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Section Feedback</button>
-                </div>
+            function countCharContentInsertModal(val) {
+                var len = val.value.length;
+                if (len > 255) {
+                    val.value = val.value.substring(0, 255);
+                } else {
+                    $('#charNumInContentAdd').text(255 - len + '  characters left');
 
-                <div class="modal" tabindex="-1" role="dialog" id="insertModal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Add</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="/admin/sectionfeedbacks/add" method="POST" modelAttribute="sectionfeedback">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="authorName">Author Name</label>
-                                        <input type="text" name="authorName" class="form-control" placeholder="Author name" required="required"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="content">Content</label>
-                                        <input type="text" name="content" class="form-control" placeholder="Content" required="required"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sectionId">Section</label>
-                                        <select class="custom-select custom-select-sm" name = "sectionId" >
-                                            <option th:each="s : ${sections}" th:text="${s.getName()}" th:value="${s.getId()}"></option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
+                }
+            }
 
-                                    <input type="submit" class="btn btn-success" value="Add">
-                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
-                                </div>
-                            </form>
-                        </div>
+            function countCharContentUpdateModal(val) {
+                var len = val.value.length;
+                if (len > 255) {
+                    val.value = val.value.substring(0, 255);
+                } else {
+                    $('#charNumInContentUpdate').text(255 - len + '  characters left');
+
+                }
+            }
+        </script>
+    </head>
+    <body>
+
+        <div th:replace="admin/header"></div>
+
+
+        <div>
+            <button type="button" style="margin: 10px;" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add Section Feedback</button>
+        </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="insertModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </div>
-
-                <div class="modal" tabindex="-1" role="dialog" id="updateModal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Update</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                    <form action="/admin/sectionfeedbacks/add" method="POST" modelAttribute="sectionfeedback">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="authorName">Author Name</label>
+                                <input type="text" name="authorName" class="form-control" placeholder="Author name" required="required"/>
                             </div>
-                            <form action="/admin/sectionfeedbacks/update" method="POST" modelAttribute="sectionfeedback">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="authorName">Author Name</label>
-                                        <input type="text" name="authorName" class="form-control" placeholder="authorName" id="updateAuthorName" required/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="content">Content</label>
-                                        <input type="text" name="content" class="form-control" placeholder="content" id="updateContent" required/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sectionId">Section</label>
-                                        <select class="custom-select custom-select-sm" name = "sectionId" id = "select">
-                                            <option th:each="s : ${sections}" th:text="${s.getName()}" th:value="${s.getId()}"></option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-
-                                    <input type="hidden" name="id" id="sfeedbackIdForUpdate">
-                                    <input type="submit" class="btn btn-success" value="Update">
-                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Delete</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                            <div class="form-group">
+                                <label for="content">Content</label>
+                                <textarea style="width: 100%" name="content" placeholder="Content" required="required" onkeyup="countCharContentInsertModal(this)"></textarea>
+                                <div style="color: red" id="charNumInContentAdd"></div>
                             </div>
-                            <form action="/admin/sectionfeedbacks/delete" method="POST">
-
-                                <div class="modal-body">
-                                    <p>Are you sure to delete selected section feedback?</p> 
-                                </div>
-                                <div class="modal-footer">
-
-                                    <input type="hidden" name="id" id="sfeedbackIdForDelete"/>
-                                    <input type="submit" class="btn btn-success" value="Delete">
-                                    <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
-                                </div>
-                            </form>
+                            <div class="form-group">
+                                <label for="sectionId">Section</label>
+                                <select class="custom-select custom-select-sm" name = "sectionId" >
+                                    <option th:each="s : ${sections}" th:text="${s.getName()}" th:value="${s.getId()}"></option>
+                                </select>
+                            </div>
                         </div>
+                        <div class="modal-footer">
+
+                            <input type="submit" class="btn btn-success" value="Add">
+                            <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="updateModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
+                    <form action="/admin/sectionfeedbacks/update" method="POST" modelAttribute="sectionfeedback">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="authorName">Author Name</label>
+                                <input type="text" name="authorName" class="form-control" placeholder="authorName" id="updateAuthorName" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="content">Content</label>
+                                <textarea style="width: 100%" name="content" placeholder="Content" id="updateContent" required="required" onkeyup="countCharContentUpdateModal(this)"></textarea>
+                                <div style="color: red" id="charNumInContentUpdate"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="sectionId">Section</label>
+                                <select class="custom-select custom-select-sm" name = "sectionId" id = "select">
+                                    <option th:each="s : ${sections}" th:text="${s.getName()}" th:value="${s.getId()}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+
+                            <input type="hidden" name="id" id="sfeedbackIdForUpdate">
+                            <input type="submit" class="btn btn-success" value="Update">
+                            <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                        </div>
+                    </form>
                 </div>
+            </div>
+        </div>
 
 
-                <div class="table-bordered table-responsive" th:object = "${sectionfeedbacks}">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Author Name</th>
-                                <th class="text-center">Content</th>
-                                <th>Section</th>
-                                <th>Insert Time</th>
-                                <th>Last Update Time</th>
-                                <th>Options</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="sectionfeedback : ${sectionfeedbacks}">
-                                <td th:text="${sectionfeedback.authorName}"></td>
-                                <td th:text="${sectionfeedback.content}"></td>
-                                <td th:text="${sectionfeedback.sectionId.name}"></td>
-                                <td th:text="${sectionfeedback.insertDateTime}"></td>
-                                <td th:text="${sectionfeedback.lastUpdateTime}"></td>
-                                <td>
-                                    <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
-                                            th:onclick="|setIdForUpdate('${sectionfeedback.id}')|"
-                                            >
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    </button> 
-                                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
-                                            th:onclick="|setIdForDelete('${sectionfeedback.id}')|"  
-                                            >
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
+        <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="/admin/sectionfeedbacks/delete" method="POST">
 
-                                    </button> 
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <div class="modal-body">
+                            <p>Are you sure to delete selected section feedback?</p> 
+                        </div>
+                        <div class="modal-footer">
+
+                            <input type="hidden" name="id" id="sfeedbackIdForDelete"/>
+                            <input type="submit" class="btn btn-success" value="Delete">
+                            <input type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                        </div>
+                    </form>
                 </div>
-            </body>
-        </html>
+            </div>
+        </div>
+
+
+        <div class="table-bordered table-responsive" th:object = "${sectionfeedbacks}">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Author Name</th>
+                        <th class="text-center">Content</th>
+                        <th>Section</th>
+                        <th>Insert Time</th>
+                        <th>Last Update Time</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="sectionfeedback : ${sectionfeedbacks}">
+                        <td th:text="${sectionfeedback.authorName}"></td>
+                        <td th:text="${sectionfeedback.content}"></td>
+                        <td th:text="${sectionfeedback.sectionId.name}"></td>
+                        <td th:text="${sectionfeedback.insertDateTime}"></td>
+                        <td th:text="${sectionfeedback.lastUpdateTime}"></td>
+                        <td>
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#updateModal"
+                                    th:onclick="|setIdForUpdate('${sectionfeedback.id}')|"
+                                    >
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button> 
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                                    th:onclick="|setIdForDelete('${sectionfeedback.id}')|"  
+                                    >
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+
+                            </button> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

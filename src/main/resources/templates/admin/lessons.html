@@ -56,6 +56,27 @@ and open the template in the editor.
                         document.getElementById("sendLessonSectionIdForDeleteLessonSection").value = id;
                     }
                 </script>
+                <script>
+                    function countCharAboutInsertModal(val) {
+                        var len = val.value.length;
+                        if (len > 255) {
+                            val.value = val.value.substring(0, 255);
+                        } else {
+                            $('#charNumInAboutAdd').text(255 - len + '  characters left');
+
+                        }
+                    }
+
+                    function countCharAboutUpdateModal(val) {
+                        var len = val.value.length;
+                        if (len > 255) {
+                            val.value = val.value.substring(0, 255);
+                        } else {
+                            $('#charNumInAboutUpdate').text(255 - len + '  characters left');
+
+                        }
+                    }
+                </script>
 
             </head>
             <body>
@@ -81,7 +102,8 @@ and open the template in the editor.
                                     </div>
                                     <div class="form-group">
                                         <label for="about">About</label>
-                                        <input type="text" name="about" class="form-control"placeholder="About" required="required"/>
+                                        <textarea style="width: 100%" name="about" placeholder="About" required="required" onkeyup="countCharAboutInsertModal(this)"></textarea>
+                                        <div style="color: red" id="charNumInAboutAdd"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="thumbnailPath">ThumbnailPath</label>
@@ -117,7 +139,8 @@ and open the template in the editor.
                                     </div>
                                     <div class="form-group">
                                         <label for="about">About</label>
-                                        <input type="text" name="about" class="form-control" id="updateAbout" required="required"/>
+                                        <textarea style="width: 100%" name="about" placeholder="About" id="updateAbout" required="required" onkeyup="countCharAboutUpdateModal(this)"></textarea>
+                                        <div style="color: red" id="charNumInAboutUpdate"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="thumbnailPath">ThumbnailPath</label>
