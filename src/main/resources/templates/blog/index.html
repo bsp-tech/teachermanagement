@@ -20,7 +20,7 @@
             <h2 class="text-success mt-3 mb-2">Blog</h2>
             <ol class="breadcrumb mb-0 bg-white justify-content-center">
                 <li aria-current="page" class="breadcrumb-item"><a
-                        class="font-weight-bold text-dark text-decoration-none" th:href="@{/}">Anasayfa</a></li>
+                        class="font-weight-bold text-dark text-decoration-none" th:href="@{/}">Ana Səhifə</a></li>
                 <li aria-current="page" class="breadcrumb-item"><a
                         class="font-weight-bold text-success text-decoration-none" th:href="${'/blog'}">Blog</a></li>
             </ol>
@@ -62,7 +62,7 @@
                                     <a class="btn btn-success font-weight-light text-light"
                                        th:href="${'/blog/details/'+post.id}"
                                        role="button"><i
-                                            class="fa fa-angle-double-right fa-xs"></i> Devamını Oku...</a>
+                                            class="fa fa-angle-double-right fa-xs"></i> Daha çox...</a>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                         <div class="border border-muted p-3 mb-4" th:each="lesson : ${lessons}">
                             <h5 class="pb-3"><a class="text-dark font-weight-normal text-decoration-none"
                                                 th:href="${'/lessons/details/'+lesson.id}"
-                                                th:text="${lesson.name}">Metraya</a></h5>
+                                                th:text="${lesson.name}">Materiya</a></h5>
                             <ul class="list-inline mb-0" th:each="section:${lesson.lessonSectionList}">
 
                                 <li class="py-2 my-1 border-bottom border-muted">
