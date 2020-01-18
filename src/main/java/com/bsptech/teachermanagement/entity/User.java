@@ -85,6 +85,9 @@ public class User implements Serializable {
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private AuthGroup groupId;
 
     public User() {
     }
@@ -186,6 +189,13 @@ public class User implements Serializable {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
+    public AuthGroup getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(AuthGroup groupId) {
+        this.groupId = groupId;
+    }
 
     @Override
     public int hashCode() {
